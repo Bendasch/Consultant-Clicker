@@ -1,0 +1,178 @@
+body {
+  color: #fff;
+  font-family: "Calibri";
+  float: left;
+  width: 100%;
+  height: 100%;
+  background-image: url("./img/consultants_stock_01.jpg");
+  background-size: cover;
+}
+p {
+  margin: 0px;
+}
+.statBoxWrapper {
+  margin-left: 5%;
+  width: 26%;
+  margin-top: 5%;
+  display: table;
+  line-height: 20px;
+  border-collapse: collapse;
+}
+.resourceBoxWrapper {
+  margin-left: 5%;
+  width: 26%;
+  margin-top: 5%;
+  padding: 10px;
+  display: table;
+  line-height: 20px;
+  border-collapse: collapse;
+}
+.resourceWrapper {
+  margin-top: 1px;
+  width: 100%;
+  display: table-row;
+  background: #2e2e2e;
+}
+.resourceCount {
+  width: 15%;
+  display: table-cell;
+  text-align: center;
+  border: 1px solid #fff;
+  vertical-align: middle;
+}
+.resourceRate {
+  width: 15%;
+  display: table-cell;
+  text-align: center;
+  border: 1px solid #fff;
+  vertical-align: middle;
+}
+.resourceName {
+  padding-left: 10px;
+  width: 40%;
+  display: table-cell;
+  text-align: left;
+  border: 1px solid #fff;
+  vertical-align: middle;
+}
+.resourceButton {
+  width: 25%;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid #fff;
+}
+.resourceButton.enabled {
+  color: #fff;
+}
+.resourceButton.disabled {
+  color: rgb(111, 110, 110);
+}
+.resourceButton.enabled:active {
+  background-color: #262525;
+}
+.resourceButton:hover {
+  background-color: #4d4a4a;
+}
+.buttonNumber {
+  font-size: 120%;
+}
+.buttonCost {
+  font-size: 90%;
+  color: red;
+}
+.statWrapper {
+  margin-top: 1px;
+  width: 100%;
+  display: table-row;
+  background: #2e2e2e;
+}
+.statsLabel {
+  padding-left: 10px;
+  width: 50%;
+  display: table-cell;
+  border: 1px solid #fff;
+}
+.statsValue {
+  padding-right: 10px;
+  width: 50%;
+  display: table-cell;
+  text-align: right;
+  border: 1px solid #fff;
+  color: rgb(20, 228, 20);
+}
+.animationWrapper {
+  width: 26%;
+  height: 220px;
+  margin-left: 5%;
+  margin-top: 5%;
+  display: flex;
+  align-items: center;
+}
+.circleWrapper {
+  margin-left: 20%;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  flex-wrap: wrap;
+  color: rgb(20, 228, 20);
+}
+.square-container {
+  margin: 0%;
+  width: 50%;
+  height: 50%;
+  overflow: hidden;
+  float: left;
+}
+.circle {
+  width: 200%;
+  height: 200%;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+.square-container.bottom {
+  transform: rotate(-90deg);
+}
+.square-container.right {
+  transform: rotate(90deg);
+}
+.square-container.bottom.right {
+  transform: rotate(-180deg);
+}
+.white {
+  background: #f7f3d7;
+}
+.dark {
+  background: #2e2e2e;
+}
+.randomizeWrapper {
+  margin-left: 5%;
+  width: 20%;
+  height: 200px;
+  background: #2e2e2e;
+  flex-wrap: wrap;
+  border: 2px solid #fff;
+  z-index: -1;
+  position: relative;
+}
+.randomizer {
+  position: absolute;
+  margin-top: 0%;
+  width: 100%;
+  height: 0%;
+  z-index: 5;
+  margin-left: auto;
+  margin-right: auto;
+  color: rgb(20, 228, 20);
+}
+.salesMeter {
+  position: absolute;
+  margin-top: 0%;
+  width: 100%;
+  height: 0%;
+  border-bottom: 1px solid rgb(20, 228, 20);
+  z-index: 10;
+  margin-left: auto;
+  margin-right: auto;
+}

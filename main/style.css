@@ -1,18 +1,17 @@
 body {
-  color: #fff;
-  font-family: "Calibri";
-  float: left;
-  width: 100%;
-  height: 100%;
   background-image: url("./img/consultants_stock_01.jpg");
   background-size: cover;
+  font-family: "Calibri";
+  width: 100%;
+  height: 100%;
+  display: flex;
 }
 p {
   margin: 0px;
 }
 .statBoxWrapper {
   margin-left: 5%;
-  width: 26%;
+  width: 80%;
   margin-top: 5%;
   display: table;
   line-height: 20px;
@@ -20,7 +19,7 @@ p {
 }
 .resourceBoxWrapper {
   margin-left: 5%;
-  width: 26%;
+  width: 80%;
   margin-top: 5%;
   padding: 10px;
   display: table;
@@ -103,10 +102,9 @@ p {
   color: rgb(20, 228, 20);
 }
 .animationWrapper {
-  width: 26%;
-  height: 220px;
-  margin-left: 5%;
-  margin-top: 5%;
+  width: 90%;
+  height: 300px;
+  padding: 5%;
   display: flex;
   align-items: center;
 }
@@ -147,7 +145,7 @@ p {
   background: #2e2e2e;
 }
 .randomizeWrapper {
-  margin-left: 5%;
+  margin-left: 10%;
   width: 20%;
   height: 200px;
   background: #2e2e2e;
@@ -175,4 +173,21 @@ p {
   z-index: 10;
   margin-left: auto;
   margin-right: auto;
+}
+.logBox {
+  width: 90%;
+  height: 250px;
+  margin: 5%;
+  background: #2e2e2e;
+  border: 2px solid #fff;
+  line-height: 15px;
+}
+.leftSide {
+  height: 100%;
+  width: 50%;
+  float: left;
+}
+.rightSide {
+  height: 100%;
+  width: 50%;
 }

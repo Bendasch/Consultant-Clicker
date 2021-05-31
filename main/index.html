@@ -1,174 +1,183 @@
 <!doctype html>
 <html>
 
-<head>
-    <title>Consultant Clicker</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head>
+    <head>
+        <title>Consultant Clicker</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
 
-<body>
-    <div class="statBoxWrapper">
+    <body>
+        <div class="leftSide">
+            <div class="statBoxWrapper">
 
-        <div class="statWrapper">
-            <div class="statsLabel">
-                <strong>Kontostand:</strong>
-            </div>
-            <div class="statsValue">
-                <p id="currentBalance"></p>
-            </div>
-        </div>
-
-        <div class="statWrapper">
-            <div class="statsLabel">
-                <strong>Umsatz seit Start:</strong>
-            </div>
-            <div class="statsValue">
-                <p id="totalEarnings"></p>
-            </div>  
-        </div>
-        
-        <div class="statWrapper">
-            <div class="statsLabel">
-                <strong>Wert des aktuellen Projekts:</strong>
-            </div>
-            <div class="statsValue">
-                <p id="projectValue"></p>
-            </div>
-        </div>
-        
-        <div class="statWrapper">
-            <div class="statsLabel">
-                <strong>Aktueller Projektfortschritt:</strong>
-            </div>
-            <div class="statsValue">
-                <p id="projectProgress"></p>
-            </div>
-        </div>
-
-        <div class="statWrapper">
-            <div class="statsLabel">
-                <strong>Fortschritt pro Sekunde:</strong>
-            </div>
-            <div class="statsValue">
-                <p id="rate"></p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="animationWrapper"> 
-    <div class="randomizeWrapper">
-        <div class="salesMeter" id="salesMeter"></div>
-        <div class="randomizer white" id="randomizer"><h3>sales proposals</h3></div>
-    </div>
-
-    <div class="circleWrapper">
-        <p><h3>project progress</h3></p>
-        <div class="square-container">
-            <div class="circle white" id="circleTL"></div>
-        </div>
-        <div class="square-container right">
-            <div class="circle white" id="circleTR"></div>
-        </div>
-        <div class="square-container bottom">
-            <div class="circle white" id="circleBL"></div>
-        </div>
-        <div class="square-container bottom right">
-            <div class="circle white" id="circleBR"></div>
-        </div>
-    </div>
-</div>
-
-    <div class="resourceBoxWrapper">
-
-        <div class="resourceWrapper">
-            <div class="resourceCount" id="salesPersonCount">
-                <p></p>
-            </div>
-            <div class="resourceRate" id="salesPersonRate">
-                <p></p>
-            </div>
-            <div class="resourceName">
-                <p>Vertriebler</p>
-            </div>
-            <div class="resourceButton" id="salesPersonButton">
-                <div class="buttonNumber">
-                    <b>+1</b>
+                <div class="statWrapper">
+                    <div class="statsLabel">
+                        <strong>Kontostand:</strong>
+                    </div>
+                    <div class="statsValue">
+                        <p id="currentBalance"></p>
+                    </div>
                 </div>
-                <div class="buttonCost">
-                    <p id="salesPersonCost"></p>
+
+                <div class="statWrapper">
+                    <div class="statsLabel">
+                        <strong>Umsatz seit Start:</strong>
+                    </div>
+                    <div class="statsValue">
+                        <p id="totalEarnings"></p>
+                    </div>
+                </div>
+
+                <div class="statWrapper">
+                    <div class="statsLabel">
+                        <strong>Wert des aktuellen Projekts:</strong>
+                    </div>
+                    <div class="statsValue">
+                        <p id="projectValue"></p>
+                    </div>
+                </div>
+
+                <div class="statWrapper">
+                    <div class="statsLabel">
+                        <strong>Aktueller Projektfortschritt:</strong>
+                    </div>
+                    <div class="statsValue">
+                        <p id="projectProgress"></p>
+                    </div>
+                </div>
+
+                <div class="statWrapper">
+                    <div class="statsLabel">
+                        <strong>Fortschritt pro Sekunde:</strong>
+                    </div>
+                    <div class="statsValue">
+                        <p id="rate"></p>
+                    </div>
                 </div>
             </div>
+
+            <div class="animationWrapper">
+                <div class="randomizeWrapper">
+                    <div class="salesMeter" id="salesMeter"></div>
+                    <div class="randomizer white" id="randomizer">
+                        <h3>sales proposals</h3>
+                    </div>
+                </div>
+
+                <div class="circleWrapper">
+                    <p>
+                        <h3>project progress</h3>
+                    </p>
+                    <div class="square-container">
+                        <div class="circle white" id="circleTL"></div>
+                    </div>
+                    <div class="square-container right">
+                        <div class="circle white" id="circleTR"></div>
+                    </div>
+                    <div class="square-container bottom">
+                        <div class="circle white" id="circleBL"></div>
+                    </div>
+                    <div class="square-container bottom right">
+                        <div class="circle white" id="circleBR"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resourceBoxWrapper">
+
+                <div class="resourceWrapper">
+                    <div class="resourceCount" id="salesPersonCount">
+                        <p></p>
+                    </div>
+                    <div class="resourceRate" id="salesPersonRate">
+                        <p></p>
+                    </div>
+                    <div class="resourceName">
+                        <p>Vertriebler</p>
+                    </div>
+                    <div class="resourceButton" id="salesPersonButton">
+                        <div class="buttonNumber">
+                            <b>+1</b>
+                        </div>
+                        <div class="buttonCost">
+                            <p id="salesPersonCost"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resourceBoxWrapper">
+
+                <div class="resourceWrapper">
+                    <div class="resourceCount" id="juniorCount">
+                        <p></p>
+                    </div>
+                    <div class="resourceRate" id="juniorRate">
+                        <p></p>
+                    </div>
+                    <div class="resourceName">
+                        <p>Junior</p>
+                    </div>
+                    <div class="resourceButton" id="juniorButton">
+                        <div class="buttonNumber">
+                            <b>+1</b>
+                        </div>
+                        <div class="buttonCost">
+                            <p id="juniorCost"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resourceWrapper">
+                    <div class="resourceCount" id="consultantCount">
+                        <p></p>
+                    </div>
+                    <div class="resourceRate" id="consultantRate">
+                        <p></p>
+                    </div>
+                    <div class="resourceName">
+                        <p>Consultant</p>
+                    </div>
+                    <div class="resourceButton" id="consultantButton">
+                        <div class="buttonNumber">
+                            <b>+1</b>
+                        </div>
+                        <div class="buttonCost">
+                            <p id="consultantCost"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resourceWrapper">
+                    <div class="resourceCount" id="seniorCount">
+                        <p></p>
+                    </div>
+                    <div class="resourceRate" id="seniorRate">
+                        <p></p>
+                    </div>
+                    <div class="resourceName">
+                        <p>Senior</p>
+                    </div>
+                    <div class="resourceButton" id="seniorButton">
+                        <div class="buttonNumber">
+                            <b>+1</b>
+                        </div>
+                        <div class="buttonCost">
+                            <p id="seniorCost"></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
-    </div>
 
-    <div class="resourceBoxWrapper">
-
-        <div class="resourceWrapper">
-            <div class="resourceCount" id="juniorCount">
-                <p></p>
-            </div>
-            <div class="resourceRate" id="juniorRate">
-                <p></p>
-            </div>
-            <div class="resourceName">
-                <p>Junior</p>
-            </div>
-            <div class="resourceButton" id="juniorButton">
-                <div class="buttonNumber">
-                    <b>+1</b>
-                </div>
-                <div class="buttonCost">
-                    <p id="juniorCost"></p>
-                </div>
-            </div>
+        <div class="rightSide">
+            <div class="logBox"></div>
         </div>
 
-        <div class="resourceWrapper">
-            <div class="resourceCount" id="consultantCount">
-                <p></p>
-            </div>
-            <div class="resourceRate" id="consultantRate">
-                <p></p>
-            </div>
-            <div class="resourceName">
-                <p>Consultant</p>
-            </div>
-            <div class="resourceButton" id="consultantButton">
-                <div class="buttonNumber">
-                    <b>+1</b>
-                </div>
-                <div class="buttonCost">
-                    <p id="consultantCost"></p>
-                </div>
-            </div>        
-        </div>
-
-        <div class="resourceWrapper">
-            <div class="resourceCount" id="seniorCount">
-                <p></p>
-            </div>
-            <div class="resourceRate" id="seniorRate">
-                <p></p>
-            </div>
-            <div class="resourceName">
-                <p>Senior</p>
-            </div>
-            <div class="resourceButton" id="seniorButton">
-                <div class="buttonNumber">
-                    <b>+1</b>
-                </div>
-                <div class="buttonCost">
-                    <p id="seniorCost"></p>
-                </div>
-            </div>        
-        </div>
-                
-    </div>
-
-    <script type="module" src="index.js"></script>   
-    <script type="module" src="main.js"></script>
-</body>
+        <script type="module" src="index.js"></script>
+        <script type="module" src="main.js"></script>
+    </body>
 
 </html>

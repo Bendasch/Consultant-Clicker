@@ -1,0 +1,26 @@
+{
+    "junior": {
+        "quantity": 2,
+        "rate": 55,
+        "cost": 40000
+    },
+    "consultant": {
+        "quantity": 2,
+        "rate": 75,
+        "cost": 50000
+    },
+    "senior": {
+        "quantity": 1,
+        "rate": 125,
+        "cost": 65000
+    },
+    "salesPerson" :{
+        "quantity": 1,
+        "rate": 0.1,
+        "cost": 100000
+    },
+    "project": {
+        "value": 12500,
+        "effort": 2500
+    }
+}

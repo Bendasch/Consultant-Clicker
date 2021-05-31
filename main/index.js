@@ -4,89 +4,70 @@ import {
  } from './base.js';
 
 // initialize data
+fetch("./data/init.json").then( response => response.json() ).then( json => {
 
-// configure initial counts here
-const iJuniors = 2;
-const iConsultants = 2;
-const iSeniors = 1;
-const iSalesPersons = 1;
+  // total earnings
+  jQuery.data(document.body, "totalEarnings", 0);
+  jQuery.data(document.body, "currentBalance", 0);
 
-// configure initial rates here
-const iJuniorRate = 55;
-const iConsultantRate = 75;
-const iSeniorRate = 125;
-const iSalesPersonRate = 0.1;
+  // current project
+  jQuery.data(document.body, "projectValue", json.project.value);
+  jQuery.data(document.body, "projectEffort", json.project.effort);
+  jQuery.data(document.body, "projectProgress", 0);
 
-// configure initial costs here
-const iJuniorCost = 40000;
-const iConsultantCost = 50000;
-const iSeniorCost = 65000;
-const iSalesPersonCost = 100000;
+  // juniors
+  jQuery.data(document.body, "juniors", json.junior.quantity);
+  jQuery.data(document.body, "juniorRate", json.junior.rate);
+  jQuery.data(document.body, "juniorCost", json.junior.cost);
 
-// current project
-const iProjectValue = 12500;
-const iProjectEffort = 2500;
+  // consultants
+  jQuery.data(document.body, "consultants", json.consultant.quantity);
+  jQuery.data(document.body, "consultantRate", json.consultant.rate);
+  jQuery.data(document.body, "consultantCost", json.consultant.cost);
 
-// total earnings
-jQuery.data(document.body, "totalEarnings", 0);
-jQuery.data(document.body, "currentBalance", 0);
+  // seniors
+  jQuery.data(document.body, "seniors", json.senior.quantity);
+  jQuery.data(document.body, "seniorRate", json.senior.rate);
+  jQuery.data(document.body, "seniorCost", json.senior.cost);
 
-// current project
-jQuery.data(document.body, "projectValue", iProjectValue);
-jQuery.data(document.body, "projectEffort", iProjectEffort);
-jQuery.data(document.body, "projectProgress", 0);
+  // sales
+  jQuery.data(document.body, "salesPersons", json.salesPerson.quantity);
+  jQuery.data(document.body, "salesPersonRate", json.salesPerson.rate);
+  jQuery.data(document.body, "salesPersonCost", json.salesPerson.cost);
 
-// juniors
-jQuery.data(document.body, "juniors", iJuniors);
-jQuery.data(document.body, "juniorRate", iJuniorRate);
-jQuery.data(document.body, "juniorCost", iJuniorCost);
+  // total rates
+  jQuery.data(document.body, "totalRate", json.junior.rate * json.junior.quantity + json.consultant.rate * json.consultant.quantity + json.senior.rate * json.senior.quantity);
+  jQuery.data(document.body, "totalSalesRate", json.salesPerson.rate * json.salesPerson.quantity);
 
-// consultants
-jQuery.data(document.body, "consultants", iConsultants);
-jQuery.data(document.body, "consultantRate", iConsultantRate);
-jQuery.data(document.body, "consultantCost", iConsultantCost);
+  // initialize the screen
 
-// seniors
-jQuery.data(document.body, "seniors", iSeniors);
-jQuery.data(document.body, "seniorRate", iSeniorRate);
-jQuery.data(document.body, "seniorCost", iSeniorCost);
+  // resource counts
+  $("#juniorCount").text(jQuery.data(document.body, "juniors"));
+  $("#consultantCount").text(jQuery.data(document.body, "consultants"));
+  $("#seniorCount").text(jQuery.data(document.body, "seniors"));
+  $("#salesPersonCount").text(jQuery.data(document.body, "salesPersons"));
 
-// sales
-jQuery.data(document.body, "salesPersons", iSalesPersons);
-jQuery.data(document.body, "salesPersonRate", iSalesPersonRate);
-jQuery.data(document.body, "salesPersonCost", iSalesPersonCost);
+  // resource rates
+  $("#juniorRate").text("× " + jQuery.data(document.body, "juniorRate"));
+  $("#consultantRate").text("× " + jQuery.data(document.body, "consultantRate"));
+  $("#seniorRate").text("× " + jQuery.data(document.body, "seniorRate"));
+  $("#salesPersonRate").text("× " + jQuery.data(document.body, "salesPersonRate"));
 
-// total rates
-jQuery.data(document.body, "totalRate", iJuniorRate * iJuniors + iConsultantRate * iConsultants + iSeniorRate * iSeniors);
-jQuery.data(document.body, "totalSalesRate", iSalesPersonRate * iSalesPersons);
+  // resource costs
+  $("#juniorCost").text("-" + FormatterNoDec.format(jQuery.data(document.body, "juniorCost")));
+  $("#consultantCost").text("-" + FormatterNoDec.format(jQuery.data(document.body, "consultantCost")));
+  $("#seniorCost").text("-" + FormatterNoDec.format(jQuery.data(document.body, "seniorCost")));
+  $("#salesPersonCost").text("-" + FormatterNoDec.format(jQuery.data(document.body, "salesPersonCost")));
 
-// initialize the screen
+  // earnings & balance
+  $("#totalEarnings").text(Formatter.format(0));
+  $("#currentBalance").text(Formatter.format(0));
 
-// resource counts
-$("#juniorCount").text(jQuery.data(document.body, "juniors"));
-$("#consultantCount").text(jQuery.data(document.body, "consultants"));
-$("#seniorCount").text(jQuery.data(document.body, "seniors"));
-$("#salesPersonCount").text(jQuery.data(document.body, "salesPersons"));
+  // project
+  $("#projectValue").text(Formatter.format(json.project.value));
+  $("#projectProgress").text(0 + " / " + json.project.effort);
 
-// resource rates
-$("#juniorRate").text("× " + jQuery.data(document.body, "juniorRate"));
-$("#consultantRate").text("× " + jQuery.data(document.body, "consultantRate"));
-$("#seniorRate").text("× " + jQuery.data(document.body, "seniorRate"));
-$("#salesPersonRate").text("× " + jQuery.data(document.body, "salesPersonRate"));
-
-// resource costs
-$("#juniorCost").text("-" + FormatterNoDec.format(jQuery.data(document.body, "juniorCost")));
-$("#consultantCost").text("-" + FormatterNoDec.format(jQuery.data(document.body, "consultantCost")));
-$("#seniorCost").text("-" + FormatterNoDec.format(jQuery.data(document.body, "seniorCost")));
-$("#salesPersonCost").text("-" + FormatterNoDec.format(jQuery.data(document.body, "salesPersonCost")));
-
-// earnings & balance
-$("#totalEarnings").text(Formatter.format(0));
-$("#currentBalance").text(Formatter.format(0));
-
-// project
-$("#projectValue").text(Formatter.format(iProjectValue));
-$("#projectProgress").text(0 + " / " + iProjectEffort);
+});
 
 // call when document is ready
 $(document).ready(function() {

@@ -2,22 +2,30 @@
     "junior": {
         "quantity": 2,
         "rate": 55,
-        "cost": 40000
+        "cost": 40000,
+        "singular": "Junior Consultant",
+        "plural": "Junior Consultants"
     },
     "consultant": {
         "quantity": 2,
         "rate": 75,
-        "cost": 50000
+        "cost": 50000,
+        "singular": "Consultant",
+        "plural": "Consultants"
     },
     "senior": {
         "quantity": 1,
         "rate": 125,
-        "cost": 65000
+        "cost": 65000,
+        "singular": "Senior Consultant",
+        "plural": "Senior Consultants"
     },
     "salesPerson" :{
         "quantity": 1,
         "rate": 0.1,
-        "cost": 100000
+        "cost": 100000,
+        "singular": "Salesperson",
+        "plural": "Sales people"
     },
     "project": {
         "value": 12500,

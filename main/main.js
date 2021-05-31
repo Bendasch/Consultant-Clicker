@@ -13,8 +13,6 @@ function sleep(ms) {
 
 function main(tick, start, cycle) {  
 
-  console.log("Started cycle: " + cycle);
-
   // get time in ms since last cycle
   var d = new Date();
   var t = d.getTime();

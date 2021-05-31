@@ -17,10 +17,6 @@ export function updateRandomizer(iRand) {
   var iMarginTop = 200 - 2 * iHeight;
   $('#randomizer').height(iHeight+"%");
   $('#randomizer').css('margin-top',iMarginTop+"%");
-
-  // check values
-  console.log("Height: " + iHeight);
-  console.log("Margin-Top: " + iMarginTop);
 };
 
 export function updateColor(iEffort, iProgress) {
@@ -46,7 +42,6 @@ export function updateColor(iEffort, iProgress) {
 
   // calculate fraction of the project that is finished
   var iFraction = iProgress / iEffort;
-  console.log("Project progress: " + iFraction);  
   
   // color circles according to what has been finished
   if (iFraction < .25) {    
@@ -127,7 +122,7 @@ export function updateProject(tick) {
 
   // update the progress
   // update the earnings if 
-  if (iNewProgress >= iEffort) {
+  if (iEffort > 0 && iNewProgress >= iEffort) {
 
     // add the project value to the earnings and balance
     updateEarnings(jQuery.data(document.body, "projectValue"));
@@ -175,9 +170,9 @@ export function findProject(tick, cycle) {
   var iRand = Math.random();
   updateRandomizer(iRand);
   if (iTotalSalesRate < iRand) {
-    console.log("Project proposal failed: Total Sales Rate < " + iRand);  
+    logAction("Project proposal failed! Total Sales Rate < " + iRand.toFixed(5) + ".");  
     return;
-  }
+  } 
 
   // in this case get further random numbers to determine the value and effort
   // projects value (multiply by 45.000)
@@ -193,6 +188,8 @@ export function findProject(tick, cycle) {
   $("#projectValue").text(Formatter.format(iProjectValue));
   $("#projectProgress").text(0 + " / " + iProjectEffort);
 
+  // output success message
+  logAction("Project proposal successful! Project value " + iProjectValue.toFixed(2) + "€ (effort " + iProjectEffort + ").");
 };
 
 export function updateEarnings(val) {
@@ -212,6 +209,9 @@ export function updateEarnings(val) {
   // display new values (rounded and clipped to two decimals)
   $("#totalEarnings").text(Formatter.format(iNewEarnings));
   $("#currentBalance").text(Formatter.format(iNewBalance));
+
+  // display a success message
+  logAction("Project finished! Earned " + val.toFixed(2) + "€.");
 };
 
 export function updateRate() {
@@ -239,9 +239,6 @@ export function updateRate() {
   // display new value (rounded and clipped to two decimals)
   $("#rate").text(iTotalRate);  
   $("#salesMeter").height(200*iTotalSalesRate);
-
-  // check values
-  console.log("Total sales rate: " + iTotalSalesRate);
 }
 
 export function subtractBalance(val) {
@@ -251,31 +248,35 @@ export function subtractBalance(val) {
 
 export function addResource(type,num) {
 
-  var sData, sOut, iCosts;
+  var sData, sOutSingular, sOutPlural, iCosts;
 
   switch (type) {
  
     case "JUNIOR": {
       sData = "juniors";
-      sOut = "Junior(s)";
+      sOutSingular = jQuery.data(document.body, "juniorSingular");
+      sOutPlural = jQuery.data(document.body, "juniorPlural");
       iCosts = num * jQuery.data(document.body, "juniorCost");
     } break;   
 
     case "CONSULTANT": {
       sData = "consultants";
-      sOut = "Consultant(s)";
+      sOutSingular = jQuery.data(document.body, "consultantSingular");
+      sOutPlural = jQuery.data(document.body, "consultantPlural");
       iCosts = num * jQuery.data(document.body, "consultantCost");
     } break;   
 
     case "SENIOR": {
       sData = "seniors";
-      sOut = "Senior(s)";
+      sOutSingular = jQuery.data(document.body, "seniorSingular");
+      sOutPlural = jQuery.data(document.body, "seniorPlural");
       iCosts = num * jQuery.data(document.body, "seniorCost");
     } break;   
 
     case "SALESPERS": {
       sData = "salesPersons";
-      sOut = "Salesperson(s)";
+      sOutSingular = jQuery.data(document.body, "salesPersonSingular");
+      sOutPlural = jQuery.data(document.body, "salesPersonPlural");
       iCosts = num * jQuery.data(document.body, "salesPersonCost");
     } break;   
   }
@@ -293,7 +294,11 @@ export function addResource(type,num) {
   updateResourceCount(type,iCount + num);
 
   // log this
-  console.log(num + " " + sOut +  " wurde(n) hinzugefügt.");
+  if (num == 1) {
+    logAction("1 " + sOutSingular +  " was added.");
+  } else {
+    logAction(snum + sOutPlural +  " were added.");
+  }
 }
 
 export function updateResourceCount(type,num) {
@@ -443,4 +448,11 @@ export function disableButton(sId) {
 
     } break;   
   }
+}
+
+function logAction(str) {
+  const d = new Date()
+  var time = String(d.getHours()).padStart(2,0) + ":" + String(d.getMinutes()).padStart(2,0) + ":" + String(d.getSeconds()).padStart(2,0);
+  $("#logBox").append("<p>" + time + " - " + str + "</p>");
+  $("#logBox").animate({scrollTop: $("#logBox").prop("scrollHeight")}, 1000);
 }

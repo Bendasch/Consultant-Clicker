@@ -19,21 +19,29 @@ fetch("./data/init.json").then( response => response.json() ).then( json => {
   jQuery.data(document.body, "juniors", json.junior.quantity);
   jQuery.data(document.body, "juniorRate", json.junior.rate);
   jQuery.data(document.body, "juniorCost", json.junior.cost);
+  jQuery.data(document.body, "juniorSingular", json.junior.singular);
+  jQuery.data(document.body, "juniorPlural", json.junior.plural);
 
   // consultants
   jQuery.data(document.body, "consultants", json.consultant.quantity);
   jQuery.data(document.body, "consultantRate", json.consultant.rate);
   jQuery.data(document.body, "consultantCost", json.consultant.cost);
+  jQuery.data(document.body, "consultantSingular", json.consultant.singular);
+  jQuery.data(document.body, "consultantPlural", json.consultant.plural);
 
   // seniors
   jQuery.data(document.body, "seniors", json.senior.quantity);
   jQuery.data(document.body, "seniorRate", json.senior.rate);
   jQuery.data(document.body, "seniorCost", json.senior.cost);
+  jQuery.data(document.body, "seniorSingular", json.senior.singular);
+  jQuery.data(document.body, "seniorPlural", json.senior.plural);
 
   // sales
   jQuery.data(document.body, "salesPersons", json.salesPerson.quantity);
   jQuery.data(document.body, "salesPersonRate", json.salesPerson.rate);
   jQuery.data(document.body, "salesPersonCost", json.salesPerson.cost);
+  jQuery.data(document.body, "salesPersonSingular", json.salesPerson.singular);
+  jQuery.data(document.body, "salesPersonPlural", json.salesPerson.plural);
 
   // total rates
   jQuery.data(document.body, "totalRate", json.junior.rate * json.junior.quantity + json.consultant.rate * json.consultant.quantity + json.senior.rate * json.senior.quantity);
@@ -68,6 +76,11 @@ fetch("./data/init.json").then( response => response.json() ).then( json => {
   $("#projectProgress").text(0 + " / " + json.project.effort);
 
 });
+
+// initialize the log
+$("#logBox").text("Welcome to Consultant Clicker!");
+$("#logBox").append("<p>Good luck!</p>")
+$("#logBox").append("<p>-------------</p>")
 
 // call when document is ready
 $(document).ready(function() {

@@ -1,3 +1,7 @@
+import {
+  setProgressBar
+} from "./animation.js"
+
 export const FormatterNoDec = new Intl.NumberFormat('de-DE', {
   style: 'currency',
   currency: 'EUR',
@@ -19,6 +23,7 @@ export function updateProject(tick) {
 
   // get stats of the current project
   var iEffort = jQuery.data(document.body, "projectEffort");
+  if (iEffort <= 0) {return;} // currently there is no active project
   var iProgress = jQuery.data(document.body, "projectProgress");
 
   // calculate the progress of the projects
@@ -28,7 +33,7 @@ export function updateProject(tick) {
 
   // update the progress
   // update the earnings if 
-  if (iEffort > 0 && iNewProgress >= iEffort) {
+  if (iNewProgress >= iEffort) {
 
     // add the project value to the earnings and balance
     updateEarnings(jQuery.data(document.body, "projectValue"));
@@ -40,8 +45,9 @@ export function updateProject(tick) {
     jQuery.data(document.body, "projectProgress", 0);
 
     // 2) interface
-    $("#projectValue").text("");
+    $("#projectValue").text("there is no active project");
     $("#projectProgress").text("0 / 0");
+    setProgressBar(0, 1);
 
   } else {
 
@@ -51,6 +57,7 @@ export function updateProject(tick) {
 
     // 2) update progress display
     $("#projectProgress").text(iNewProgress + " / " + iEffort);
+    setProgressBar(iNewProgress, iEffort);
   }
 };
 
@@ -150,7 +157,7 @@ export function subtractBalance(val) {
   jQuery.data(document.body, "currentBalance", iOldBalance - val);
 }
 
-function logAction(str) {
+export function logAction(str) {
 
   const logBox = $("#logBox");
   const d = new Date()
@@ -159,4 +166,25 @@ function logAction(str) {
 
   // scroll down animation
   logBox.animate({scrollTop: logBox.prop("scrollHeight")}, 500);
+}
+
+export function openTab(event, tabId) {
+
+  var i, tabcontent, tablinks;
+
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", " inactive");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(tabId).style.display = "block";
+  event.currentTarget.className = event.currentTarget.className.replace(" inactive", " active");;
 }

@@ -1,10 +1,8 @@
 import { 
   FormatterNoDec,
-  Formatter
+  Formatter,
+  openTab
  } from './main/base.js';
-
-// set menus as tabs
-$("#tabs").tabs();
 
 // initialize data
 fetch("./data/init.json").then( response => response.json() ).then( json => {
@@ -92,5 +90,8 @@ $("#logBox").append("<p>-------------</p>")
 
 // call when document is ready
 $(document).ready(function() {
-    return;
+  // bind event handlers to navbar
+  $("#statsTab").on("click", (event) => {openTab(event, "stats")});
+  $("#shopTab").on("click", (event) => {openTab(event, "shop")});
 });
+

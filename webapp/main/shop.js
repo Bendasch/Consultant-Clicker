@@ -1,3 +1,7 @@
+import {
+  subtractBalance,
+  logAction
+} from './base.js' 
 
 export function addResource(type,num) {
 

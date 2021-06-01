@@ -3,7 +3,7 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/', function(req, res) {
-	res.redirect('./main/index.html');
+	res.redirect('./webapp/index.html');
 });
 
 module.exports = router;

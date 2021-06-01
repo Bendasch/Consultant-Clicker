@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
-const main = require('./routes/main');
+const main = require('./routes/webapp');
 
-app.use('/main', express.static('main'));
+app.use('/webapp', express.static('webapp'));
 app.use('/', main);
 
 const port = 3000;

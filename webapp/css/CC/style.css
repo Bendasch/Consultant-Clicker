@@ -1,18 +1,29 @@
 body {
-  background-image: url("./img/consultants_stock_01.jpg");
-  background-size: cover;
   font-family: "Calibri";
   width: 100%;
   height: 100%;
   display: flex;
-  color: #fff;
+  background-color: rgb(44, 44, 44);
+  overflow-x: hidden;
+  color: #fff
+}
+.leftSide {
+  height: 100%;
+  width: 50%;
+  float: left;
+}
+.rightSide {
+  height: 100%;
+  width: 50%;
 }
 p {
   margin: 0px;
 }
+div {
+  color: #fff;
+}
 .statBoxWrapper {
   margin-left: 5%;
-  width: 80%;
   margin-top: 5%;
   display: table;
   line-height: 20px;
@@ -93,6 +104,7 @@ p {
   width: 50%;
   display: table-cell;
   border: 1px solid #fff;
+  color: #fff;
 }
 .statsValue {
   padding-right: 10px;
@@ -100,83 +112,10 @@ p {
   display: table-cell;
   text-align: right;
   border: 1px solid #fff;
-  color: rgb(20, 228, 20);
-}
-.animationWrapper {
-  width: 90%;
-  height: 300px;
-  padding: 5%;
-  display: flex;
-  align-items: center;
-}
-.circleWrapper {
-  margin-left: 20%;
-  width: 200px;
-  height: 200px;
-  display: flex;
-  flex-wrap: wrap;
-  color: rgb(20, 228, 20);
-}
-.square-container {
-  margin: 0%;
-  width: 50%;
-  height: 50%;
-  overflow: hidden;
-  float: left;
-}
-.circle {
-  width: 200%;
-  height: 200%;
-  border-radius: 50%;
-  border: 2px solid #fff;
-}
-.square-container.bottom {
-  transform: rotate(-90deg);
-}
-.square-container.right {
-  transform: rotate(90deg);
-}
-.square-container.bottom.right {
-  transform: rotate(-180deg);
-}
-.white {
-  background: #f7f3d7;
-}
-.dark {
-  background: #2e2e2e;
-}
-.randomizeWrapper {
-  margin-left: 10%;
-  width: 20%;
-  height: 200px;
-  background: #2e2e2e;
-  flex-wrap: wrap;
-  border: 2px solid #fff;
-  z-index: -1;
-  position: relative;
-}
-.randomizer {
-  position: absolute;
-  margin-top: 0%;
-  width: 100%;
-  height: 0%;
-  z-index: 5;
-  margin-left: auto;
-  margin-right: auto;
-  color: rgb(20, 228, 20);
-}
-.salesMeter {
-  position: absolute;
-  margin-top: 0%;
-  width: 100%;
-  height: 0%;
-  border-bottom: 1px solid rgb(20, 228, 20);
-  z-index: 10;
-  margin-left: auto;
-  margin-right: auto;
+  color: #fff;
 }
 .logBox {
-  width: 75%;
+  width: 70%;
   height: 250px;
   margin: 5%;
   background: #2e2e2e;
@@ -185,13 +124,4 @@ p {
   overflow-y: auto;
   padding: 5px;
   padding-bottom: 10px;
-}
-.leftSide {
-  height: 100%;
-  width: 50%;
-  float: left;
-}
-.rightSide {
-  height: 100%;
-  width: 50%;
 }

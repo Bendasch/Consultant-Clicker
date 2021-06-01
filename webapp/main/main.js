@@ -1,11 +1,12 @@
 import { 
-  updateColor,
   updateProject,
   findProject,
-  updateRate,
-  updateResourceButtons
+  updateRate  
  } from './base.js';
 
+import {
+  updateResourceButtons
+} from './shop.js'
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -23,9 +24,6 @@ function main(tick, start, cycle) {
 
   // update earnings && balance using the old rate
   updateProject(tick);
-
-  // update project color according to effort and progress
-  updateColor(jQuery.data(document.body, "projectEffort"), jQuery.data(document.body, "projectProgress"));
 
   // update the rate
   updateRate();

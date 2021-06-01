@@ -1,7 +1,10 @@
 import { 
   FormatterNoDec,
   Formatter
- } from './base.js';
+ } from './main/base.js';
+
+// set menus as tabs
+$("#tabs").tabs();
 
 // initialize data
 fetch("./data/init.json").then( response => response.json() ).then( json => {
@@ -44,8 +47,10 @@ fetch("./data/init.json").then( response => response.json() ).then( json => {
   jQuery.data(document.body, "salesPersonPlural", json.salesPerson.plural);
 
   // total rates
-  jQuery.data(document.body, "totalRate", json.junior.rate * json.junior.quantity + json.consultant.rate * json.consultant.quantity + json.senior.rate * json.senior.quantity);
-  jQuery.data(document.body, "totalSalesRate", json.salesPerson.rate * json.salesPerson.quantity);
+  var totalRate = json.junior.rate * json.junior.quantity + json.consultant.rate * json.consultant.quantity + json.senior.rate * json.senior.quantity;
+  var totalSalesRate = json.salesPerson.rate * json.salesPerson.quantity;
+  jQuery.data(document.body, "totalRate", totalRate);
+  jQuery.data(document.body, "totalSalesRate", totalSalesRate);
 
   // initialize the screen
 
@@ -75,6 +80,9 @@ fetch("./data/init.json").then( response => response.json() ).then( json => {
   $("#projectValue").text(Formatter.format(json.project.value));
   $("#projectProgress").text(0 + " / " + json.project.effort);
 
+  // rates
+  $("#rate").text(totalRate);
+  $("#totalSalesRate").text(totalSalesRate*100 + " %");
 });
 
 // initialize the log

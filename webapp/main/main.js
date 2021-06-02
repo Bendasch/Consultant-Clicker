@@ -5,8 +5,13 @@ import {
  } from './base.js';
 
 import {
-  updateResourceButtons
+  updateResourceButtons,
+  updateEquipmentButtons
 } from './shop.js'
+
+import {
+  initialize
+} from './index.js'
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -31,13 +36,17 @@ function main(tick, start, cycle) {
   // update resource purchase buttons (active / inactive)
   updateResourceButtons();
 
+  // update equipment buttons (active / inactive)
+  updateEquipmentButtons();
+
   // call new cycle with a tick that adjusts for previous inaccuracies
   sleep(2 * tick - delta).then(() => main(tick, t, cycle + 1));
 }
 
+initialize().then( () => {
+  var tick = 50; // refresh every <tick> milliseconds
+  var d0 = new Date();
+  var t0 = d0.getTime(); // start time of the cycle
 
-var tick = 50; // refresh every <tick> milliseconds
-var d0 = new Date();
-var t0 = d0.getTime(); // start time of the cycle
-
-main(tick, t0, 0, 0);
+  main(tick, t0, 0, 0);
+});

@@ -41,6 +41,21 @@ p {
   font-size: 120%;
   box-sizing: border-box;
 }
+.workbar {
+  width: 100%;
+  height: 108px;
+  bottom:8%;
+  box-sizing: border-box;
+  position: absolute;
+  display:flex;
+  justify-content: center;
+  align-items: center;  
+}
+.workbar img {
+  display: flex;
+  padding: 5px;
+}
+
 .navbar button {
   background-color: inherit;
   border: none;
@@ -91,7 +106,7 @@ p {
 .resourceRow {
   width: 100%;
   display: table-row;
-  background: #2e2e2e;
+  background: inherit;
 }
 .resourceCount {
   width: 15%;
@@ -190,4 +205,49 @@ p {
   width:0%;
   background-color: rgb(41, 221, 137);
   z-index: -1;
+}
+
+.equipmentTable {
+  display: table;
+  background-color: inherit;
+  width: 100%;
+}
+
+.equipmentRow {
+  display: table-row;
+  background-color: inherit;
+  width: 100%;
+}
+
+.equipmentRow.not-owned.disabled {
+  background-color: inherit;
+  color: #ccc;
+  width: 100%;
+}
+.equipmentRow.not-owned.enabled {
+  background-color: inherit;
+  color: #fff;
+  width: 100%;
+}
+.equipmentRow.owned {
+  background-color: rgb(248, 158, 61);
+  color: #222;
+  width: 100%;
+}
+
+.equipmentName {
+  display: table-cell;
+  width: 80%;
+  border-left: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding-left: 5px;
+}
+.equipmentPrice {
+  display: table-cell;
+  width: 20%;
+  text-align: right;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding-right: 5px;
 }

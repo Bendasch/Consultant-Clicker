@@ -11,7 +11,8 @@
 
         <div class="navbar">
             <button id="statsTab" class="tablinks inactive">Stats</button>
-            <button id="shopTab" class="tablinks inactive">Shop</button>
+            <button id="staffTab" class="tablinks inactive">Staff</button>
+            <button id="equipmentTab" class="tablinks inactive">Equipment</button>
         </div>
 
         <div class="canvas">
@@ -69,7 +70,7 @@
                     </div>
                 </div>
 
-                <div id="shop" class="tabcontent">
+                <div id="staff" class="tabcontent">
 
                     <div class="resourceTable">
                         <div class="resourceRow">
@@ -156,6 +157,19 @@
     
                     </div>
                 </div>
+                
+                <div id="equipment" class="tabcontent">
+                    <div class="equipmentTable">
+                        <div id="secondMonitor" class="equipmentRow not-owned disabled">
+                            <div class="equipmentName" id="equipmentName">
+                                <p>Second monitor</p>
+                            </div>
+                            <div class="equipmentPrice" id="equipmentPrice">
+                                <p>150€</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="rightSide">
@@ -164,14 +178,19 @@
 
         </div>
 
+        <div class="workbar" id="workbar">
+            <img src="./img/word.png" width="108px" height="108px"> 
+            <img src="./img/excel.png" width="108px" height="108px"> 
+            <img src="./img/powerpoint.png" width="108px" height="108px"> 
+            <img src="./img/outlook.png" width="108px" height="108px"> 
+        </div>
+
         <div class="bottomBar">        
             <p id="projectProgress"></p>
             <div id="progressBar" class="progressBar"></div>
         </div>
 
-        
-        <script type="module" src="index.js"></script>
-        <script type="module" src="./main/main.js"></script>
+        <script type="module" src="./main/main.js" defer></script>
     </body>
 
 </html>

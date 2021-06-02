@@ -35,8 +35,13 @@ export function updateProject(tick) {
   // update the earnings if 
   if (iNewProgress >= iEffort) {
 
+    var projectValue = jQuery.data(document.body, "projectValue");
+
     // add the project value to the earnings and balance
-    updateEarnings(jQuery.data(document.body, "projectValue"));
+    addToBalance(projectValue);
+
+    // display a success message
+    logAction("Project finished! Earned " + projectValue.toFixed(2) + "€.");
 
     // reset the current project
     // 1) saved stats
@@ -102,7 +107,7 @@ export function findProject(tick, cycle) {
   logAction("Project proposal successful! Project value " + iProjectValue.toFixed(2) + "€ (effort " + iProjectEffort + ").");
 };
 
-export function updateEarnings(val) {
+export function addToBalance(val) {
 
   // get old total earnings & current balance
   var iOldEarnings = jQuery.data(document.body, "totalEarnings");
@@ -120,8 +125,6 @@ export function updateEarnings(val) {
   $("#totalEarnings").text(Formatter.format(iNewEarnings));
   $("#currentBalance").text(Formatter.format(iNewBalance));
 
-  // display a success message
-  logAction("Project finished! Earned " + val.toFixed(2) + "€.");
 };
 
 export function updateRate() {
@@ -150,11 +153,6 @@ export function updateRate() {
   $("#rate").text(iTotalRate);  
   $("#totalSalesRate").text(iTotalSalesRate*100 + " %");
   $("#salesMeter").height(200*iTotalSalesRate);
-}
-
-export function subtractBalance(val) {
-  var iOldBalance = jQuery.data(document.body, "currentBalance");
-  jQuery.data(document.body, "currentBalance", iOldBalance - val);
 }
 
 export function logAction(str) {

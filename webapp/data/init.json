@@ -3,33 +3,34 @@
         "quantity": 2,
         "rate": 55,
         "cost": 40000,
-        "singular": "Junior Consultant",
-        "plural": "Junior Consultants"
+        "name": "Junior Consultant",
+        "baseRate": 55
     },
     "consultant": {
         "quantity": 2,
         "rate": 75,
         "cost": 50000,
-        "singular": "Consultant",
-        "plural": "Consultants"
+        "name": "Consultant",
+        "baseRate": 75
     },
     "senior": {
         "quantity": 1,
         "rate": 125,
         "cost": 65000,
-        "singular": "Senior Consultant",
-        "plural": "Senior Consultants"
+        "name": "Senior Consultant",
+        "baseRate": 125
     },
     "salesPerson" :{
         "quantity": 1,
         "rate": 0.1,
         "cost": 100000,
-        "singular": "Salesperson",
-        "plural": "Sales people"
+        "name": "Salesperson",
+        "baseRate": 0.1
     },
     "project": {
         "value": 12500,
-        "effort": 2500
+        "effort": 2500,
+        "progress": 0
     },
     "equipment": {
         "secondMonitor": {

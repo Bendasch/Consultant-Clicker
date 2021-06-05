@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const main = require('./routes/webapp');
+const main = require('./webapp/routes/webapp');
 
 app.use('/webapp', express.static('webapp'));
 app.use('/', main);

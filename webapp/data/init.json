@@ -39,5 +39,9 @@
             "cost": 150,
             "rate": 1.5
         }
+    },
+    "clicking": {
+        "value": 5,
+        "baseValue": 5
     }
 }

@@ -54,6 +54,7 @@ p {
 .workbar img {
   display: flex;
   padding: 5px;
+  height: auto;
 }
 
 .navbar button {

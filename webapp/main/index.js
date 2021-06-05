@@ -1,4 +1,5 @@
 import { render, openTab, logAction } from './render.js';
+import { officeClick } from './base.js';
 
 export function initialize() {
 
@@ -40,7 +41,19 @@ export function initialize() {
     // equipments
     var oEquip = json.equipment;
     Object.keys(oEquip).forEach( (key) => {
-      $("body").data(key, oEquip[key]);
+      body.data(key, oEquip[key]);
+    });
+
+    // clicking
+    body.data("clicking", json.clicking);
+
+    // initialize the office buttons
+    var aButtons = ["word", "excel", "powerpoint", "outlook"]
+    aButtons.forEach( (buttonId) => {
+        body.data( buttonId + "AnimationCyclesLeft", 0 );
+    });
+    aButtons.forEach( (buttonId) => {
+      $("#" + buttonId).unbind().click(() => officeClick(buttonId)); 
     });
 
     // render everything

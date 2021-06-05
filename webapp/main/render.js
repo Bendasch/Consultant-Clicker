@@ -6,6 +6,7 @@ export function render() {
     renderResources();
     renderResourceButtons();
     renderEquipmentButtons();
+    renderOfficeButtons();
 }
 
 export function logAction(str) {
@@ -15,7 +16,7 @@ export function logAction(str) {
     logBox.append("<p>" + time + " - " + str + "</p>");
 
     // scroll down animation
-    logBox.animate({scrollTop: logBox.prop("scrollHeight")}, 500);
+    logBox.animate({scrollTop: logBox.prop("scrollHeight")}, 75);
 }
 
 function setProgressBar(progress, effort) {
@@ -55,7 +56,6 @@ function renderStats() {
     // current project
     const oProject = body.data("project");
 
-    $("#projectProgress").text(oProject.progress + " / " + oProject.effort);
 
     if (oProject.value == 0) {
         $("#projectValue").text("there is no active project");
@@ -65,8 +65,10 @@ function renderStats() {
 
     if (oProject.effort == 0) {
         setProgressBar(0, 1);
+        $("#projectProgress").text(0 + " / " + 0);
     } else {
         setProgressBar(oProject.progress, oProject.effort);
+        $("#projectProgress").text(oProject.progress.toFixed(2) + " / " + oProject.effort.toFixed(2));
     }
 
     // total rates
@@ -158,4 +160,35 @@ function disableButton(sSelector) {
     $(sSelector).unbind();
     $(sSelector).removeClass("enabled");
     $(sSelector).addClass("disabled");
+}
+
+function renderOfficeButtons() {
+    
+    const maxPx = 108;
+    const minScale = 0.8; // %
+    const numSteps = 20;
+    const body =  $("body");
+    var stepsLeft, step, scale;
+    
+    const aButtons = ["word", "excel", "powerpoint", "outlook"];
+    aButtons.forEach( (buttonId) => {
+
+        stepsLeft = body.data(buttonId + "AnimationCyclesLeft");
+        if (stepsLeft >= 0) {
+
+            step = numSteps - stepsLeft;
+            if (step <= 5) {
+                scale = minScale + 0.2 * Math.exp(-1 * step);
+            } else if (step<20) {
+                scale = minScale + 0.0675 * Math.log(step - 5)
+            } else {
+                scale = 1;
+            }
+
+            $("#" + buttonId).css("width", () => {
+                return ((maxPx * scale) + "px");
+            });
+            body.data(buttonId + "AnimationCyclesLeft", stepsLeft - 1);
+        }
+    });
 }

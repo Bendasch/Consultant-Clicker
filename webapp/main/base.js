@@ -114,3 +114,25 @@ function updateRate() {
   body.data( "totalRate", totalRate);
   body.data( "totalSalesRate", totalSalesRate);
 }
+
+export function officeClick(buttonId) {
+
+  const body = $("body");
+  const oCicking = body.data("clicking");
+
+  // here we simply start the animation,
+  // i.e. set the "animationCyclesLeft" property
+  // the actual rendering happens after
+  body.data( buttonId + "AnimationCyclesLeft", 20);
+
+  addToBalance(oCicking.value);
+
+  var actionStr;
+  switch(buttonId) {
+    case "word": actionStr = "Awesome work on that requirements document!"; break;
+    case "excel": actionStr = "Nice spreadsheet!"; break;
+    case "powerpoint": actionStr = "Cool presentation!"; break;
+    case "outlook":  actionStr = "Great mail, keep going!"; break;
+  }
+  logAction(actionStr + " This earned you " + oCicking.value + "€!");
+}

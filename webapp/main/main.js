@@ -15,5 +15,5 @@ function main(tick, start, cycle) {
 
 initialize().then( () => {
   const d = new Date();
-  main(50, d.getTime(), 0);
+  main(20, d.getTime(), 0);
 });

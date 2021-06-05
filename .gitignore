@@ -1,4 +1,4 @@
-./playground
+playground
 server.js
 server.bat
-./node_modules
+node_modules

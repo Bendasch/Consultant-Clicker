@@ -1,4 +1,4 @@
-import { render, openTab, logAction } from './render.js';
+import { render, openTab, logAction, addEquipmentRow } from './render.js';
 import { officeClick } from './base.js';
 
 export function initialize() {
@@ -38,22 +38,22 @@ export function initialize() {
     body.data("totalRate", totalRate);
     body.data("totalSalesRate", totalSalesRate);
 
-    // equipments
-    var oEquip = json.equipment;
-    Object.keys(oEquip).forEach( (key) => {
-      body.data(key, oEquip[key]);
-    });
-
     // clicking
     body.data("clicking", json.clicking);
 
     // initialize the office buttons
-    var aButtons = ["word", "excel", "powerpoint", "outlook"]
-    aButtons.forEach( (buttonId) => {
-        body.data( buttonId + "AnimationCyclesLeft", 0 );
+    var oButtons = json.buttons;
+    Object.keys(oButtons).forEach( (buttonId) => {
+        $("#" + buttonId).unbind().click(() => officeClick(buttonId)); 
     });
-    aButtons.forEach( (buttonId) => {
-      $("#" + buttonId).unbind().click(() => officeClick(buttonId)); 
+    body.data("buttons", oButtons);
+
+    // initialize equipments
+    var oAllEquips = json.equipment;
+    body.data("equipment", oAllEquips);
+    Object.keys(oAllEquips).forEach( (key) => {
+      var oEquip = oAllEquips[key];
+      addEquipmentRow(oEquip);
     });
 
     // render everything

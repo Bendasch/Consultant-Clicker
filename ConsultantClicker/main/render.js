@@ -74,6 +74,12 @@ function renderStats() {
     // total rates
     $("#rate").text(body.data( "totalRate" ));  
     $("#totalSalesRate").text((body.data("totalSalesRate")*100).toFixed(2) + " %");
+
+    // clicking
+    const oClicking = body.data("clicking");
+    $("#clickingRate").text(oClicking.value);
+    $("#totalClickProgress").text(oClicking.totalProgress);
+    $("#totalClicks").text(oClicking.clicks);
 }
 
 function renderResources() {
@@ -125,29 +131,31 @@ function renderResourceButtons() {
 function renderEquipmentButtons() {
 
     const body = $( "body" );
+    const oAllEquips = body.data("equipment");
+    const balance = body.data("currentBalance");
 
-    var balance = body.data("currentBalance");
-    var oMonitor = body.data("secondMonitor");
+    Object.keys(oAllEquips).forEach( (key) => {
+        const oEquip = oAllEquips[key];
+        if (oEquip.owned) {
+            $("#" + oEquip.id).removeClass("not-owned");
+            $("#" + oEquip.id).addClass("owned");
+        } else {
+            $("#" + oEquip.id).removeClass("owned");
+            $("#" + oEquip.id).addClass("not-owned");
+        }
 
-    if (oMonitor.owned) {
-        $("#secondMonitor").removeClass("not-owned");
-        $("#secondMonitor").addClass("owned");
-    } else {
-        $("#secondMonitor").removeClass("owned");
-        $("#secondMonitor").addClass("not-owned");
-    }
-
-    if (oMonitor.cost <= balance && !(oMonitor.owned)) {
-        enableEquipButton("#secondMonitor", "secondMonitor");
-    } else {
-        disableButton("#secondMonitor");
-    } 
+        if (oEquip.cost <= balance && !(oEquip.owned)) {
+            enableEquipButton(oEquip.id);
+        } else {
+            disableButton("#" + oEquip.id);
+        } 
+    });
 }
   
-function enableEquipButton(sSelector, equipId) {   
-    $(sSelector).unbind().click(() => buyEquipment(equipId)); 
-    $(sSelector).removeClass("disabled");
-    $(sSelector).addClass("enabled");
+function enableEquipButton(equipId) {   
+    $("#" + equipId).unbind().click(() => buyEquipment(equipId)); 
+    $("#" + equipId).removeClass("disabled");
+    $("#" + equipId).addClass("enabled");
 }
   
 function enableResButton(sSelector, sResId) {   
@@ -168,14 +176,19 @@ function renderOfficeButtons() {
     const minScale = 0.8; // %
     const numSteps = 20;
     const body =  $("body");
-    var stepsLeft, step, scale;
+    var stepsLeft, step, scale, newAnimation;
     
-    const aButtons = ["word", "excel", "powerpoint", "outlook"];
-    aButtons.forEach( (buttonId) => {
+    var oButtons = body.data("buttons");
+    Object.keys(oButtons).forEach( (buttonId) => {
 
-        stepsLeft = body.data(buttonId + "AnimationCyclesLeft");
-        if (stepsLeft >= 0) {
+        var oButton = oButtons[buttonId];
 
+        stepsLeft = oButton.animationCyclesLeft;
+        newAnimation = oButton.newAnimation;
+  
+        if (stepsLeft > 0 || newAnimation) {
+
+            // calculate the next width
             step = numSteps - stepsLeft;
             if (step <= 5) {
                 scale = minScale + 0.2 * Math.exp(-1 * step);
@@ -185,10 +198,49 @@ function renderOfficeButtons() {
                 scale = 1;
             }
 
+            // In case of a new click, we don't want to start the animation all over,
+            // since this means resetting the button to full size first! Rather, we
+            // find the next lowest value on the size curve's "way down"
+            if (newAnimation) {
+                
+                // Calculate the first values of the curve until we find a value which is lower.
+                // This will be our next value and this will also detemrine the "cycles left".
+                var newScale;
+                for (var i = 1; i <= 5; i++) {
+                    newScale = minScale + 0.2 * Math.exp(-1 * i);
+                    if (newScale < scale) {
+                        scale = newScale;
+                        stepsLeft = numSteps - i;
+                        break;
+                    }
+                }
+            }
+
             $("#" + buttonId).css("width", () => {
                 return ((maxPx * scale) + "px");
             });
-            body.data(buttonId + "AnimationCyclesLeft", stepsLeft - 1);
-        }
+
+            oButtons[buttonId].animationCyclesLeft = stepsLeft - 1;
+            oButtons[buttonId].newAnimation = false;
+        }        
     });
+    
+    body.data("buttons", oButtons);
+}
+
+export function addEquipmentRow(oEquip) {
+
+    // row 
+    const oRow = $("<div id='" + oEquip.id + "' class='equipmentRow'></div>");
+    $("#equipmentTable").append(oRow);
+
+    // cells
+    oRow.append("<div id='" + oEquip.id + "-name' class='equipmentName'></div>");
+    oRow.append("<div id='" + oEquip.id + "-description' class='equipmentDescription'></div>");
+    oRow.append("<div id='" + oEquip.id + "-cost' class='equipmentCost'></div>");
+
+    // values
+    $("#" + oEquip.id + "-name").append('<p>' + oEquip.name + '</p>');
+    $("#" + oEquip.id + "-description").append('<p>' + oEquip.description + '</p>');
+    $("#" + oEquip.id + "-cost").append('<p>' + Formatter.format(oEquip.cost) + '</p>');
 }

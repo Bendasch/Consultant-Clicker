@@ -1,0 +1,89 @@
+{
+    "junior": {
+        "quantity": 2,
+        "rate": 55,
+        "cost": 40000,
+        "name": "Junior Consultant",
+        "baseRate": 55
+    },
+    "consultant": {
+        "quantity": 2,
+        "rate": 75,
+        "cost": 50000,
+        "name": "Consultant",
+        "baseRate": 75
+    },
+    "senior": {
+        "quantity": 1,
+        "rate": 125,
+        "cost": 65000,
+        "name": "Senior Consultant",
+        "baseRate": 125
+    },
+    "salesPerson" :{
+        "quantity": 1,
+        "rate": 0.1,
+        "cost": 100000,
+        "name": "Salesperson",
+        "baseRate": 0.1
+    },
+    "project": {
+        "value": 12500,
+        "effort": 2500,
+        "progress": 0,
+        "expectedValue": 10000,
+        "baseExpectedValue": 10000,
+        "effortConversionRate": 0.25,
+        "baseEffortConversionRate": 0.25
+    },
+    "equipment": {
+        "secondMonitor": {
+            "id": "secondMonitor",
+            "name": "Second monitor",
+            "description": "Everyone will be able to see two office apps at the same time. This increases ALL rates by 50%.",
+            "owned": false,
+            "cost": 1000,
+            "rate": {
+                "consultants": 1.5,
+                "sales": 1.5,
+                "clicking": 1.5
+            }
+        },
+        "waterScrum": {
+            "id": "waterScrum",
+            "name": "Water-Scrum",
+            "description": "Agile but not really! This slightly decreases productivity (-10%) but helps sales (+25%)!",
+            "owned": false,
+            "cost": 1337.50,
+            "rate": {
+                "consultants": 0.9,
+                "sales": 1.25,
+                "clicking": 1
+            }
+        }
+    },
+    "clicking": {
+        "value": 5,
+        "baseValue": 5,
+        "clicks": 0,
+        "totalProgress": 0
+    },
+    "buttons": {
+        "word": {
+            "animationCyclesLeft": 0,
+            "newAnimation": false
+        },        
+        "excel": {
+            "animationCyclesLeft": 0,
+            "newAnimation": false
+        },        
+        "powerpoint": {
+            "animationCyclesLeft": 0,
+            "newAnimation": false
+        },        
+        "outlook": {
+            "animationCyclesLeft": 0,
+            "newAnimation": false
+        }
+    }
+}

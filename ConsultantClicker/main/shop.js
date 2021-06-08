@@ -17,12 +17,13 @@ export function addResource(sResId) {
 export function buyEquipment(equipId) {
 
   const body = $("body");
-  var oEquip = body.data(equipId);
+  var oEquips = body.data("equipment");
 
-  addToBalance(-1 * oEquip.cost);
+  addToBalance(-1 * oEquips[equipId].cost);
 
-  oEquip.owned = true;
-  body.data(equipId, oEquip);
+  oEquips[equipId].owned = true;
 
-  logAction("Bought equipment '" + oEquip.name + "'. Productivity increased by " + (oEquip.rate*100).toFixed(2) + "%!");
+  body.data("equipment", oEquips);
+
+  logAction("Bought equipment '" + oEquips[equipId].name + "'.");
 } 

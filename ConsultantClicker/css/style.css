@@ -6,55 +6,113 @@ body {
   margin: 0px;
   padding:0px;
   border:none;
+  user-select: none;
 }
+
 p {
   margin: 1px
 }
+
 .navbar {
   border-bottom: 2px solid #ccc;
   background-color: #242323;
   width:100%;
   height: 5%;
 }
+
 .canvas {
   position:relative;
 }
+
 .leftSide {
   width: 50%;
   position:absolute;
   left:0;
   top:0;
 }
+
 .rightSide {
   width: 50%;
   position:absolute;
   right:0;
   top:0;
 }
-.bottomBar {
-  position: absolute;
-  width: 100%;
-  height: 5%;
-  bottom:0;
-  border-top: 2px solid #ccc;
-  text-align: center;
-  font-size: 120%;
-  box-sizing: border-box;
-}
+
 .workbar {
   width: 100%;
   height: 108px;
-  bottom:8%;
+  bottom:30%;
   box-sizing: border-box;
   position: absolute;
   display:flex;
   justify-content: center;
   align-items: center;  
 }
+
 .workbar img {
   display: flex;
   padding: 5px;
   height: auto;
+}
+
+.projectBar {
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+  height: 20%;
+  position: absolute;
+  bottom: 5%;
+  display:flex;
+}
+
+.project {
+  height: 100%;
+  width: auto;
+  margin-right: 2px;
+  margin-left: 2px;
+  box-sizing: border-box;
+  position: relative;
+} 
+
+.project p {
+  font-size: 175%;
+  color:rgb(26, 26, 26);
+  padding-top: 5px;
+  padding-left: 10px;
+}
+.project.active {
+  background-color: rgb(80, 211, 150);
+}
+
+.project.inactive {
+  background-color: rgb(213, 213, 213);
+}
+
+.progressWrapper {
+  position: absolute;
+  width: 100%;
+  height: 15%;
+  bottom:0;
+  text-align: center;
+  font-size: 120%;
+  box-sizing: border-box;
+  z-index: 1
+}
+
+.progressBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width:0%;
+  background-color: rgb(33, 33, 33);
+  z-index: 2;
+  margin: 0;
+}
+
+.progressWrapper p {
+  font-size: 150%;
+  color:rgb(33, 33, 33);
 }
 
 .navbar button {
@@ -73,12 +131,12 @@ p {
 
 .navbar button.inactive:hover{
   background-color: #ddd;
-  color:rgb(44, 44, 44);
+  color:rgb(33, 33, 33);
 }
 
 .navbar button.active {
-  background-color: rgb(41, 221, 137);
-  color:rgb(44, 44, 44);
+  background-color: rgb(80, 211, 150);
+  color:rgb(33, 33, 33);
 }
 .navbar button.inactive {
   color:#fff;
@@ -198,16 +256,6 @@ p {
   padding: 5px;
 }
 
-.progressBar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width:0%;
-  background-color: rgb(41, 221, 137);
-  z-index: -1;
-}
-
 .equipmentTable {
   display: table;
   background-color: inherit;
@@ -231,7 +279,7 @@ p {
   width: 100%;
 }
 .equipmentRow.owned {
-  background-color: rgb(248, 158, 61);
+  background-color: rgb(41, 221, 137);
   color: #222;
   width: 100%;
 }

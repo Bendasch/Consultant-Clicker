@@ -28,13 +28,37 @@
         "baseRate": 0.1
     },
     "project": {
-        "value": 12500,
-        "effort": 2500,
-        "progress": 0,
         "expectedValue": 10000,
         "baseExpectedValue": 10000,
         "effortConversionRate": 0.25,
-        "baseEffortConversionRate": 0.25
+        "baseEffortConversionRate": 0.25,
+        "totalProjectsFinished": 0
+    },
+    "projects": {
+        "init-1": {
+            "id": "init-1",
+            "name": "Small project",
+            "value": 8000,
+            "effort": 3500,
+            "progress": 0,
+            "active": false
+        },
+        "init-2": {
+            "id": "init-2",
+            "name": "Medium sized project",
+            "value": 25000,
+            "effort": 15000,
+            "progress": 500,
+            "active": false
+        },
+        "init-3": {
+            "id": "init-3",
+            "name": "Large project",
+            "value": 150000,
+            "effort": 200000,
+            "progress": 1250,
+            "active": false
+        }
     },
     "equipment": {
         "secondMonitor": {

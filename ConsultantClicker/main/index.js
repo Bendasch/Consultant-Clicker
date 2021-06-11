@@ -7,8 +7,9 @@ export function initialize() {
 
   // initialize the log
   logAction("Welcome to Consultant Clicker!");
-  logAction("Good luck!")
-  logAction("-----------------------------------------")
+  logAction("Select a project to start the game.");
+  logAction("Good luck!");
+  logAction("");
 
   $(document).ready(function() {
 
@@ -55,6 +56,9 @@ export function initialize() {
       var oEquip = oAllEquips[key];
       addEquipmentRow(oEquip);
     });
+
+    // initialize current projects
+    body.data("projects", json.projects);
 
     // render everything
     render();

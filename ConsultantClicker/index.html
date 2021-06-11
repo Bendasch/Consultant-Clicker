@@ -42,15 +42,6 @@
         
                         <div class="statRow">
                             <div class="statsLabel">
-                                Current project value
-                            </div>
-                            <div class="statsValue">
-                                <p id="projectValue"></p>
-                            </div>
-                        </div>
-        
-                        <div class="statRow">
-                            <div class="statsLabel">
                                 Progress per second
                             </div>
                             <div class="statsValue">
@@ -94,6 +85,15 @@
                             </div>
                             <div class="statsValue">
                                 <p id="totalClicks"></p>
+                            </div>
+                        </div>
+
+                        <div class="statRow">
+                            <div class="statsLabel">
+                                Projects finished since start
+                            </div>
+                            <div class="statsValue">
+                                <p id="totalProjectsFinished"></p>
                             </div>
                         </div>
                     </div>
@@ -199,6 +199,8 @@
 
         </div>
 
+        
+
         <div class="workbar" id="workbar">
             <img id="word" src="./img/word_comic.png" width="108px" height="108px"> 
             <img id="excel" src="./img/excel_comic.png" width="108px" height="108px"> 
@@ -206,10 +208,7 @@
             <img id="outlook" src="./img/outlook_comic.png" width="108px" height="108px"> 
         </div>
 
-        <div class="bottomBar">        
-            <p id="projectProgress"></p>
-            <div id="progressBar" class="progressBar"></div>
-        </div>
+        <div class="projectBar" id="projectBar"></div>
 
         <script type="module" src="./main/main.js" defer></script>
     </body>

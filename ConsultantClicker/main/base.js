@@ -1,4 +1,4 @@
-import { logAction } from './render.js';
+import { logAction, destroyProject } from './render.js';
 import { Formatter, normRand } from './utils.js';
 
 
@@ -9,49 +9,72 @@ export function sleep(ms) {
 
 export function update(tick, cycle) {
   findProject(tick, cycle);
-  updateProject(tick);
+  updateProjects(tick);
   updateRates();
 }
 
 
-function updateProject(tick) {
+function updateProjects(tick) {
 
-  const body = $( "body" );
+  var body = $( "body" );
 
-  const oProject = body.data("project");
+  var projects = body.data("projects");
+  var oProject = getActiveProject(projects);
 
-  if (oProject.effort <= 0) { return; } 
+  if (oProject === undefined) {
+    return;
+  }
   
-  updateProgress(tick);
-
   // update the progress
-  // update the earnings if 
+  updateProgress(oProject.id, tick);
+
+  // update the earnings if the project is done
   if (oProject.progress >= oProject.effort) {
 
-    // add the project value to the earnings and balance
     addToBalance(oProject.value);
 
-    // display a success message
+    addFinishedProject();
     logAction("Project finished! Earned " + Formatter.format(oProject.value) + ".");
 
-    // reset the current project
-    oProject.value = 0;
-    oProject.effort = 0;
-    oProject.progress = 0;
+    removeProject(oProject.id);
   } 
-
-  body.data( "project", oProject);
 };
 
+function addFinishedProject() {
+  var body = $("body");
+  var project = body.data("project");
+  project.totalProjectsFinished += 1;
+  body.data("project", project);
+}
+
+function getActiveProject(projects) {
+  
+  var aProjects = Object.keys(projects);
+  if (aProjects.length <= 0) {
+    return undefined;
+  }
+
+  var project, projectId
+  do {
+    projectId = aProjects.pop();
+    project = projects[projectId];
+  } while (!project.active && aProjects.length != 0);
+  
+  if (project.active) {
+    return project;
+  } else {
+    return undefined;
+  }
+}
 
 function findProject(tick, cycle) {
   
-  const body = $( "body" );
+  var body = $( "body" );
   var quotient;
 
   // if there is a current project, we don't need to find one 
-  const oProject = body.data("project");
-  if  (oProject.value != 0) {
+  var projects = body.data("projects");
+  if (Object.keys(projects).length > 0) {
     return;
   }
   
@@ -70,20 +93,37 @@ function findProject(tick, cycle) {
     return;
   } 
 
+  const oProjectMeta = body.data("project");
+
+  // get an id for the new project
+  var id = oProjectMeta.totalProjectsFinished + 1;
+  var name = "Project " + id;
+  var newProject = {
+    "id": id,
+    "name": name,
+    "value": 0,
+    "effort": 0,
+    "progress": 0,
+    "active": false
+  }
+
   // get the project value (normal distribution, rounded to 500)
-  oProject.value = normRand(0,2) * oProject.expectedValue;
-  quotient = Math.floor(oProject.value / 500);
-  oProject.value = Math.max(quotient * 500, 500); 
+  var newValue = normRand(0,2) * oProjectMeta.expectedValue;
+  quotient = Math.floor(newValue / 500);
+  newProject.value = Math.max(quotient * 500, 500); 
 
-  // and effort (normal distribution, rounded to 250)  
-  oProject.effort = Math.round(normRand(0,2) * (oProject.value * oProject.effortConversionRate));
-  quotient = Math.floor(oProject.effort / 250);
-  oProject.effort = Math.max(quotient * 250, 250); 
+  // and effort (normal distribution, rounded to 250) 
+  var newEffort = Math.round(normRand(0,2) * (newProject.value * oProjectMeta.effortConversionRate));
+  quotient = Math.floor(newEffort / 250);
+  newProject.effort = Math.max(quotient * 250, 250); 
 
-  body.data("project", oProject);
+  // add the new project to the datamodel
+  projects[id] = newProject;
+
+  body.data("projects", projects);
 
   // output success message
-  logAction("Project proposal successful! Project value " + Formatter.format(oProject.value) + " (effort " + oProject.effort + ").");
+  logAction("Project proposal successful! Project value " + Formatter.format(newProject.value) + " (effort " + newProject.effort + ").");
 };
 
 
@@ -162,7 +202,8 @@ export function officeClick(buttonId) {
   body.data("buttons", oButtons);
 
   // we need to check whether there is a project to progress
-  if (body.data("project").effort > 0) {
+  var project = getActiveProject(body.data("projects"));
+  if (!(project === undefined)) {
 
     addToProgress(oClicking.value);
 
@@ -178,31 +219,75 @@ export function officeClick(buttonId) {
     logAction(actionStr + " You helped progress the project by " + oClicking.value + "!");
 
   } else {
-    logAction("There is no project for you. You need to wait for your friends at sales to hook you up!");
+    logAction("Choose a project or wait for the sales team to find one!");
   }
   
   body.data("clicking", oClicking);
 }
 
 
-function updateProgress(tick) {
+function updateProgress(projectId, tick) {
 
-  const body = $("body");
-  const oProject = body.data("project");
+  var body = $("body");
+  var projects = body.data("projects");
+  var project = projects[projectId];
 
   // calculate the progress of the projects
   // the rates are per second, the tick rate is in milliseconds
   // e.g. tick = 250 means that we have to devide by 4
-  oProject.progress = oProject.progress + (tick/1000) * body.data("totalRate");
+  project.progress = project.progress + (tick/1000) * body.data("totalRate");
 
-  body.data("project", oProject);
+  projects[projectId] = project;
+  body.data("projects", projects);
 }
 
 
 function addToProgress(progress) {
 
-  const body = $("body");
-  const oProject = body.data("project");
-  oProject.progress += progress;
-  body.data("project", oProject);
+  var body = $("body");
+  var projects = body.data("projects");
+  var project = getActiveProject(projects);
+
+  project.progress += progress;
+
+  projects[project.id] = project;
+  body.data("projects", projects);
+}
+
+
+export function projectClick(projectId) {
+
+  var body = $("body");
+  var projects = body.data("projects");
+  if (projects[projectId].active) {
+    projects[projectId].active = false;
+  } else {
+    // set all projects to inactive except the clicked one
+    Object.keys(projects).forEach((key) => {
+      projects[key].active = (key == projectId);
+    });
+  }
+
+  body.data("projects", projects);
+}
+
+function removeProject(projectId) {
+
+  // remove the DM entry
+  var body = $("body");
+  var projects = body.data("projects");
+  delete projects[projectId];
+
+  // chose new active project
+  var keys = Object.keys(projects);
+  if (keys.length > 0) {
+    var firstProject = projects[keys[0]]
+    firstProject.active = true;
+    projects[keys[0]] = firstProject;
+  }
+
+  body.data("projects", projects);
+
+  // remove the UI element
+  destroyProject(projectId);
 }

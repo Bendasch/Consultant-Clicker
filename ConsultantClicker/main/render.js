@@ -1,11 +1,13 @@
 import { Formatter, FormatterNoDec } from './utils.js';
 import { addResource, buyEquipment } from './shop.js';
+import { projectClick } from './base.js';
 
 export function render() {
     renderStats();
     renderResources();
     renderResourceButtons();
     renderEquipmentButtons();
+    renderProjects();
     renderOfficeButtons();
 }
 
@@ -13,16 +15,17 @@ export function logAction(str) {
     const logBox = $("#logBox");
     const d = new Date()
     var time = String(d.getHours()).padStart(2,0) + ":" + String(d.getMinutes()).padStart(2,0) + ":" + String(d.getSeconds()).padStart(2,0);
-    logBox.append("<p>" + time + " - " + str + "</p>");
+
+    if (str != "") {
+        logBox.append("<p>" + time + " - " + str + "</p>");
+    } else {
+        logBox.append("<p> </p>");
+    }
 
     // scroll down animation
     logBox.animate({scrollTop: logBox.prop("scrollHeight")}, 75);
 }
 
-function setProgressBar(progress, effort) {
-    var percentage = (progress / effort) * 100;
-    $("#progressBar").width(percentage + "%");
-}
 
 export function openTab(event, tabId) {
 
@@ -53,24 +56,6 @@ function renderStats() {
     $("#totalEarnings").text(Formatter.format(body.data("totalEarnings")));
     $("#currentBalance").text(Formatter.format(body.data("currentBalance")));
 
-    // current project
-    const oProject = body.data("project");
-
-
-    if (oProject.value == 0) {
-        $("#projectValue").text("there is no active project");
-    } else {
-        $("#projectValue").text(Formatter.format(oProject.value));
-    }
-
-    if (oProject.effort == 0) {
-        setProgressBar(0, 1);
-        $("#projectProgress").text(0 + " / " + 0);
-    } else {
-        setProgressBar(oProject.progress, oProject.effort);
-        $("#projectProgress").text(oProject.progress.toFixed(2) + " / " + oProject.effort.toFixed(2));
-    }
-
     // total rates
     $("#rate").text(body.data( "totalRate" ));  
     $("#totalSalesRate").text((body.data("totalSalesRate")*100).toFixed(2) + " %");
@@ -80,6 +65,9 @@ function renderStats() {
     $("#clickingRate").text(oClicking.value);
     $("#totalClickProgress").text(oClicking.totalProgress);
     $("#totalClicks").text(oClicking.clicks);
+
+    // projects
+    $("#totalProjectsFinished").text(body.data("project").totalProjectsFinished);
 }
 
 function renderResources() {
@@ -243,4 +231,74 @@ export function addEquipmentRow(oEquip) {
     $("#" + oEquip.id + "-name").append('<p>' + oEquip.name + '</p>');
     $("#" + oEquip.id + "-description").append('<p>' + oEquip.description + '</p>');
     $("#" + oEquip.id + "-cost").append('<p>' + Formatter.format(oEquip.cost) + '</p>');
+}
+
+function renderProjects() {
+ 
+    var projects = $("body").data("projects");
+
+    var width = ($("#projectBar").width() / Object.keys(projects).length) - 4;
+    
+    Object.keys(projects).forEach( (projectId) => {
+        renderProject(projects[projectId], width);
+    });
+}
+
+function renderProject(oProject, width) {
+
+    const projectBar = $("#projectBar");
+    const projectId = oProject.id;
+    var projectDiv; 
+
+    // creat the div if it does not exist
+    if ($("#" + projectId).length == 0) {
+
+        // project itself
+        projectBar.append("<div id='" + projectId + "' class='project'></div>");
+        projectDiv = $("#"+projectId);
+
+        // the details
+        projectDiv.append('<p>' + oProject.name + '</p>');
+        projectDiv.append('<p>' + Formatter.format(oProject.value) + '</p>');
+
+        // the progress bar
+        var progressWrapper = $("<div id='" + projectId + "-progressWrapper' class='progressWrapper'></div>")
+        projectDiv.append(progressWrapper);
+        progressWrapper.append("<div id='" + projectId + "-progressBar' class='progressBar'></div>");
+        progressWrapper.append("<p id='" + projectId + "-projectProgress'></p>");
+
+        // click event
+        projectDiv.unbind().click(() => projectClick(projectId));
+
+    } else {        
+
+        projectDiv = $("#"+projectId);
+    }
+
+    oProject.active ? setActive(projectDiv) : setInactive(projectDiv);
+        
+    projectDiv.css("width", width);
+
+    setProgressBar(projectId, oProject.progress, oProject.effort);
+}
+
+function setActive(div) {
+    div.removeClass("inactive");
+    div.addClass("active");
+}
+
+function setInactive(div) {
+    div.removeClass("active");
+    div.addClass("inactive");
+}
+
+export function destroyProject(projectId) {
+    $("#" + projectId).empty();
+    document.getElementById(projectId).remove();
+}
+
+function setProgressBar(projectId, progress, effort) {
+    var percentage = (progress / effort) * 100;
+    $("#" + projectId + "-progressBar").width(percentage + "%");
+    $("#" + projectId + "projectProgress").text(progress.toFixed(2) + " / " + effort.toFixed(2));
 }

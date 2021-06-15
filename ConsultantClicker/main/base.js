@@ -73,8 +73,9 @@ function findProject(tick, cycle) {
   var quotient;
 
   // if there is a current project, we don't need to find one 
+  const project = body.data("project");
   var projects = body.data("projects");
-  if (Object.keys(projects).length > 0) {
+  if (Object.keys(projects).length >= project.projectBufferSize) {
     return;
   }
   

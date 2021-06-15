@@ -32,7 +32,8 @@
         "baseExpectedValue": 10000,
         "effortConversionRate": 0.25,
         "baseEffortConversionRate": 0.25,
-        "totalProjectsFinished": 0
+        "totalProjectsFinished": 0,
+        "projectBufferSize": 3
     },
     "projects": {
         "init-1": {

@@ -234,11 +234,17 @@ export function addEquipmentRow(oEquip) {
 }
 
 function renderProjects() {
- 
-    var projects = $("body").data("projects");
+    
+    const body = $("body");
+    const projectMeta = body.data("project");
+    var projects = body.data("projects");
 
     var width = ($("#projectBar").width() / Object.keys(projects).length) - 4;
-    
+
+    var projectBuffer = $("#projectBuffer");
+    projectBuffer.text(Object.keys(projects).length + " / " + projectMeta.projectBufferSize);
+    (projectMeta.projectBufferSize > Object.keys(projects).length) ? setNotFull(projectBuffer) : setFull(projectBuffer);
+
     Object.keys(projects).forEach( (projectId) => {
         renderProject(projects[projectId], width);
     });
@@ -290,6 +296,16 @@ function setActive(div) {
 function setInactive(div) {
     div.removeClass("active");
     div.addClass("inactive");
+}
+
+function setFull(div) {
+    div.removeClass("not-full");
+    div.addClass("full");
+}
+
+function setNotFull(div) {
+    div.removeClass("full");
+    div.addClass("not-full");
 }
 
 export function destroyProject(projectId) {

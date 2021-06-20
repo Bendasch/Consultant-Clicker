@@ -33,6 +33,7 @@
         "effortConversionRate": 0.25,
         "baseEffortConversionRate": 0.25,
         "totalProjectsFinished": 0,
+        "totalProjectsFound": 3,
         "projectBufferSize": 3
     },
     "projects": {

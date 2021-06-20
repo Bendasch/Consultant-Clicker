@@ -1,5 +1,6 @@
 import { logAction, destroyProject } from './render.js';
 import { Formatter, normRand } from './utils.js';
+import { getRandomProjectName } from './nameGenerator.js';
 
 
 export function sleep(ms) {
@@ -94,37 +95,43 @@ function findProject(tick, cycle) {
     return;
   } 
 
-  const oProjectMeta = body.data("project");
+  getRandomProjectName().then( (data) => {
 
-  // get an id for the new project
-  var id = oProjectMeta.totalProjectsFinished + 1;
-  var name = "Project " + id;
-  var newProject = {
-    "id": id,
-    "name": name,
-    "value": 0,
-    "effort": 0,
-    "progress": 0,
-    "active": false
-  }
-
-  // get the project value (normal distribution, rounded to 500)
-  var newValue = normRand(0,2) * oProjectMeta.expectedValue;
-  quotient = Math.floor(newValue / 500);
-  newProject.value = Math.max(quotient * 500, 500); 
-
-  // and effort (normal distribution, rounded to 250) 
-  var newEffort = Math.round(normRand(0,2) * (newProject.value * oProjectMeta.effortConversionRate));
-  quotient = Math.floor(newEffort / 250);
-  newProject.effort = Math.max(quotient * 250, 250); 
-
-  // add the new project to the datamodel
-  projects[id] = newProject;
-
-  body.data("projects", projects);
-
-  // output success message
-  logAction("Project proposal successful! Project value " + Formatter.format(newProject.value) + " (effort " + newProject.effort + ").");
+    var projectMeta = body.data("project");
+  
+    // get an id for the new project
+    projectMeta.totalProjectsFound += 1;
+    var id = projectMeta.totalProjectsFound;
+    var name = data.company;
+    var newProject = {
+      "id": id,
+      "name": name,
+      "value": 0,
+      "effort": 0,
+      "progress": 0,
+      "active": false
+    }
+  
+    // get the project value (normal distribution, rounded to 500)
+    var newValue = normRand(0,2) * projectMeta.expectedValue;
+    quotient = Math.floor(newValue / 500);
+    newProject.value = Math.max(quotient * 500, 500); 
+  
+    // and effort (normal distribution, rounded to 250) 
+    var newEffort = Math.round(normRand(0,2) * (newProject.value * projectMeta.effortConversionRate));
+    quotient = Math.floor(newEffort / 250);
+    newProject.effort = Math.max(quotient * 250, 250); 
+  
+    // add the new project to the datamodel
+    projects[id] = newProject;
+  
+    body.data("projects", projects);
+    body.data("project", projectMeta);
+  
+    // output success message
+    logAction("Project proposal successful! Project value " + Formatter.format(newProject.value) + " (effort " + newProject.effort + ").");
+    
+  });
 };
 
 

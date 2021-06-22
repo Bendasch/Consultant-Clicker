@@ -9,6 +9,7 @@ export function render() {
     renderEquipmentButtons();
     renderProjects();
     renderOfficeButtons();
+    renderProgressNumbers();
 }
 
 export function logAction(str) {
@@ -317,4 +318,50 @@ function setProgressBar(projectId, progress, effort) {
     var percentage = (progress / effort) * 100;
     $("#" + projectId + "-progressBar").width(percentage + "%");
     $("#" + projectId + "projectProgress").text(progress.toFixed(2) + " / " + effort.toFixed(2));
+}
+
+function renderProgressNumbers() {
+    
+    const body = $("body");
+    const container = $("#clickProgressContainer");
+
+    var clicking = body.data("clicking");
+    var indicators = container.children("div");
+
+    if (indicators.length <=  0) { return; }
+
+    indicators.each( index => {
+
+        var indicatorId = indicators[index].id;
+        var $indicator = $("#" + indicatorId)
+        var ticksleft = clicking.indicators[indicatorId];
+
+        if (ticksleft == 0) {      
+            $indicator.remove();      
+            delete clicking.indicators[indicatorId];
+        } else {            
+            $indicator.css("top", ($indicator.css("top").replace(/[^-\d\.]/g, '') - 5) + "px");
+            clicking.indicators[indicatorId] = ticksleft - 1;
+        }
+
+        body.data("clicking", clicking);
+    });
+
+    
+}
+
+export function createProgressIndicator(id, x, y, value) {
+
+    const body = $("body");
+    
+    // render
+    var dot = $("<div id='" + id + "' class='clickProgressIndicator'>" + "+" + value + "</div>");
+    $("#clickProgressContainer").append(dot);
+    dot.css("left", x + "px");
+    dot.css("top", y + "px");
+
+    // cache
+    var clicking = body.data("clicking");
+    clicking.indicators[id] = 25;
+    body.data("clicking", clicking);
 }

@@ -45,7 +45,7 @@ export function initialize() {
     // initialize the office buttons
     var oButtons = json.buttons;
     Object.keys(oButtons).forEach( (buttonId) => {
-        $("#" + buttonId).unbind().click(() => officeClick(buttonId)); 
+        $("#" + buttonId).unbind().click((event) => officeClick(event, buttonId)); 
     });
     body.data("buttons", oButtons);
 

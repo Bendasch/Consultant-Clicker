@@ -92,7 +92,8 @@
         "value": 5,
         "baseValue": 5,
         "clicks": 0,
-        "totalProgress": 0
+        "totalProgress": 0,
+        "indicators": {}
     },
     "buttons": {
         "word": {

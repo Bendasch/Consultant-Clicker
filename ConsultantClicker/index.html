@@ -7,7 +7,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
 
-    <body>
+    <body ondragstart="return false;" ondrop="return false;">
 
         <div class="navbar">
             <button id="statsTab" class="tablinks inactive">Stats</button>
@@ -198,6 +198,8 @@
             </div>
 
         </div>
+
+        <div id="clickProgressContainer"></div>
 
         <div class="workbar" id="workbar">
             <img id="word" src="./img/word_comic.png" width="108px" height="108px"> 

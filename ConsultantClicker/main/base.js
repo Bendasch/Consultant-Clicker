@@ -1,4 +1,4 @@
-import { logAction, destroyProject } from './render.js';
+import { logAction, destroyProject, createProgressIndicator } from './render.js';
 import { Formatter, normRand } from './utils.js';
 import { getRandomProjectName } from './nameGenerator.js';
 
@@ -198,7 +198,7 @@ function updateRates() {
 
 }
 
-export function officeClick(buttonId) {
+export function officeClick(event, buttonId) {
 
   const body = $("body");
   const oClicking = body.data("clicking");
@@ -209,11 +209,15 @@ export function officeClick(buttonId) {
   oButtons[buttonId].newAnimation = true;
   body.data("buttons", oButtons);
 
+
   // we need to check whether there is a project to progress
   var project = getActiveProject(body.data("projects"));
   if (!(project === undefined)) {
 
     addToProgress(oClicking.value);
+  
+    // click progress indicator (i.e., flying numbers)
+    createProgressIndicator("click-" + oClicking.clicks, event.clientX, event.clientY, oClicking.value);
 
     oClicking.totalProgress += oClicking.value;
   
@@ -224,7 +228,6 @@ export function officeClick(buttonId) {
       case "powerpoint": actionStr = "Cool presentation!"; break;
       case "outlook":  actionStr = "Great mail, keep going!"; break;
     }
-    logAction(actionStr + " You helped progress the project by " + oClicking.value + "!");
 
   } else {
     logAction("Choose a project or wait for the sales team to find one!");
@@ -299,3 +302,5 @@ function removeProject(projectId) {
   // remove the UI element
   destroyProject(projectId);
 }
+
+

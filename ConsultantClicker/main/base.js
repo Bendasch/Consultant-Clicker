@@ -1,4 +1,4 @@
-import { logAction, destroyProject, createProgressIndicator } from './render.js';
+import { logAction, destroyProject, createProgressIndicator, startAddToBalanceAnimation } from './render.js';
 import { Formatter, normRand } from './utils.js';
 import { getRandomProjectName } from './nameGenerator.js';
 
@@ -34,8 +34,9 @@ function updateProjects(tick) {
 
     addToBalance(oProject.value);
 
+    startAddToBalanceAnimation(oProject.id, oProject.value);
+    
     addFinishedProject();
-    logAction("Project finished! Earned " + Formatter.format(oProject.value) + ".");
 
     removeProject(oProject.id);
   } 

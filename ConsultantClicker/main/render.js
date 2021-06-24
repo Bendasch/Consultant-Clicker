@@ -9,7 +9,7 @@ export function render() {
     renderEquipmentButtons();
     renderProjects();
     renderOfficeButtons();
-    renderProgressNumbers();
+    renderFlyingNumbers();
 }
 
 export function logAction(str) {
@@ -324,6 +324,39 @@ function setProgressBar(projectId, progress, effort) {
     $("#" + projectId + "projectProgress").text(progress.toFixed(2) + " / " + effort.toFixed(2));
 }
 
+function renderFlyingNumbers() {
+    renderProgressNumbers();
+    renderBalanceNumbers();
+}
+
+function renderBalanceNumbers() {
+    
+    const body = $("body");
+    const container = $("#projectBalanceContainer");
+
+    var project = body.data("project");
+    var indicators = container.children("div");
+
+    if (indicators.length <=  0) { return; }
+
+    indicators.each( index => {
+
+        var indicatorId = indicators[index].id;
+        var $indicator = $("#" + indicatorId)
+        var ticksleft = project.indicators[indicatorId];
+
+        if (ticksleft == 0) {      
+            $indicator.remove();      
+            delete project.indicators[indicatorId];
+        } else {            
+            $indicator.css("top", ($indicator.css("top").replace(/[^-\d\.]/g, '') - 2) + "px");
+            project.indicators[indicatorId] = ticksleft - 1;
+        }
+
+        body.data("project", project);
+    });
+}
+
 function renderProgressNumbers() {
     
     const body = $("body");
@@ -350,8 +383,6 @@ function renderProgressNumbers() {
 
         body.data("clicking", clicking);
     });
-
-    
 }
 
 export function createProgressIndicator(id, x, y, value) {
@@ -360,15 +391,8 @@ export function createProgressIndicator(id, x, y, value) {
     
     // render
     var dot = $("<div id='" + id + "' class='clickProgressIndicator'>" + "+" + value + "</div>");
+    styleAnimationDot(dot, x, y);
     $("#clickProgressContainer").append(dot);
-    dot.css("left", x + "px");
-    dot.css("top", y + "px");
-
-    // size
-    const size = (value.toString().length + 1) * 8;
-    dot.css("width", size + "px");
-    dot.css("height", size + "px");
-    dot.css("line-height", size + "px");
 
     // cache
     var clicking = body.data("clicking");
@@ -382,3 +406,35 @@ export function setTime(type, value) {
     if (type == "render") { $("#renderTime").text("Render time: " + (T_NOW - value) + "ms"); return}
     if (type == "tick") { $("#tick").text("Tick rate: " + (1000 / value) + "Hz"); return}
 } 
+
+export function startAddToBalanceAnimation(projectId, projectValue) {
+    const body = $("body");
+    
+    const ID = projectId + "-balance";
+    const $project = $("#" + projectId);
+    const X = $project.offset().left + ($project.width() / 2);
+    const Y = $project.offset().top + ($project.height() / 2);
+    var dot = $("<div id='" + ID + "' class='addToBalanceIndicator'>" + "+" + Formatter.format(projectValue) + "</div>");
+    styleAnimationDot(dot, X, Y);
+    $("#projectBalanceContainer").append(dot);
+
+    // cache ticks for indication
+    var project = body.data("project");
+    project.indicators[ID] = 50;
+    body.data("project", project);
+}
+
+function styleAnimationDot($dot, x, y) {
+
+    const WIDTH = $dot.text().length * 7;
+    const HEIGHT = WIDTH / 2;
+    const X = x - (WIDTH / 2);
+    const Y = y - (HEIGHT / 2);
+
+    $dot.css("width", WIDTH + "px");
+    $dot.css("height", HEIGHT + "px");   
+    $dot.css("line-height", HEIGHT + "px"); 
+    
+    $dot.css("left", X + "px");
+    $dot.css("top", Y + "px");
+}

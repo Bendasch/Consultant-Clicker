@@ -34,7 +34,8 @@
         "baseEffortConversionRate": 0.25,
         "totalProjectsFinished": 0,
         "totalProjectsFound": 3,
-        "projectBufferSize": 3
+        "projectBufferSize": 3,
+        "indicators": {}
     },
     "projects": {
         "init-1": {
@@ -50,14 +51,6 @@
             "name": "Medium sized project",
             "value": 25000,
             "effort": 15000,
-            "progress": 0,
-            "active": false
-        },
-        "init-3": {
-            "id": "init-3",
-            "name": "Large project",
-            "value": 150000,
-            "effort": 200000,
             "progress": 0,
             "active": false
         }

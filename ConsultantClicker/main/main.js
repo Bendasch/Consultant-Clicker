@@ -14,6 +14,8 @@ function main(tick, start, cycle) {
   render();
   setTime("render", T_PRE_RENDER);
 
+  if ((cycle % 250) == 0) { window.localStorage.setItem("CONS_CLICKER", JSON.stringify($("body").data())) }
+
   sleep(2 * tick - delta).then(() => main(tick, T_START, cycle + 1));
 }
 

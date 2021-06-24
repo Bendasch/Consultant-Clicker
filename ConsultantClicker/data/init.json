@@ -1,4 +1,8 @@
 {
+    "currentBalance": 0,
+    "totalEarnings": 0,
+    "totalRate": 0,
+    "totalSalesRate": 0.1,
     "junior": {
         "quantity": 2,
         "rate": 55,

@@ -1,4 +1,4 @@
-import { Formatter, FormatterNoDec } from './utils.js';
+import { Formatter, FormatterNoDec, FormatterDec } from './utils.js';
 import { addResource, buyEquipment } from './shop.js';
 import { projectClick } from './base.js';
 
@@ -268,7 +268,7 @@ function renderProject(oProject, width) {
         projectDiv.append('<p>' + oProject.name + '</p>');
         projectDiv.append('<p>' + Formatter.format(oProject.value) + '</p>');
 
-        // the progress bar
+        // the progress bar and prog + effort numbers
         var progressWrapper = $("<div id='" + projectId + "-progressWrapper' class='progressWrapper'></div>")
         projectDiv.append(progressWrapper);
         progressWrapper.append("<div id='" + projectId + "-progressBar' class='progressBar'></div>");
@@ -283,10 +283,14 @@ function renderProject(oProject, width) {
     }
 
     oProject.active ? setActive(projectDiv) : setInactive(projectDiv);
-        
     projectDiv.css("width", width);
 
+    setProjectProgress(projectId, oProject.progress, oProject.effort)
     setProgressBar(projectId, oProject.progress, oProject.effort);
+}
+
+function setProjectProgress(projectId, progress, effort) {
+    $("#" + projectId + "-projectProgress").text(FormatterDec.format(progress.toFixed(0)) + " / " + FormatterDec.format(effort));
 }
 
 function setActive(div) {
@@ -360,8 +364,21 @@ export function createProgressIndicator(id, x, y, value) {
     dot.css("left", x + "px");
     dot.css("top", y + "px");
 
+    // size
+    const size = (value.toString().length + 1) * 8;
+    dot.css("width", size + "px");
+    dot.css("height", size + "px");
+    dot.css("line-height", size + "px");
+
     // cache
     var clicking = body.data("clicking");
     clicking.indicators[id] = 25;
     body.data("clicking", clicking);
 }
+
+export function setTime(type, value) {
+    const T_NOW = (new Date()).getTime(); 
+    if (type == "update") { $("#updateTime").text("Update time: " + (T_NOW - value) + "ms"); return}
+    if (type == "render") { $("#renderTime").text("Render time: " + (T_NOW - value) + "ms"); return}
+    if (type == "tick") { $("#tick").text("Tick rate: " + (1000 / value) + "Hz"); return}
+} 

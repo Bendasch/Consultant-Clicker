@@ -12,6 +12,10 @@ export const Formatter = new Intl.NumberFormat('de-DE', {
     currency: 'EUR'
 });
 
+export const FormatterDec =  new Intl.NumberFormat('de-DE', {
+    style: 'decimal'
+});
+
 export function normRand(from=0, to=1) {
 
     const offset = 3;

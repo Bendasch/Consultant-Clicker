@@ -50,7 +50,7 @@
             "name": "Medium sized project",
             "value": 25000,
             "effort": 15000,
-            "progress": 500,
+            "progress": 0,
             "active": false
         },
         "init-3": {
@@ -58,7 +58,7 @@
             "name": "Large project",
             "value": 150000,
             "effort": 200000,
-            "progress": 1250,
+            "progress": 0,
             "active": false
         }
     },
@@ -89,8 +89,8 @@
         }
     },
     "clicking": {
-        "value": 5,
-        "baseValue": 5,
+        "value": 50,
+        "baseValue": 50,
         "clicks": 0,
         "totalProgress": 0,
         "indicators": {}

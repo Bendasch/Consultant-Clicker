@@ -9,6 +9,7 @@ export function initialize() {
     $("#statsTab").on("click", (event) => {openTab(event, "stats")});
     $("#staffTab").on("click", (event) => {openTab(event, "staff")});
     $("#equipmentTab").on("click", (event) => {openTab(event, "equipment")});
+    $("#log").on("click", (event) => {openTab(event, "logBox")})
   });
 
   // initialize data

@@ -104,13 +104,14 @@ function findProject(tick, cycle) {
     projectMeta.totalProjectsFound += 1;
     var id = projectMeta.totalProjectsFound;
     var name = data.company;
+
     var newProject = {
       "id": id,
       "name": name,
       "value": 0,
       "effort": 0,
       "progress": 0,
-      "active": false
+      "active": (Object.keys(projects).length == 0)
     }
   
     // get the project value (normal distribution, rounded to 500)
@@ -128,10 +129,9 @@ function findProject(tick, cycle) {
   
     body.data("projects", projects);
     body.data("project", projectMeta);
-  
+    
     // output success message
     logAction("Project proposal successful! Project value " + Formatter.format(newProject.value) + " (effort " + newProject.effort + ").");
-    
   });
 };
 

@@ -438,3 +438,40 @@ function styleAnimationDot($dot, x, y) {
     $dot.css("left", X + "px");
     $dot.css("top", Y + "px");
 }
+
+// toggles the popup with the parent div #<domId>
+// the default display is 'inline'
+export function popup(domId, display="inline") {
+
+    var main = $(domId);
+    var state;
+    (main.css("display") == "none") ? state = display : state = "none";
+    main.css("display", state);
+}
+
+export function trelloCardSuccess() {
+    var button = $("#trelloSend");
+    button.css("background-color", "#06d280");
+    button.text("Issue created");
+    $("#trelloName").prop("disabled", true);
+    $("#trelloDescr").prop("disabled", true);
+}
+
+
+export function resetTrelloPopup() {
+
+    // reset button
+    var button = $("#trelloSend");
+    button.css("background-color", "brown");
+    button.text("Create issue");    
+
+    // reset name
+    var nameInput = $("#trelloName");
+    nameInput.prop("disabled", false);
+    nameInput.val("");
+
+    // reset description
+    var descArea = $("#trelloDescr");
+    descArea.prop("disabled", false);
+    descArea.val("");
+}

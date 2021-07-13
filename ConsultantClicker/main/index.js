@@ -1,5 +1,6 @@
-import { render, openTab, logAction, addEquipmentRow } from './render.js';
+import { render, openTab, logAction, addEquipmentRow, popup } from './render.js';
 import { officeClick } from './base.js';
+import { createTrelloCard } from './utils.js';
 
 export function initialize() {
 
@@ -10,6 +11,10 @@ export function initialize() {
     $("#staffTab").on("click", (event) => {openTab(event, "staff")});
     $("#equipmentTab").on("click", (event) => {openTab(event, "equipment")});
     $("#log").on("click", (event) => {openTab(event, "logBox")})
+
+    // trello popup
+    $("#trelloButton").on("click", (event) => {popup("#trello")});
+    $("#trelloSend").on("click", (event) => {createTrelloCard(event)});
   });
 
   // initialize data

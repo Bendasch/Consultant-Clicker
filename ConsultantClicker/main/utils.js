@@ -1,3 +1,5 @@
+import { trelloCardSuccess, resetTrelloPopup } from './render.js';
+
 export const FormatterNoDec = new Intl.NumberFormat('de-DE', {
     style: 'currency',
     currency: 'EUR',
@@ -43,4 +45,46 @@ function boxMullerTransform([u1,u2]) {
     v1 = Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2);
     v2 = Math.sqrt(-2 * Math.log(u1)) * Math.sin(2 * Math.PI * u2);
     return [v1, v2];
+}
+
+// creates a trello card
+export function createTrelloCard(event) {
+  
+    // button    
+    var button = $("#trelloSend");
+    var buttonState = button.text();
+
+    if (buttonState == "Create issue") {
+
+        var cardName =  $("#trelloName").val();
+        var cardDescription = $("#trelloDescr").val();
+    
+        console.log(`Name: ${cardName}`);
+        console.log(`Description: ${cardDescription}`);
+    
+        const url = "https://api.trello.com/1/cards";
+        const label = "60e9ca86d66e2e1822939642";
+        const listId = "60c11c4faec7d254b90f6a5b";
+        const key = "fbd9d0099d94233747a9b62f70741bef";
+        const token = "a84f11d8ce5f5ad43679748f661b9879023a94f15f5ee94563fbc9a86c6a3f68";
+    
+        const endpoint = url + "?key=" + key
+                             + "&token=" + token 
+                             + "&idList=" + listId 
+                             + "&idLabels=" + label 
+                             + "&name=" + cardName
+                             + "&desc=" + cardDescription;
+
+        $.ajax({ 
+            url: endpoint, 
+            method: 'POST'
+        }).done( (jqXHR, textStatus, errorThrown) => {
+            if (textStatus == "success") {
+                trelloCardSuccess();
+            }
+        })   
+
+    } else if (buttonState == "Issue created") {
+        resetTrelloPopup();
+    }
 }

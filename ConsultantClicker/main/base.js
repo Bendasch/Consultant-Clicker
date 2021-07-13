@@ -1,7 +1,5 @@
 import { logAction, destroyProject, createProgressIndicator, startAddToBalanceAnimation } from './render.js';
-import { Formatter, normRand } from './utils.js';
-import { getRandomProjectName } from './nameGenerator.js';
-
+import { Formatter, normRand, getRandomProjectName } from './utils.js';
 
 export function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));

@@ -48,7 +48,7 @@ function boxMullerTransform([u1,u2]) {
 }
 
 // creates a trello card
-export function createTrelloCard(event) {
+export function createTrelloCard() {
   
     // button    
     var button = $("#trelloSend");
@@ -58,28 +58,14 @@ export function createTrelloCard(event) {
 
         var cardName =  $("#trelloName").val();
         var cardDescription = $("#trelloDescr").val();
-    
-        console.log(`Name: ${cardName}`);
-        console.log(`Description: ${cardDescription}`);
-    
-        const url = "https://api.trello.com/1/cards";
-        const label = "60e9ca86d66e2e1822939642";
-        const listId = "60c11c4faec7d254b90f6a5b";
-        const key = "fbd9d0099d94233747a9b62f70741bef";
-        const token = "a84f11d8ce5f5ad43679748f661b9879023a94f15f5ee94563fbc9a86c6a3f68";
-    
-        const endpoint = url + "?key=" + key
-                             + "&token=" + token 
-                             + "&idList=" + listId 
-                             + "&idLabels=" + label 
-                             + "&name=" + cardName
-                             + "&desc=" + cardDescription;
+        
+        const endpoint = "/api/trello?name=" + cardName + "&description=" + cardDescription; 
 
         $.ajax({ 
             url: endpoint, 
             method: 'POST'
         }).done( (jqXHR, textStatus, errorThrown) => {
-            if (textStatus == "success") {
+            if (jqXHR == "success") {
                 trelloCardSuccess();
             }
         })   
@@ -87,4 +73,16 @@ export function createTrelloCard(event) {
     } else if (buttonState == "Issue created") {
         resetTrelloPopup();
     }
+}
+
+export function getRandomProjectName() {
+
+    const url = "/api/namegen";
+    
+    return $.ajax({ 
+        url: url, 
+        method: 'GET',
+        dataType: 'json', 
+        async: true
+    })   
 }

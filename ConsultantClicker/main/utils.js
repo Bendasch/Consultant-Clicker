@@ -56,8 +56,8 @@ export function createTrelloCard() {
 
     if (buttonState == "Create issue") {
 
-        var cardName =  $("#trelloName").val();
-        var cardDescription = $("#trelloDescr").val();
+        var cardName =  encodeURIComponent($("#trelloName").val());
+        var cardDescription = encodeURIComponent($("#trelloDescr").val());
         
         const endpoint = "/api/trello?name=" + cardName + "&description=" + cardDescription; 
 

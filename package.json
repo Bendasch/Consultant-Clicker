@@ -2,5 +2,8 @@
   "dependencies": {
     "express": "^4.17.1",
     "sass": "^1.35.2"
+  },
+  "scripts": {
+    "sass": "sass --watch ./ConsultantClicker/css/style.scss ./ConsultantClicker/css/style.css"
   }
 }

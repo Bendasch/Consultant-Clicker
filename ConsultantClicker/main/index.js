@@ -1,4 +1,4 @@
-import { render, openTab, logAction, addEquipmentRow, popup } from './render.js';
+import { render, toggleTab, logAction, addEquipmentRow, popup } from './render.js';
 import { officeClick } from './base.js';
 import { createTrelloCard } from './utils.js';
 
@@ -7,10 +7,10 @@ export function initialize() {
   $(document).ready(function() {
 
     // bind event handlers to navbar
-    $("#statsTab").on("click", (event) => {openTab(event, "stats")});
-    $("#staffTab").on("click", (event) => {openTab(event, "staff")});
-    $("#equipmentTab").on("click", (event) => {openTab(event, "equipment")});
-    $("#log").on("click", (event) => {openTab(event, "logBox")})
+    $("#statsTab").on("click", (event) => {toggleTab(event, "stats")});
+    $("#staffTab").on("click", (event) => {toggleTab(event, "staff")});
+    $("#equipmentTab").on("click", (event) => {toggleTab(event, "equipment")});
+    $("#log").on("click", (event) => {toggleTab(event, "logBox")})
 
     // trello popup
     $("#trelloButton").on("click", (event) => {popup("#trello")});

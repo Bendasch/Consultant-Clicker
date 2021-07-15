@@ -28,10 +28,12 @@ export function logAction(str) {
 }
 
 
-export function openTab(event, tabId) {
+export function toggleTab(event, tabId) {
 
     var i, tabcontent, tablinks;
-  
+    
+    var isActive = $(event.currentTarget).hasClass("active");
+
     // Get all elements with class="tabcontent" and hide them
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
@@ -45,8 +47,14 @@ export function openTab(event, tabId) {
     }
   
     // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabId).style.display = "block";
-    event.currentTarget.className = event.currentTarget.className.replace(" inactive", " active");
+    var menu =  $("#menu");
+    if (!isActive) {
+        document.getElementById(tabId).style.display = "block";
+        menu.css("display", "block");
+        event.currentTarget.className = event.currentTarget.className.replace(" inactive", " active");
+    } else {
+        menu.css("display", "none");
+    }
 }
 
 function renderStats() {

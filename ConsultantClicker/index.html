@@ -18,7 +18,7 @@
 
         <div class="canvas">
 
-            <div class="leftSide">
+            <div id="menu" class="leftSide">
 
                 <div id="stats" class="tabcontent">
 
@@ -195,29 +195,23 @@
                 
                 <div id="logBox" class="tabcontent"></div>
             </div>
+            <div class="rightSide">
 
-        </div>
+                <div id="clickProgressContainer"></div>
+                <div id="projectBalanceContainer"></div>
 
-        <div id="clickProgressContainer"></div>
-        <div id="projectBalanceContainer"></div>
-
-        <div class="workbar" id="workbar">
-            <img id="word" src="./img/word_comic.png" width="108px" height="108px"> 
-            <img id="excel" src="./img/excel_comic.png" width="108px" height="108px"> 
-            <img id="powerpoint" src="./img/powerpoint_comic.png" width="108px" height="108px"> 
-            <img id="outlook" src="./img/outlook_comic.png" width="108px" height="108px"> 
-        </div>
-
-        <div class="projectCanvas">
-            <div class="projectBar" id="projectBar">
-                <p id="projectBuffer"></p>
+                <div class="workbar" id="workbar">
+                    <img id="word" src="./img/word_comic.png" width="108px" height="108px"> 
+                    <img id="excel" src="./img/excel_comic.png" width="108px" height="108px"> 
+                    <img id="powerpoint" src="./img/powerpoint_comic.png" width="108px" height="108px"> 
+                    <img id="outlook" src="./img/outlook_comic.png" width="108px" height="108px"> 
+                </div>
+                <div class="projectCanvas">
+                    <div class="projectBar" id="projectBar">
+                        <p id="projectBuffer"></p>
+                    </div>
+                </div>
             </div>
-        </div>
-
-        <div id="times" class="times">
-            <p id="tick"></p>
-            <p id="updateTime"></p>
-            <p id="renderTime"></p>
         </div>
 
         <a id="trelloButton"></a>
@@ -232,6 +226,13 @@
 
             <div class="trelloButton" id="trelloSend">Create issue</div>
         </div>
+
+        <div id="times" class="times">
+            <p id="tick"></p>
+            <p id="updateTime"></p>
+            <p id="renderTime"></p>
+        </div>
+
         <script type="module" src="./main/main.js" defer></script>
     </body>
 

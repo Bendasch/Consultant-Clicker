@@ -1,24 +1,26 @@
-body {
-  position: relative;
-  display: contents;
+html {
   font-family: "Calibri";
-  background-color: #2d2d2d;
+  user-select: none;
   color: #eee;
+  background-color: #2d2d2d;
+  border: none;
   margin: 0px;
   padding: 0px;
-  border: none;
-  user-select: none;
 }
-body p {
+html body {
+  display: contents;
+  position: relative;
+}
+html body p {
   margin: 1px;
 }
-body .navbar {
+html body #navbar {
   border-bottom: 2px solid #ccc;
   background-color: #2d2d2d;
   width: 100%;
   height: 8%;
 }
-body .navbar button {
+html body #navbar button {
   background-color: inherit;
   border: none;
   outline: none;
@@ -26,183 +28,159 @@ body .navbar button {
   padding: 14px 16px;
   transition: 0.3s;
 }
-body .navbar button.active {
+html body #navbar button.active {
   background-color: #50d396;
 }
-body .navbar button.active:hover {
+html body #navbar button.active:hover {
   color: #eee;
 }
-body .navbar button.inactive {
+html body #navbar button.inactive {
   color: #eee;
 }
-body .navbar button.inactive:hover {
+html body #navbar button.inactive:hover {
   background-color: #aaa;
   color: #2d2d2d;
 }
-body .canvas {
+html body #canvas {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
   align-content: flex-start;
-  height: 98%;
-  width: 100%;
+  margin: 0px;
 }
-body .canvas .leftSide {
-  width: 500px;
-  height: 500px;
-  flex-shrink: 1;
-  flex-grow: 1;
+html body #canvas #menu {
+  width: 100%;
+  margin-top: 0px;
   display: none;
 }
-body .canvas .leftSide .tabcontent {
+html body #canvas #menu .tabcontent {
   display: none;
-  border-bottom: 1px solid #ccc;
-  border-collapse: collapse;
-  box-sizing: border-box;
-  width: 100%;
   line-height: 20px;
 }
-body .canvas .leftSide .tabcontent p {
-  margin: 1px;
-}
-body .canvas .leftSide .tabcontent .statTable {
-  width: 100%;
+html body #canvas #menu .tabcontent .statTable {
   display: table;
 }
-body .canvas .leftSide .tabcontent .statTable .statRow {
-  width: 100%;
+html body #canvas #menu .tabcontent .statTable .statRow {
   display: table-row;
-  background: #2d2d2d;
+  width: 100%;
 }
-body .canvas .leftSide .tabcontent .statTable .statRow .statsLabel {
-  width: 50%;
+html body #canvas #menu .tabcontent .statTable .statRow .statsLabel {
   display: table-cell;
+  vertical-align: middle;
   border-left: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
-  padding-left: 5px;
+  padding: 0 0.5rem 0 0.5rem;
 }
-body .canvas .leftSide .tabcontent .statTable .statRow .statsValue {
-  width: 50%;
+html body #canvas #menu .tabcontent .statTable .statRow .statsValue {
   display: table-cell;
+  vertical-align: middle;
+  border-left: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 0 0.5rem 0 0.5rem;
   text-align: right;
-  border-left: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
   border-right: 1px solid #ccc;
-  padding-right: 5px;
 }
-body .canvas .leftSide .tabcontent .resourceTable {
+html body #canvas #menu .tabcontent .resourceTable {
   display: table;
-  width: 100%;
 }
-body .canvas .leftSide .tabcontent .resourceTable .resourceRow {
+html body #canvas #menu .tabcontent .resourceTable .resourceRow {
   display: table-row;
-  width: 100%;
-  background: #2d2d2d;
 }
-body .canvas .leftSide .tabcontent .resourceTable .resourceRow .resourceCount {
+html body #canvas #menu .tabcontent .resourceTable .resourceRow .resourceCount {
   display: table-cell;
-  width: 15%;
+  vertical-align: middle;
+  border-left: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 0 0.5rem 0 0.5rem;
   text-align: center;
+}
+html body #canvas #menu .tabcontent .resourceTable .resourceRow .resourceRate {
+  display: table-cell;
   vertical-align: middle;
   border-left: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
-}
-body .canvas .leftSide .tabcontent .resourceTable .resourceRow .resourceRate {
-  width: 15%;
-  display: table-cell;
+  padding: 0 0.5rem 0 0.5rem;
   text-align: center;
-  vertical-align: middle;
-  border-left: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
 }
-body .canvas .leftSide .tabcontent .resourceTable .resourceRow .resourceName {
-  width: 40%;
+html body #canvas #menu .tabcontent .resourceTable .resourceRow .resourceName {
   display: table-cell;
-  text-align: left;
+  vertical-align: middle;
   border-left: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
-  vertical-align: middle;
+  padding: 0 0.5rem 0 0.5rem;
   padding-left: 5px;
 }
-body .canvas .leftSide .tabcontent .resourceTable .resourceRow .resourceButton {
-  width: 25%;
+html body #canvas #menu .tabcontent .resourceTable .resourceRow .resourceButton {
   display: table-cell;
-  text-align: center;
   vertical-align: middle;
-  user-select: none;
   border-left: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
+  padding: 0 0.5rem 0 0.5rem;
+  text-align: center;
+  user-select: none;
   border-right: 1px solid #ccc;
 }
-body .canvas .leftSide .tabcontent .resourceTable .resourceRow .resourceButton.enabled {
+html body #canvas #menu .tabcontent .resourceTable .resourceRow .resourceButton.enabled {
   color: #eee;
 }
-body .canvas .leftSide .tabcontent .resourceTable .resourceRow .resourceButton.enabled:active {
+html body #canvas #menu .tabcontent .resourceTable .resourceRow .resourceButton.enabled:active {
   background-color: #2d2d2d;
 }
-body .canvas .leftSide .tabcontent .resourceTable .resourceRow .resourceButton.disabled {
+html body #canvas #menu .tabcontent .resourceTable .resourceRow .resourceButton.disabled {
   color: #aaa;
 }
-body .canvas .leftSide .tabcontent .resourceTable .resourceRow .resourceButton:hover {
+html body #canvas #menu .tabcontent .resourceTable .resourceRow .resourceButton:hover {
   background-color: #4d4a4a;
 }
-body .canvas .leftSide .tabcontent .resourceTable .resourceRow .resourceButton .buttonNumber {
+html body #canvas #menu .tabcontent .resourceTable .resourceRow .resourceButton .buttonNumber {
   font-size: 120%;
 }
-body .canvas .leftSide .tabcontent .resourceTable .resourceRow .resourceButton .buttonCost {
+html body #canvas #menu .tabcontent .resourceTable .resourceRow .resourceButton .buttonCost {
   font-size: 90%;
   color: red;
 }
-body .canvas .leftSide .tabcontent .equipmentTable {
+html body #canvas #menu .tabcontent .equipmentTable {
   display: table;
-  width: 100%;
 }
-body .canvas .leftSide .tabcontent .equipmentTable .equipmentRow {
+html body #canvas #menu .tabcontent .equipmentTable .equipmentRow {
   display: table-row;
-  background: #2d2d2d;
-  width: 100%;
 }
-body .canvas .leftSide .tabcontent .equipmentTable .equipmentRow.not-owned.disabled {
+html body #canvas #menu .tabcontent .equipmentTable .equipmentRow.not-owned.disabled {
   color: #ccc;
-  width: 100%;
 }
-body .canvas .leftSide .tabcontent .equipmentTable .equipmentRow.not-owned.enabled {
+html body #canvas #menu .tabcontent .equipmentTable .equipmentRow.not-owned.enabled {
   color: #eee;
-  width: 100%;
 }
-body .canvas .leftSide .tabcontent .equipmentTable .equipmentRow.owned {
+html body #canvas #menu .tabcontent .equipmentTable .equipmentRow.owned {
   background-color: #50d396;
   color: #2d2d2d;
-  width: 100%;
 }
-body .canvas .leftSide .tabcontent .equipmentTable .equipmentRow .equipmentName {
+html body #canvas #menu .tabcontent .equipmentTable .equipmentRow .equipmentName {
   display: table-cell;
-  width: 30%;
+  vertical-align: middle;
   border-left: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
-  padding-left: 5px;
+  padding: 0 0.5rem 0 0.5rem;
 }
-body .canvas .leftSide .tabcontent .equipmentTable .equipmentRow .equipmentDescription {
+html body #canvas #menu .tabcontent .equipmentTable .equipmentRow .equipmentDescription {
   display: table-cell;
-  width: 50%;
+  vertical-align: middle;
   border-left: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
-  padding-left: 5px;
+  padding: 0 0.5rem 0 0.5rem;
 }
-body .canvas .leftSide .tabcontent .equipmentTable .equipmentRow .equipmentCost {
+html body #canvas #menu .tabcontent .equipmentTable .equipmentRow .equipmentCost {
   display: table-cell;
-  width: 20%;
+  vertical-align: middle;
+  border-left: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 0 0.5rem 0 0.5rem;
   text-align: right;
-  border-left: 1px solid #ccc;
   border-right: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
-  padding-right: 5px;
 }
-body .canvas .leftSide .tabcontent#logBox {
+html body #canvas #menu .tabcontent#logBox {
   box-sizing: border-box;
-  width: 100%;
   max-height: 250px;
-  background-color: #2d2d2d;
   line-height: 15px;
   overflow-y: auto;
   scrollbar-width: none;
@@ -211,155 +189,130 @@ body .canvas .leftSide .tabcontent#logBox {
   border-right: 1px solid #ccc;
   padding: 5px;
 }
-body .canvas .rightSide {
-  width: 500px;
-  height: 500px;
-  flex-shrink: 0;
-  flex-grow: 0;
-}
-body .canvas .rightSide .workbar {
-  width: 100%;
-  height: 108px;
-}
-body .canvas .rightSide .workbar img {
+html body #canvas #workbar {
+  margin-top: 20px;
+  margin-bottom: 0px;
+  margin-left: 5px;
+  margin-right: 5px;
+  width: calc(100% - 10px);
   display: flex;
-  padding: 5px;
+  height: 108;
+  justify-content: space-around;
+}
+html body #canvas #workbar img {
+  max-width: 22vw;
   height: auto;
 }
-body .canvas .rightSide .workbar img:hover {
+html body #canvas #workbar img:hover {
   opacity: 95%;
 }
-body .canvas .rightSide .projectCanvas {
-  width: 100%;
-  height: 20%;
-}
-body .canvas .rightSide .projectCanvas .projectBar {
-  width: 50%;
-  height: 100%;
-  position: relative;
+html body #canvas #projectBar {
+  margin-top: 20px;
+  margin-bottom: 0px;
+  margin-left: 5px;
+  margin-right: 5px;
+  width: calc(100% - 10px);
+  height: 200px;
   display: flex;
+  flex-shrink: 1;
+  justify-content: space-around;
+  position: relative;
 }
-body .canvas .rightSide .projectCanvas .projectBar p {
+html body #canvas #projectBar p {
   position: absolute;
   left: 50%;
-  bottom: 0;
+  bottom: -10px;
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
-  font-size: 175%;
+  font-size: calc(calc(90% + 0.5vw) * 1.25);
 }
-body .canvas .rightSide .projectCanvas .projectBar.full {
+html body #canvas #projectBar p.full {
   color: #f54343;
 }
-body .canvas .rightSide .projectCanvas .projectBar.not-full {
+html body #canvas #projectBar p.not-full {
   color: #eee;
 }
-body .canvas .rightSide .projectCanvas .projectBar .project {
-  height: 80%;
-  margin-bottom: 4%;
-  width: auto;
-  margin-right: 1%;
-  margin-left: 1%;
-  box-sizing: border-box;
+html body #canvas #projectBar .project {
+  height: 85%;
   position: relative;
   text-align: center;
 }
-body .canvas .rightSide .projectCanvas .projectBar .project p {
-  margin: initial;
-  font-size: 150%;
-  color: #2d2d2d;
-  padding-top: 5px;
-  padding-left: 10px;
+html body #canvas #projectBar .project p {
   position: relative;
-  background-color: initial;
+  font-size: calc(90% + 0.5vw);
+  color: #2d2d2d;
 }
-body .canvas .rightSide .projectCanvas .projectBar .project.active {
+html body #canvas #projectBar .project.active {
   background-color: #f7f4a1;
 }
-body .canvas .rightSide .projectCanvas .projectBar .project.active:hover {
+html body #canvas #projectBar .project.active:hover {
   background-color: #fbfad0;
 }
-body .canvas .rightSide .projectCanvas .projectBar .project.active p {
-  color: #2d2d2d;
-}
-body .canvas .rightSide .projectCanvas .projectBar .project.active .progressBar {
+html body #canvas #projectBar .project.active .progressBar {
   background-color: #f2574c;
 }
-body .canvas .rightSide .projectCanvas .projectBar .project.inactive {
+html body #canvas #projectBar .project.inactive {
   background-color: #777;
 }
-body .canvas .rightSide .projectCanvas .projectBar .project.inactive:hover {
+html body #canvas #projectBar .project.inactive:hover {
   background-color: #919191;
 }
-body .canvas .rightSide .projectCanvas .projectBar .project.inactive p {
+html body #canvas #projectBar .project.inactive p {
   color: #eee;
 }
-body .canvas .rightSide .projectCanvas .projectBar .project.inactive .progressBar {
+html body #canvas #projectBar .project.inactive .progressBar {
   background-color: #aaa;
 }
-body .canvas .rightSide .projectCanvas .projectBar .project .progressWrapper {
+html body #canvas #projectBar .project .progressWrapper {
+  position: absolute;
+  bottom: 27%;
   width: 100%;
-  height: 18%;
+  height: 15%;
   text-align: center;
-  font-size: 120%;
+  font-size: calc(calc(90% + 0.5vw) * 0.9);
   box-sizing: border-box;
   z-index: 1;
 }
-body .canvas .rightSide .projectCanvas .projectBar .project .progressWrapper p {
+html body #canvas #projectBar .project .progressWrapper p {
   margin: 0;
   padding: 0;
-  font-size: 125%;
-  color: #2d2d2d;
+  font-size: calc(90% + 0.5vw);
   z-index: 10;
 }
-body .canvas .rightSide .projectCanvas .projectBar .project .progressBar {
+html body #canvas #projectBar .project .progressWrapper .progressBar {
   height: 100%;
   width: 0%;
   z-index: 2;
-  margin: 0;
 }
-body .clickProgressIndicator {
-  padding: 0px;
-  margin: 0px;
-  text-align: center;
-  position: absolute;
-  border-radius: 40%;
-  z-index: 25;
-  pointer-events: none;
-  color: red;
-  font-size: 100%;
-  font-weight: bold;
+html body #canvas #footer {
+  margin-top: 20px;
+  margin-bottom: 0px;
+  margin-left: 5px;
+  margin-right: 5px;
+  width: calc(100% - 10px);
+  position: relative;
+  bottom: 0;
+  height: calc(3rem + 5px);
 }
-body .addToBalanceIndicator {
-  padding: 0px;
-  margin: 0px;
-  text-align: center;
+html body #canvas #footer #trelloButton {
   position: absolute;
-  border-radius: 40%;
-  z-index: 25;
-  pointer-events: none;
-  color: #41c245;
-  font-size: 150%;
-  font-weight: bold;
-}
-body #trelloButton {
-  position: absolute;
-  left: 0;
+  left: -3px;
   bottom: 0;
   width: 48px;
   height: 48px;
   background-image: url("../img/trello-icon.png");
 }
-body #trello {
+html body #canvas #footer #trello {
   position: absolute;
   bottom: 50px;
-  left: 5px;
+  left: 2px;
   height: 300px;
   width: 220px;
   background-color: #1E88E5;
   padding: 5px;
   display: none;
 }
-body #trello h1 {
+html body #canvas #footer #trello h1 {
   line-height: 18px;
   font-weight: bold;
   font-size: 130%;
@@ -367,20 +320,20 @@ body #trello h1 {
   margin-top: 10px;
   margin-left: 5px;
 }
-body #trello .trelloLabel {
+html body #canvas #footer #trello .trelloLabel {
   display: flex;
   width: 96%;
   margin-top: 20px;
 }
-body #trello #trelloDescr {
+html body #canvas #footer #trello #trelloDescr {
   position: absolute;
   width: 93%;
   resize: none;
 }
-body #trello #trelloName {
+html body #canvas #footer #trello #trelloName {
   width: 96%;
 }
-body #trello #trelloSend {
+html body #canvas #footer #trello #trelloSend {
   position: absolute;
   bottom: 1%;
   right: 2%;
@@ -392,20 +345,40 @@ body #trello #trelloSend {
   background-color: brown;
   font-weight: bold;
 }
-body .times {
+html body #canvas #footer .times {
   position: absolute;
   bottom: 0;
-  right: 0;
-  width: 6%;
-  height: 5%;
-  margin: 0;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  right: 0px;
+  margin: 5px;
   text-align: left;
 }
-body .times p {
+html body #canvas #footer .times p {
   font-size: 80%;
   color: #eee;
+}
+html body .clickProgressIndicator {
+  position: absolute;
+  padding: 0px;
+  margin: 0px;
+  text-align: center;
+  border-radius: 40%;
+  z-index: 25;
+  pointer-events: none;
+  color: red;
+  font-size: 100%;
+  font-weight: bold;
+}
+html body .addToBalanceIndicator {
+  position: absolute;
+  padding: 0px;
+  margin: 0px;
+  text-align: center;
+  border-radius: 40%;
+  z-index: 25;
+  pointer-events: none;
+  color: #41c245;
+  font-size: 150%;
+  font-weight: bold;
 }
 
 /*# sourceMappingURL=style.css.map */

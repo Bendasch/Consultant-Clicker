@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="en">
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
     <head>
         <title>Consultant Clicker</title>
         <link rel="stylesheet" href="./css/style.css">
@@ -9,16 +11,16 @@
 
     <body ondragstart="return false;" ondrop="return false;">
 
-        <div class="navbar">
+        <div id="navbar">
             <button id="statsTab" class="tablinks inactive">Stats</button>
             <button id="staffTab" class="tablinks inactive">Staff</button>
             <button id="equipmentTab" class="tablinks inactive">Equipment</button>
             <button id="log" class="tablinks inactive">Log</button>
         </div>
 
-        <div class="canvas">
+        <div id="canvas">
 
-            <div id="menu" class="leftSide">
+            <div id="menu">
 
                 <div id="stats" class="tabcontent">
 
@@ -58,9 +60,7 @@
                             <div class="statsValue">
                                 <p id="totalSalesRate"></p>
                             </div>
-                        </div>
-
-                        
+                        </div>                        
                         
                         <div class="statRow">
                             <div class="statsLabel">
@@ -122,9 +122,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="resourceTable">
+                        
                         <div class="resourceRow">
                             <div class="resourceCount" id="juniorCount">
                                 <p></p>
@@ -195,43 +193,42 @@
                 
                 <div id="logBox" class="tabcontent"></div>
             </div>
-            <div class="rightSide">
 
-                <div id="clickProgressContainer"></div>
-                <div id="projectBalanceContainer"></div>
+            <div id="workbar">
+                <img id="word" src="./img/word_comic.png" width="108px" height="108px"> 
+                <img id="excel" src="./img/excel_comic.png" width="108px" height="108px"> 
+                <img id="powerpoint" src="./img/powerpoint_comic.png" width="108px" height="108px"> 
+                <img id="outlook" src="./img/outlook_comic.png" width="108px" height="108px"> 
+            </div>
 
-                <div class="workbar" id="workbar">
-                    <img id="word" src="./img/word_comic.png" width="108px" height="108px"> 
-                    <img id="excel" src="./img/excel_comic.png" width="108px" height="108px"> 
-                    <img id="powerpoint" src="./img/powerpoint_comic.png" width="108px" height="108px"> 
-                    <img id="outlook" src="./img/outlook_comic.png" width="108px" height="108px"> 
-                </div>
-                <div class="projectCanvas">
-                    <div class="projectBar" id="projectBar">
-                        <p id="projectBuffer"></p>
+            <div id="projectBar">
+                <p id="projectBuffer"></p>
+            </div>
+
+            <div id="clickProgressContainer"></div>
+            <div id="projectBalanceContainer"></div>
+            
+            <div id="footer">
+                <a id="trelloButton"></a>
+                <div id="trello">
+                    <h1>Please enter your suggestion</h1>
+                    <div id="trelloContent">
+                        <label class="trelloLabel" for="trelloName">Name the issue:</label>
+                        <input id="trelloName">
+                        <label class="trelloLabel" for="trelloDescr">Describe the issue:</label>
+                        <textarea rows="6" cols="50" id="trelloDescr"></textarea>
                     </div>
+        
+                    <div class="trelloButton" id="trelloSend">Create issue</div>
                 </div>
-            </div>
-        </div>
-
-        <a id="trelloButton"></a>
-        <div id="trello">
-            <h1>Please enter your suggestion</h1>
-            <div id="trelloContent">
-                <label class="trelloLabel" for="trelloName">Name the issue:</label>
-                <input id="trelloName">
-                <label class="trelloLabel" for="trelloDescr">Describe the issue:</label>
-                <textarea rows="6" cols="50" id="trelloDescr"></textarea>
-            </div>
-
-            <div class="trelloButton" id="trelloSend">Create issue</div>
-        </div>
-
-        <div id="times" class="times">
-            <p id="tick"></p>
-            <p id="updateTime"></p>
-            <p id="renderTime"></p>
-        </div>
+        
+                <div id="times" class="times">
+                    <p id="tick"></p>
+                    <p id="updateTime"></p>
+                    <p id="renderTime"></p>
+                </div>
+            </div> 
+        </div>       
 
         <script type="module" src="./main/main.js" defer></script>
     </body>

@@ -169,7 +169,10 @@ function disableButton(sSelector) {
 
 function renderOfficeButtons() {
     
-    const maxPx = 108;
+    const minPx = 50;
+    const scaleVH = 5;
+    const magicSlope = 0.2;
+    const magicSlope2 = 0.0675;
     const minScale = 0.8; // %
     const numSteps = 20;
     const body =  $("body");
@@ -188,9 +191,9 @@ function renderOfficeButtons() {
             // calculate the next width
             step = numSteps - stepsLeft;
             if (step <= 5) {
-                scale = minScale + 0.2 * Math.exp(-1 * step);
+                scale = minScale + magicSlope * Math.exp(-1 * step);
             } else if (step<20) {
-                scale = minScale + 0.0675 * Math.log(step - 5)
+                scale = minScale + magicSlope2 * Math.log(step - 5)
             } else {
                 scale = 1;
             }
@@ -204,7 +207,7 @@ function renderOfficeButtons() {
                 // This will be our next value and this will also detemrine the "cycles left".
                 var newScale;
                 for (var i = 1; i <= 5; i++) {
-                    newScale = minScale + 0.2 * Math.exp(-1 * i);
+                    newScale = minScale + magicSlope * Math.exp(-1 * i);
                     if (newScale < scale) {
                         scale = newScale;
                         stepsLeft = numSteps - i;
@@ -214,7 +217,7 @@ function renderOfficeButtons() {
             }
 
             $("#" + buttonId).css("width", () => {
-                return ((maxPx * scale) + "px");
+                return ("calc(" + scaleVH * scale + "vw + " + minPx + "px)");
             });
 
             oButtons[buttonId].animationCyclesLeft = stepsLeft - 1;

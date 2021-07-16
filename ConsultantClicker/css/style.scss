@@ -14,6 +14,7 @@ $create: brown;
 $progressorange: rgb(242, 87, 76);
 
 $project-fontsize: calc(90% + 0.5vw);
+$floating-number-size: calc(100% + 0.5vw);
 
 @mixin side-space {
   margin-top: 20px;
@@ -237,13 +238,15 @@ html {
       #workbar {
         
         @include side-space;
-        display: flex;
-        height: 108;
-        justify-content: space-around;
+        display: block;
+        text-align: center;
 
         img {
-          max-width: 22vw;
+          display: inline-block;
+          width: calc(50px + 5vw);
           height: auto;
+          margin-left: 1vw;
+          margin-right: 1vw;
           &:hover {
             opacity: 95%;  
           }
@@ -365,6 +368,7 @@ html {
           background-color: $trelloblue;
           padding: 5px;
           display: none;
+          z-index: 100;
     
           
           h1 {
@@ -431,7 +435,7 @@ html {
       z-index: 25;
       pointer-events:none;
       color: $costred;
-      font-size: 100%;
+      font-size: $floating-number-size;
       font-weight: bold;
     }
     
@@ -444,7 +448,7 @@ html {
       z-index: 25;
       pointer-events:none;
       color: $cashgreen;
-      font-size: 150%;
+      font-size: $floating-number-size;
       font-weight: bold;
     }    
   }

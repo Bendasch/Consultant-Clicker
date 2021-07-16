@@ -94,18 +94,22 @@
     },
     "buttons": {
         "word": {
+            "unlocked": false,
             "animationCyclesLeft": 0,
             "newAnimation": false
         },        
         "excel": {
+            "unlocked": false,
             "animationCyclesLeft": 0,
             "newAnimation": false
         },        
         "powerpoint": {
+            "unlocked": false,
             "animationCyclesLeft": 0,
             "newAnimation": false
         },        
         "outlook": {
+            "unlocked": false,
             "animationCyclesLeft": 0,
             "newAnimation": false
         }

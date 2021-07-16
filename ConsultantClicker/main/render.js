@@ -3,6 +3,7 @@ import { addResource, buyEquipment } from './shop.js';
 import { projectClick } from './base.js';
 
 export function render() {
+    renderCashews();
     renderStats();
     renderResources();
     renderResourceButtons();
@@ -11,6 +12,10 @@ export function render() {
     renderOfficeButtons();
     renderFlyingNumbers();
 }
+
+const renderCashews = () => {
+    $("#cashews").text(FormatterNoDec.format($("body").data("currentBalance")));
+};
 
 export function logAction(str) {
     const logBox = $("#logBox");
@@ -71,12 +76,20 @@ function renderStats() {
 
     // clicking
     const oClicking = body.data("clicking");
-    $("#clickingRate").text(oClicking.value);
-    $("#totalClickProgress").text(oClicking.totalProgress);
-    $("#totalClicks").text(oClicking.clicks);
+    $("#clickingRate").text(
+        FormatterNoDec.format(oClicking.value)
+    );
+    $("#totalClickProgress").text(
+        FormatterNoDec.format(oClicking.totalProgress)
+    );
+    $("#totalClicks").text(
+        FormatterNoDec.format(oClicking.clicks)
+    );
 
     // projects
-    $("#totalProjectsFinished").text(body.data("project").totalProjectsFinished);
+    $("#totalProjectsFinished").text(
+        FormatterNoDec.format(body.data("project").totalProjectsFinished)
+    );
 }
 
 function renderResources() {

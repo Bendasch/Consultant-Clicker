@@ -15,10 +15,10 @@ html body p {
   margin: 1px;
 }
 html body #navbar {
+  position: relative;
   border-bottom: 2px solid #ccc;
   background-color: #2d2d2d;
   width: 100%;
-  height: 8%;
 }
 html body #navbar button {
   background-color: inherit;
@@ -29,10 +29,8 @@ html body #navbar button {
   transition: 0.3s;
 }
 html body #navbar button.active {
-  background-color: #50d396;
-}
-html body #navbar button.active:hover {
-  color: #eee;
+  background-color: #18e083;
+  color: #2d2d2d;
 }
 html body #navbar button.inactive {
   color: #eee;
@@ -40,6 +38,14 @@ html body #navbar button.inactive {
 html body #navbar button.inactive:hover {
   background-color: #aaa;
   color: #2d2d2d;
+}
+html body #navbar #cashews {
+  width: 100%;
+  text-align: center;
+  font-size: 175%;
+  color: #41c245;
+  border-top: 2px solid #ccc;
+  line-height: 40px;
 }
 html body #canvas {
   display: flex;
@@ -58,7 +64,14 @@ html body #canvas #menu .tabcontent {
   line-height: 20px;
 }
 html body #canvas #menu .tabcontent .statTable {
+  margin-top: 20px;
+  margin-bottom: 0px;
+  margin-left: 5px;
+  margin-right: 5px;
+  width: calc(100% - 10px);
+  width: initial;
   display: table;
+  margin-top: 10px;
 }
 html body #canvas #menu .tabcontent .statTable .statRow {
   display: table-row;
@@ -68,20 +81,29 @@ html body #canvas #menu .tabcontent .statTable .statRow .statsLabel {
   display: table-cell;
   vertical-align: middle;
   border-left: 1px solid #ccc;
+  border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
-  padding: 0 0.5rem 0 0.5rem;
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
 }
 html body #canvas #menu .tabcontent .statTable .statRow .statsValue {
   display: table-cell;
   vertical-align: middle;
   border-left: 1px solid #ccc;
+  border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
-  padding: 0 0.5rem 0 0.5rem;
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
   text-align: right;
   border-right: 1px solid #ccc;
 }
 html body #canvas #menu .tabcontent .resourceTable {
+  margin-top: 20px;
+  margin-bottom: 0px;
+  margin-left: 5px;
+  margin-right: 5px;
+  width: calc(100% - 10px);
+  width: initial;
   display: table;
+  margin-top: 10px;
 }
 html body #canvas #menu .tabcontent .resourceTable .resourceRow {
   display: table-row;
@@ -90,32 +112,36 @@ html body #canvas #menu .tabcontent .resourceTable .resourceRow .resourceCount {
   display: table-cell;
   vertical-align: middle;
   border-left: 1px solid #ccc;
+  border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
-  padding: 0 0.5rem 0 0.5rem;
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
   text-align: center;
 }
 html body #canvas #menu .tabcontent .resourceTable .resourceRow .resourceRate {
   display: table-cell;
   vertical-align: middle;
   border-left: 1px solid #ccc;
+  border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
-  padding: 0 0.5rem 0 0.5rem;
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
   text-align: center;
 }
 html body #canvas #menu .tabcontent .resourceTable .resourceRow .resourceName {
   display: table-cell;
   vertical-align: middle;
   border-left: 1px solid #ccc;
+  border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
-  padding: 0 0.5rem 0 0.5rem;
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
   padding-left: 5px;
 }
 html body #canvas #menu .tabcontent .resourceTable .resourceRow .resourceButton {
   display: table-cell;
   vertical-align: middle;
   border-left: 1px solid #ccc;
+  border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
-  padding: 0 0.5rem 0 0.5rem;
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
   text-align: center;
   user-select: none;
   border-right: 1px solid #ccc;
@@ -140,7 +166,14 @@ html body #canvas #menu .tabcontent .resourceTable .resourceRow .resourceButton 
   color: red;
 }
 html body #canvas #menu .tabcontent .equipmentTable {
+  margin-top: 20px;
+  margin-bottom: 0px;
+  margin-left: 5px;
+  margin-right: 5px;
+  width: calc(100% - 10px);
+  width: initial;
   display: table;
+  margin-top: 10px;
 }
 html body #canvas #menu .tabcontent .equipmentTable .equipmentRow {
   display: table-row;
@@ -152,29 +185,32 @@ html body #canvas #menu .tabcontent .equipmentTable .equipmentRow.not-owned.enab
   color: #eee;
 }
 html body #canvas #menu .tabcontent .equipmentTable .equipmentRow.owned {
-  background-color: #50d396;
+  background-color: #18e083;
   color: #2d2d2d;
 }
 html body #canvas #menu .tabcontent .equipmentTable .equipmentRow .equipmentName {
   display: table-cell;
   vertical-align: middle;
   border-left: 1px solid #ccc;
+  border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
-  padding: 0 0.5rem 0 0.5rem;
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
 }
 html body #canvas #menu .tabcontent .equipmentTable .equipmentRow .equipmentDescription {
   display: table-cell;
   vertical-align: middle;
   border-left: 1px solid #ccc;
+  border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
-  padding: 0 0.5rem 0 0.5rem;
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
 }
 html body #canvas #menu .tabcontent .equipmentTable .equipmentRow .equipmentCost {
   display: table-cell;
   vertical-align: middle;
   border-left: 1px solid #ccc;
+  border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
-  padding: 0 0.5rem 0 0.5rem;
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
   text-align: right;
   border-right: 1px solid #ccc;
 }
@@ -367,7 +403,7 @@ html body .clickProgressIndicator {
   border-radius: 40%;
   z-index: 25;
   pointer-events: none;
-  color: red;
+  color: #f2574c;
   font-size: calc(100% + 0.5vw);
   font-weight: bold;
 }

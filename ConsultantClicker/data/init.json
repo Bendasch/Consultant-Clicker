@@ -59,30 +59,58 @@
             "active": false
         }
     },
-    "equipment": {
+    "upgrades": {
+        "wordUpgrade": {
+            "id": "wordUpgrade",
+            "name": "Word",
+            "description": "This enables you to progress your project by your own effort by clicking the Word icon.",
+            "owned": false,
+            "cost": 500
+        },
         "secondMonitor": {
             "id": "secondMonitor",
             "name": "Second monitor",
             "description": "Everyone will be able to see two office apps at the same time. This increases ALL rates by 50%.",
             "owned": false,
-            "cost": 1000,
+            "cost": 1500,
             "rate": {
                 "consultants": 1.5,
                 "sales": 1.5,
                 "clicking": 1.5
             }
         },
+        "outlookUpgrade": {
+            "id": "outlookUpgrade",
+            "name": "Outlook",
+            "description": "This enables you to progress your project by your own effort by clicking the Outlook icon.",
+            "owned": false,
+            "cost": 5000
+        },
         "waterScrum": {
             "id": "waterScrum",
             "name": "Water-Scrum",
             "description": "Agile but not really! This slightly decreases productivity (-10%) but helps sales (+25%)!",
             "owned": false,
-            "cost": 1337.50,
+            "cost": 15000,
             "rate": {
                 "consultants": 0.9,
                 "sales": 1.25,
                 "clicking": 1
             }
+        },
+        "powerpointUpgrade": {
+            "id": "powerpointUpgrade",
+            "name": "Powerpoint",
+            "description": "This enables you to progress your project by your own effort by clicking the Powerpoint icon.",
+            "owned": false,
+            "cost": 50000
+        },
+        "excelUpgrade": {
+            "id": "excelUpgrade",
+            "name": "Excel",
+            "description": "This enables you to progress your project by your own effort by clicking the Excel icon.",
+            "owned": false,
+            "cost": 500000
         }
     },
     "clicking": {

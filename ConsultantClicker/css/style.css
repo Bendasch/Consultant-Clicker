@@ -15,7 +15,6 @@ html body p {
   margin: 1px;
 }
 html body #navbar {
-  position: relative;
   border-bottom: 2px solid #ccc;
   background-color: #2d2d2d;
   width: 100%;
@@ -39,6 +38,21 @@ html body #navbar button.inactive:hover {
   background-color: #aaa;
   color: #2d2d2d;
 }
+html body #navbar button#settingsTab {
+  position: absolute;
+  padding: 1.5px 1.5px;
+  right: 0;
+}
+html body #navbar button#settingsTab img {
+  display: block;
+  margin: auto;
+  width: 40px;
+  height: auto;
+  filter: invert(0.75);
+}
+html body #navbar button#settingsTab.active img {
+  filter: invert(0.25);
+}
 html body #navbar #cashews {
   width: 100%;
   text-align: center;
@@ -60,15 +74,15 @@ html body #canvas #menu {
   display: none;
 }
 html body #canvas #menu .tabcontent {
-  display: none;
-  line-height: 20px;
-}
-html body #canvas #menu .tabcontent .statTable {
   margin-top: 20px;
   margin-bottom: 0px;
   margin-left: 5px;
   margin-right: 5px;
   width: calc(100% - 10px);
+  display: none;
+  line-height: 20px;
+}
+html body #canvas #menu .tabcontent .statTable {
   width: initial;
   display: table;
   margin-top: 10px;
@@ -96,11 +110,6 @@ html body #canvas #menu .tabcontent .statTable .statRow .statsValue {
   border-right: 1px solid #ccc;
 }
 html body #canvas #menu .tabcontent .resourceTable {
-  margin-top: 20px;
-  margin-bottom: 0px;
-  margin-left: 5px;
-  margin-right: 5px;
-  width: calc(100% - 10px);
   width: initial;
   display: table;
   margin-top: 10px;
@@ -165,30 +174,25 @@ html body #canvas #menu .tabcontent .resourceTable .resourceRow .resourceButton 
   font-size: 90%;
   color: red;
 }
-html body #canvas #menu .tabcontent .equipmentTable {
-  margin-top: 20px;
-  margin-bottom: 0px;
-  margin-left: 5px;
-  margin-right: 5px;
-  width: calc(100% - 10px);
+html body #canvas #menu .tabcontent .upgradeTable {
   width: initial;
   display: table;
   margin-top: 10px;
 }
-html body #canvas #menu .tabcontent .equipmentTable .equipmentRow {
+html body #canvas #menu .tabcontent .upgradeTable .upgradeRow {
   display: table-row;
 }
-html body #canvas #menu .tabcontent .equipmentTable .equipmentRow.not-owned.disabled {
+html body #canvas #menu .tabcontent .upgradeTable .upgradeRow.not-owned.disabled {
   color: #ccc;
 }
-html body #canvas #menu .tabcontent .equipmentTable .equipmentRow.not-owned.enabled {
+html body #canvas #menu .tabcontent .upgradeTable .upgradeRow.not-owned.enabled {
   color: #eee;
 }
-html body #canvas #menu .tabcontent .equipmentTable .equipmentRow.owned {
+html body #canvas #menu .tabcontent .upgradeTable .upgradeRow.owned {
   background-color: #18e083;
   color: #2d2d2d;
 }
-html body #canvas #menu .tabcontent .equipmentTable .equipmentRow .equipmentName {
+html body #canvas #menu .tabcontent .upgradeTable .upgradeRow .upgradeName {
   display: table-cell;
   vertical-align: middle;
   border-left: 1px solid #ccc;
@@ -196,7 +200,7 @@ html body #canvas #menu .tabcontent .equipmentTable .equipmentRow .equipmentName
   border-bottom: 1px solid #ccc;
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
 }
-html body #canvas #menu .tabcontent .equipmentTable .equipmentRow .equipmentDescription {
+html body #canvas #menu .tabcontent .upgradeTable .upgradeRow .upgradeDescription {
   display: table-cell;
   vertical-align: middle;
   border-left: 1px solid #ccc;
@@ -204,7 +208,7 @@ html body #canvas #menu .tabcontent .equipmentTable .equipmentRow .equipmentDesc
   border-bottom: 1px solid #ccc;
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
 }
-html body #canvas #menu .tabcontent .equipmentTable .equipmentRow .equipmentCost {
+html body #canvas #menu .tabcontent .upgradeTable .upgradeRow .upgradeCost {
   display: table-cell;
   vertical-align: middle;
   border-left: 1px solid #ccc;
@@ -214,16 +218,24 @@ html body #canvas #menu .tabcontent .equipmentTable .equipmentRow .equipmentCost
   text-align: right;
   border-right: 1px solid #ccc;
 }
-html body #canvas #menu .tabcontent#logBox {
+html body #canvas #menu .tabcontent #logBox {
   box-sizing: border-box;
-  max-height: 250px;
+  max-height: 45vh;
   line-height: 15px;
   overflow-y: auto;
   scrollbar-width: none;
-  border-bottom: 2px solid #ccc;
-  border-left: 1px solid #ccc;
-  border-right: 1px solid #ccc;
+  border: 1px solid #ccc;
   padding: 5px;
+}
+html body #canvas #menu .tabcontent#settings ul li {
+  display: inline-block;
+  line-height: 1em;
+}
+html body #canvas #menu .tabcontent#settings ul li img {
+  vertical-align: middle;
+  width: 1em;
+  height: auto;
+  cursor: pointer;
 }
 html body #canvas #workbar {
   margin-top: 20px;
@@ -233,16 +245,21 @@ html body #canvas #workbar {
   width: calc(100% - 10px);
   display: block;
   text-align: center;
+  height: calc(50px + 5vw);
 }
 html body #canvas #workbar img {
-  display: inline-block;
+  display: none;
   width: calc(50px + 5vw);
   height: auto;
   margin-left: 1vw;
   margin-right: 1vw;
+  cursor: pointer;
 }
 html body #canvas #workbar img:hover {
   opacity: 95%;
+}
+html body #canvas #workbar img.unlocked {
+  display: inline-block;
 }
 html body #canvas #projectBar {
   margin-top: 20px;
@@ -274,6 +291,7 @@ html body #canvas #projectBar .project {
   height: 85%;
   position: relative;
   text-align: center;
+  cursor: pointer;
 }
 html body #canvas #projectBar .project p {
   position: relative;
@@ -339,6 +357,7 @@ html body #canvas #footer #trelloButton {
   width: 48px;
   height: 48px;
   background-image: url("../img/trello-icon.png");
+  cursor: pointer;
 }
 html body #canvas #footer #trello {
   position: absolute;

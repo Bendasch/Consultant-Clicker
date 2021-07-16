@@ -1,4 +1,4 @@
-import { sleep, update } from './base.js';
+import { sleep, update, saveGame } from './base.js';
 import { render, setTime } from './render.js';
 import { initialize } from './index.js';
 
@@ -14,7 +14,7 @@ function main(tick, start, cycle) {
   render();
   setTime("render", T_PRE_RENDER);
 
-  if ((cycle % 250) == 0) { window.localStorage.setItem("CONS_CLICKER", JSON.stringify($("body").data())) }
+  if ((cycle % 250) == 0) { saveGame() }
 
   sleep(2 * tick - delta).then(() => main(tick, T_START, cycle + 1));
 }

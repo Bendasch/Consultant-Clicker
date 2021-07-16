@@ -14,8 +14,11 @@
         <div id="navbar">
             <button id="statsTab" class="tablinks inactive">Stats</button>
             <button id="staffTab" class="tablinks inactive">Staff</button>
-            <button id="equipmentTab" class="tablinks inactive">Equipment</button>
-            <button id="log" class="tablinks inactive">Log</button>
+            <button id="upgradeTab" class="tablinks inactive">Upgrades</button>
+            <button id="logTab" class="tablinks inactive">Log</button>
+            <button id="settingsTab" class="tablinks inactive">
+                <img src="./img/cog.png"></img>
+            </button>
             <div id="cashews"></div>
         </div>
 
@@ -23,7 +26,9 @@
 
             <div id="menu">
 
-                <div id="stats" class="tabcontent">
+                <div id="stats" class="tabcontent"> 
+
+                    <h1>Stats</h1>
 
                     <div class="statTable">
                         <div class="statRow">
@@ -101,8 +106,8 @@
                     </div>
                 </div>
 
-                <div id="staff" class="tabcontent">
-
+                <div id="staff" class="tabcontent">                 
+                    <h1>Staff</h1>
                     <div class="resourceTable">
                         <div class="resourceRow">
                             <div class="resourceCount" id="salesPersonCount">
@@ -187,12 +192,26 @@
                     </div>
                 </div>
                 
-                <div id="equipment" class="tabcontent">
-                    <div class="equipmentTable" id="equipmentTable">
+                <div id="upgrades" class="tabcontent">                   
+                    <h1>Upgrades</h1>
+                    <div class="upgradeTable" id="upgradeTable">
                     </div>
                 </div>
                 
-                <div id="logBox" class="tabcontent"></div>
+                <div id="log" class="tabcontent">                                       
+                    <h1>Log</h1>
+                    <div id="logBox"></div>
+                </div>
+
+                <div id="settings" class="tabcontent">
+                    <h1>Settings</h1>
+                    <ul>
+                        <li id="resetGame">
+                            <img src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png"></img>
+                            Reset the game!
+                        </li>
+                    </ul>
+                </div>
             </div>
 
             <div id="workbar">

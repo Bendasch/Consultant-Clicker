@@ -29,7 +29,7 @@ $floating-number-size: calc(100% + 0.5vw);
 }
 
 @mixin menu-table {
-  @include side-space;
+  //@include side-space;
   width: initial;
   display: table;
   margin-top: 10px;
@@ -66,7 +66,6 @@ html {
 
     #navbar {
 
-      position:relative;
       border-bottom: 2px solid $lightgray;
       background-color: $darkgray;
       width: 100%;
@@ -91,6 +90,27 @@ html {
           &:hover{
             background-color: $notdarkgray;
             color: $darkgray;
+          }
+        }
+
+        &#settingsTab {
+
+          position: absolute;
+          padding: 1.5px 1.5px;
+          right: 0;
+
+          img {
+            display:block;
+            margin:auto;
+            width: 40px;
+            height: auto;
+            filter: invert(0.75);
+          }
+
+          &.active {
+            img {
+              filter: invert(0.25);
+            }
           }
         }
       }
@@ -121,6 +141,7 @@ html {
 
         .tabcontent {
 
+          @include side-space;
           display: none;
           line-height: 20px;
          
@@ -202,11 +223,11 @@ html {
             }
           }
 
-          .equipmentTable {
+          .upgradeTable {
 
             @include menu-table;
 
-            .equipmentRow {
+            .upgradeRow {
 
               display: table-row;
               
@@ -226,15 +247,15 @@ html {
                 color: $darkgray;
               }
 
-              .equipmentName {
+              .upgradeName {
                 @include table-cell;
               }
               
-              .equipmentDescription {
+              .upgradeDescription {
                 @include table-cell;
               }
               
-              .equipmentCost {
+              .upgradeCost {
                 @include table-cell;
                 text-align: right;
                 border-right: 1px solid $lightgray;
@@ -242,16 +263,29 @@ html {
             }
           }    
 
-          &#logBox {
+          #logBox {
             box-sizing: border-box;
-            max-height: 250px;
+            max-height: 45vh;
             line-height: 15px;
             overflow-y: auto;
             scrollbar-width: none;
-            border-bottom: 2px solid $lightgray;
-            border-left: 1px solid $lightgray;
-            border-right: 1px solid $lightgray;
+            border: 1px solid $lightgray;
             padding: 5px;
+          }
+
+          &#settings {
+            ul {
+              li {
+                display: inline-block;
+                line-height: 1em;
+                img {
+                  vertical-align: middle;
+                  width: 1em;
+                  height: auto;
+                  cursor: pointer;
+                }
+              }
+            }
           }
         }
       }    
@@ -261,16 +295,19 @@ html {
         @include side-space;
         display: block;
         text-align: center;
+        height: calc(50px + 5vw);
 
         img {
-          display: inline-block;
+
+          display: none;
           width: calc(50px + 5vw);
           height: auto;
           margin-left: 1vw;
           margin-right: 1vw;
-          &:hover {
-            opacity: 95%;  
-          }
+          cursor: pointer;
+
+          &:hover { opacity: 95% }
+          &.unlocked { display: inline-block }
         }
       }       
         
@@ -300,6 +337,7 @@ html {
           height: 85%;
           position: relative;
           text-align: center;
+          cursor: pointer;
 
           p {
             position: relative;
@@ -377,6 +415,7 @@ html {
           width: 48px;
           height: 48px;
           background-image: url("../img/trello-icon.png");
+          cursor: pointer;
         }
     
         #trello {

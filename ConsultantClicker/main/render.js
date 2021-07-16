@@ -1,13 +1,13 @@
 import { Formatter, FormatterNoDec, FormatterDec } from './utils.js';
-import { addResource, buyEquipment } from './shop.js';
-import { projectClick } from './base.js';
+import { addResource, buyUpgrade } from './shop.js';
+import { projectClick, resetGame, officeClick } from './base.js';
 
 export function render() {
     renderCashews();
     renderStats();
     renderResources();
     renderResourceButtons();
-    renderEquipmentButtons();
+    renderUpgradeButtons();
     renderProjects();
     renderOfficeButtons();
     renderFlyingNumbers();
@@ -23,7 +23,7 @@ export function logAction(str) {
     var time = String(d.getHours()).padStart(2,0) + ":" + String(d.getMinutes()).padStart(2,0) + ":" + String(d.getSeconds()).padStart(2,0);
 
     if (str != "") {
-        logBox.append("<p>" + time + " - " + str + "</p>");
+        logBox.append("<p><strong>" + time + "</strong> - " + str + "</p>");
     } else {
         logBox.append("<p> </p>");
     }
@@ -32,6 +32,27 @@ export function logAction(str) {
     logBox.animate({scrollTop: logBox.prop("scrollHeight")}, 75);
 }
 
+export const initialBinding = () => {
+    // bind event handlers to navbar
+    $("#statsTab").unbind().click((event) => {toggleTab(event, "stats")});
+    $("#staffTab").unbind().click((event) => {toggleTab(event, "staff")});
+    $("#upgradeTab").unbind().click((event) => {toggleTab(event, "upgrades")});
+    $("#logTab").unbind().click((event) => {toggleTab(event, "log")})
+    $("#settingsTab").unbind().click((event) => {toggleTab(event, "settings")})
+
+    // settings 
+    $("#resetGame").unbind().click(() => {resetGame()});
+
+    // trello popup
+    $("#trelloButton").unbind().click(() => {popup("#trello")});
+    $("#trelloSend").unbind().click((event) => {createTrelloCard(event)});
+
+    // initialize the office buttons
+    $("#word").unbind().click((event) => officeClick(event, "word"))
+    $("#excel").unbind().click((event) => officeClick(event, "excel"))
+    $("#powerpoint").unbind().click((event) => officeClick(event, "powerpoint"))
+    $("#outlook").unbind().click((event) => officeClick(event, "outlook"))
+}
 
 export function toggleTab(event, tabId) {
 
@@ -74,21 +95,21 @@ function renderStats() {
     $("#rate").text(body.data( "totalRate" ));  
     $("#totalSalesRate").text((body.data("totalSalesRate")*100).toFixed(2) + " %");
 
-    // clicking
+
     const oClicking = body.data("clicking");
+
     $("#clickingRate").text(
-        FormatterNoDec.format(oClicking.value)
+        FormatterDec.format(oClicking.value)
     );
     $("#totalClickProgress").text(
-        FormatterNoDec.format(oClicking.totalProgress)
+        FormatterDec.format(oClicking.totalProgress)
     );
     $("#totalClicks").text(
-        FormatterNoDec.format(oClicking.clicks)
+        FormatterDec.format(oClicking.clicks)
     );
 
-    // projects
     $("#totalProjectsFinished").text(
-        FormatterNoDec.format(body.data("project").totalProjectsFinished)
+        FormatterDec.format(body.data("project").totalProjectsFinished)
     );
 }
 
@@ -138,34 +159,34 @@ function renderResourceButtons() {
 }
 
 
-function renderEquipmentButtons() {
+function renderUpgradeButtons() {
 
     const body = $( "body" );
-    const oAllEquips = body.data("equipment");
+    const allUpgrades = body.data("upgrades");
     const balance = body.data("currentBalance");
 
-    Object.keys(oAllEquips).forEach( (key) => {
-        const oEquip = oAllEquips[key];
-        if (oEquip.owned) {
-            $("#" + oEquip.id).removeClass("not-owned");
-            $("#" + oEquip.id).addClass("owned");
+    Object.keys(allUpgrades).forEach( (key) => {
+        const upgrade = allUpgrades[key];
+        if (upgrade.owned) {
+            $("#" + upgrade.id).removeClass("not-owned");
+            $("#" + upgrade.id).addClass("owned");
         } else {
-            $("#" + oEquip.id).removeClass("owned");
-            $("#" + oEquip.id).addClass("not-owned");
+            $("#" + upgrade.id).removeClass("owned");
+            $("#" + upgrade.id).addClass("not-owned");
         }
 
-        if (oEquip.cost <= balance && !(oEquip.owned)) {
-            enableEquipButton(oEquip.id);
+        if (upgrade.cost <= balance && !(upgrade.owned)) {
+            enableUpgradeButton(upgrade.id);
         } else {
-            disableButton("#" + oEquip.id);
+            disableButton("#" + upgrade.id);
         } 
     });
 }
   
-function enableEquipButton(equipId) {   
-    $("#" + equipId).unbind().click(() => buyEquipment(equipId)); 
-    $("#" + equipId).removeClass("disabled");
-    $("#" + equipId).addClass("enabled");
+function enableUpgradeButton(upgradeId) {   
+    $("#" + upgradeId).unbind().click(() => buyUpgrade(upgradeId)); 
+    $("#" + upgradeId).removeClass("disabled");
+    $("#" + upgradeId).addClass("enabled");
 }
   
 function enableResButton(sSelector, sResId) {   
@@ -241,21 +262,34 @@ function renderOfficeButtons() {
     body.data("buttons", oButtons);
 }
 
-export function addEquipmentRow(oEquip) {
+function addUpgradeRow(upgrade) {
 
     // row 
-    const oRow = $("<div id='" + oEquip.id + "' class='equipmentRow'></div>");
-    $("#equipmentTable").append(oRow);
+    const oRow = $("<div id='" + upgrade.id + "' class='upgradeRow'></div>");
+    $("#upgradeTable").append(oRow);
 
     // cells
-    oRow.append("<div id='" + oEquip.id + "-name' class='equipmentName'></div>");
-    oRow.append("<div id='" + oEquip.id + "-description' class='equipmentDescription'></div>");
-    oRow.append("<div id='" + oEquip.id + "-cost' class='equipmentCost'></div>");
+    oRow.append("<div id='" + upgrade.id + "-name' class='upgradeName'></div>");
+    oRow.append("<div id='" + upgrade.id + "-description' class='upgradeDescription'></div>");
+    oRow.append("<div id='" + upgrade.id + "-cost' class='upgradeCost'></div>");
 
     // values
-    $("#" + oEquip.id + "-name").append('<p>' + oEquip.name + '</p>');
-    $("#" + oEquip.id + "-description").append('<p>' + oEquip.description + '</p>');
-    $("#" + oEquip.id + "-cost").append('<p>' + Formatter.format(oEquip.cost) + '</p>');
+    $("#" + upgrade.id + "-name").append('<p>' + upgrade.name + '</p>');
+    $("#" + upgrade.id + "-description").append('<p>' + upgrade.description + '</p>');
+    $("#" + upgrade.id + "-cost").append('<p>' + Formatter.format(upgrade.cost) + '</p>');
+}
+
+export const setUpgrades = () => {
+    
+    // clear the table
+    $("#upgradeTable").children().remove();
+
+    // rebuild it
+    var allUpgrades = $("body").data("upgrades")
+    Object.keys(allUpgrades).forEach( (key) => {
+        var upgrade = allUpgrades[key]
+        addUpgradeRow(upgrade)
+    });
 }
 
 function renderProjects() {
@@ -340,6 +374,11 @@ function setNotFull(div) {
 export function destroyProject(projectId) {
     $("#" + projectId).empty();
     document.getElementById(projectId).remove();
+}
+
+export const destroyAllProjects = () => {
+    var projects = $("#projectBar").children(".project")
+    projects.remove()
 }
 
 function setProgressBar(projectId, progress, effort) {

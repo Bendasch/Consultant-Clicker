@@ -1,10 +1,6 @@
-import {
-  logAction,
-  destroyProject,
-  createProgressIndicator,
-  startAddToBalanceAnimation,
-} from "./render.js";
+import { logAction, destroyProject, createProgressIndicator, startAddToBalanceAnimation } from "./render.js";
 import { Formatter, normRand, getRandomProjectName } from "./utils.js";
+import { initialize } from "./index.js";
 
 export function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -169,15 +165,15 @@ function updateRates() {
   var clickingValue = oClicking.baseValue;
 
   // get the equipments
-  const oAllEquips = body.data("equipment");
-  Object.keys(oAllEquips).forEach((key) => {
-    const oEquip = oAllEquips[key];
-    if (oEquip.owned) {
-      juniorRate = juniorRate * oEquip.rate.consultants;
-      consultantRate = consultantRate * oEquip.rate.consultants;
-      seniorRate = seniorRate * oEquip.rate.consultants;
-      salesPersonRate = salesPersonRate * oEquip.rate.sales;
-      clickingValue = clickingValue * oEquip.rate.clicking;
+  const upgrades = body.data("upgrades");
+  Object.keys(upgrades).forEach((key) => {
+    const upgrade = upgrades[key];
+    if (upgrade.owned) {
+      juniorRate = juniorRate * upgrade.rate.consultants;
+      consultantRate = consultantRate * upgrade.rate.consultants;
+      seniorRate = seniorRate * upgrade.rate.consultants;
+      salesPersonRate = salesPersonRate * upgrade.rate.sales;
+      clickingValue = clickingValue * upgrade.rate.clicking;
     }
   });
 
@@ -308,4 +304,38 @@ function removeProject(projectId) {
 
   // remove the UI element
   destroyProject(projectId);
+}
+
+export const saveGame = () => {
+  window.localStorage.setItem("CONS_CLICKER", JSON.stringify($("body").data()))
+} 
+
+export const resetGame = () => {
+  window.localStorage.removeItem("CONS_CLICKER")
+  logAction("The game is now reset!")
+  initialize()
+}
+
+export const initData = (json) => {
+
+  const body = $("body");
+
+  body.data("project", json.project);
+  body.data("projects", json.projects);
+
+  body.data("junior", json.junior);
+  body.data("consultant", json.consultant);
+  body.data("senior", json.senior);
+  body.data("salesPerson", json.salesPerson);
+
+  body.data("totalEarnings", json.totalEarnings);
+  body.data("currentBalance", json.currentBalance);
+  body.data("totalRate", json.totalRate);
+  body.data("totalSalesRate", json.totalSalesRate);
+
+  body.data("clicking", json.clicking);
+
+  body.data("upgrades", json.upgrades);
+
+  body.data("buttons", json.buttons);
 }

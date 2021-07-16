@@ -14,16 +14,16 @@ export function addResource(sResId) {
   logAction("1 " + oResource.name +  " was added.");
 }
 
-export function buyEquipment(equipId) {
+export function buyUpgrade(upgradeId) {
 
   const body = $("body");
-  var oEquips = body.data("equipment");
+  var upgrades = body.data("upgrades");
 
-  addToBalance(-1 * oEquips[equipId].cost);
+  addToBalance(-1 * upgrades[upgradeId].cost);
 
-  oEquips[equipId].owned = true;
+  upgrades[upgradeId].owned = true;
 
-  body.data("equipment", oEquips);
+  body.data("upgrades", upgrades);
 
-  logAction("Bought equipment '" + oEquips[equipId].name + "'.");
+  logAction("Bought upgrade '" + upgrades[upgradeId].name + "'.");
 } 

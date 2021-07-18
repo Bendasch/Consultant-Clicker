@@ -1,5 +1,5 @@
 import { Formatter, FormatterNoDec, FormatterDec } from './utils.js';
-import { addResource, buyUpgrade } from './shop.js';
+import { officeButtonOwned, addResource, buyUpgrade } from './shop.js';
 import { projectClick, resetGame, officeClick } from './base.js';
 
 export function render() {
@@ -216,6 +216,14 @@ function renderOfficeButtons() {
     Object.keys(oButtons).forEach( (buttonId) => {
 
         var oButton = oButtons[buttonId];
+        var $button = $(`#${buttonId}`)
+
+        if (!(officeButtonOwned(buttonId))) {
+            $button.removeClass("unlocked")
+            return;
+        }
+
+        $button.addClass("unlocked")
 
         stepsLeft = oButton.animationCyclesLeft;
         newAnimation = oButton.newAnimation;
@@ -250,7 +258,7 @@ function renderOfficeButtons() {
                 }
             }
 
-            $("#" + buttonId).css("width", () => {
+            $button.css("width", () => {
                 return ("calc(" + scaleVH * scale + "vw + " + minPx + "px)");
             });
 

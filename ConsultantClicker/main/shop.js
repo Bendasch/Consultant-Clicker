@@ -27,3 +27,7 @@ export function buyUpgrade(upgradeId) {
 
   logAction("Bought upgrade '" + upgrades[upgradeId].name + "'.");
 } 
+
+export const officeButtonOwned = (buttonId) => {
+  return $("body").data("upgrades")[`${buttonId}Upgrade`].owned
+}

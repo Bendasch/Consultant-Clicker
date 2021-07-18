@@ -85,9 +85,7 @@ function findProject(tick, cycle) {
   // if the total sales rate is greater than the random number, we get a project
   var iRand = Math.random();
   if (body.data("totalSalesRate") < iRand) {
-    logAction(
-      "Project proposal failed! Total Sales Rate < " + iRand.toFixed(5) + "."
-    );
+    logAction("Project proposal failed! Better luck next time.");
     return;
   }
 
@@ -146,7 +144,9 @@ export function addToBalance(val) {
 }
 
 function updateRates() {
+
   const body = $("body");
+  const baseSalesRate = body.data("baseSalesRate")
 
   // consultants
   const oJunior = body.data("junior");
@@ -168,7 +168,7 @@ function updateRates() {
   const upgrades = body.data("upgrades");
   Object.keys(upgrades).forEach((key) => {
     const upgrade = upgrades[key];
-    if (upgrade.owned) {
+    if (upgrade.owned && upgrade.hasOwnProperty("rate")) {
       juniorRate = juniorRate * upgrade.rate.consultants;
       consultantRate = consultantRate * upgrade.rate.consultants;
       seniorRate = seniorRate * upgrade.rate.consultants;
@@ -194,7 +194,7 @@ function updateRates() {
     oJunior.rate * oJunior.quantity +
     oConsultant.rate * oConsultant.quantity +
     oSenior.rate * oSenior.quantity;
-  const totalSalesRate = oSalesPerson.rate * oSalesPerson.quantity;
+  const totalSalesRate = baseSalesRate + oSalesPerson.rate * oSalesPerson.quantity;
   body.data("totalRate", totalRate);
   body.data("totalSalesRate", totalSalesRate);
 }
@@ -320,6 +320,12 @@ export const initData = (json) => {
 
   const body = $("body");
 
+  body.data("totalEarnings", json.totalEarnings);
+  body.data("currentBalance", json.currentBalance);
+  body.data("totalRate", json.totalRate);
+  body.data("totalSalesRate", json.totalSalesRate);
+  body.data("baseSalesRate", json.baseSalesRate);
+
   body.data("project", json.project);
   body.data("projects", json.projects);
 
@@ -328,14 +334,7 @@ export const initData = (json) => {
   body.data("senior", json.senior);
   body.data("salesPerson", json.salesPerson);
 
-  body.data("totalEarnings", json.totalEarnings);
-  body.data("currentBalance", json.currentBalance);
-  body.data("totalRate", json.totalRate);
-  body.data("totalSalesRate", json.totalSalesRate);
-
   body.data("clicking", json.clicking);
-
   body.data("upgrades", json.upgrades);
-
   body.data("buttons", json.buttons);
 }

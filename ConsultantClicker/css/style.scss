@@ -45,6 +45,17 @@ $floating-number-size: calc(100% + 0.5vw);
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
 }
 
+@mixin no-select {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none; 
+  -khtml-user-select: none;
+  -moz-user-select: none; 
+  -ms-user-select: none; 
+  -o-user-select: none;
+  user-select: none;   
+  -webkit-tap-highlight-color: transparent;
+}
+
 html {
 
   font-family: "Calibri";
@@ -54,6 +65,8 @@ html {
   border: none;
   margin: 0px;
   padding: 0px;
+
+  @include no-select;
 
   body {  
 
@@ -298,7 +311,6 @@ html {
         height: calc(50px + 5vw);
 
         img {
-
           display: none;
           width: calc(50px + 5vw);
           height: auto;

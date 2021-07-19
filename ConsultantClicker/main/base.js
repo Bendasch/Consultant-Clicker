@@ -1,6 +1,7 @@
-import { logAction, destroyProject, createProgressIndicator, startAddToBalanceAnimation } from "./render.js";
-import { Formatter, normRand, getRandomProjectName } from "./utils.js";
-import { initialize } from "./index.js";
+import { logAction, destroyProject, createProgressIndicator, startAddToBalanceAnimation } from "./render.js"
+import { Formatter, normRand, getRandomProjectName } from "./utils.js"
+import { initialize } from "./index.js"
+import { getActiveUpgradeKeys } from "./shop.js"
 
 export function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -145,58 +146,13 @@ export function addToBalance(val) {
 
 function updateRates() {
 
-  const body = $("body");
-  const baseSalesRate = body.data("baseSalesRate")
+  const activeUpgradeKeys = getActiveUpgradeKeys()
 
-  // consultants
-  const oJunior = body.data("junior");
-  const oConsultant = body.data("consultant");
-  const oSenior = body.data("senior");
-  var juniorRate = oJunior.baseRate;
-  var consultantRate = oConsultant.baseRate;
-  var seniorRate = oSenior.baseRate;
+  updateConsultantRates(activeUpgradeKeys)
+  updateSalesRates(activeUpgradeKeys)
+  updateClickingRate(activeUpgradeKeys)
 
-  // sales
-  const oSalesPerson = body.data("salesPerson");
-  var salesPersonRate = oSalesPerson.baseRate;
-
-  // click data
-  const oClicking = body.data("clicking");
-  var clickingValue = oClicking.baseValue;
-
-  // get the equipments
-  const upgrades = body.data("upgrades");
-  Object.keys(upgrades).forEach((key) => {
-    const upgrade = upgrades[key];
-    if (upgrade.owned && upgrade.hasOwnProperty("rate")) {
-      juniorRate = juniorRate * upgrade.rate.consultants;
-      consultantRate = consultantRate * upgrade.rate.consultants;
-      seniorRate = seniorRate * upgrade.rate.consultants;
-      salesPersonRate = salesPersonRate * upgrade.rate.sales;
-      clickingValue = clickingValue * upgrade.rate.clicking;
-    }
-  });
-
-  oJunior.rate = juniorRate;
-  oConsultant.rate = consultantRate;
-  oSenior.rate = seniorRate;
-  oSalesPerson.rate = salesPersonRate;
-  oClicking.value = clickingValue;
-
-  body.data("junior", oJunior);
-  body.data("consultant", oConsultant);
-  body.data("senior", oSenior);
-  body.data("salesPerson", oSalesPerson);
-  body.data("clicking", oClicking);
-
-  // calculate the new total rates
-  const totalRate =
-    oJunior.rate * oJunior.quantity +
-    oConsultant.rate * oConsultant.quantity +
-    oSenior.rate * oSenior.quantity;
-  const totalSalesRate = baseSalesRate + oSalesPerson.rate * oSalesPerson.quantity;
-  body.data("totalRate", totalRate);
-  body.data("totalSalesRate", totalSalesRate);
+  upgradeTotalRates()
 }
 
 export function officeClick(event, buttonId) {
@@ -223,22 +179,6 @@ export function officeClick(event, buttonId) {
     );
 
     oClicking.totalProgress += oClicking.value;
-
-    var actionStr;
-    switch (buttonId) {
-      case "word":
-        actionStr = "Awesome work on that requirements document!";
-        break;
-      case "excel":
-        actionStr = "Nice spreadsheet!";
-        break;
-      case "powerpoint":
-        actionStr = "Cool presentation!";
-        break;
-      case "outlook":
-        actionStr = "Great mail, keep going!";
-        break;
-    }
   } else {
     logAction("Choose a project or wait for the sales team to find one!");
   }
@@ -322,19 +262,133 @@ export const initData = (json) => {
 
   body.data("totalEarnings", json.totalEarnings);
   body.data("currentBalance", json.currentBalance);
+
   body.data("totalRate", json.totalRate);
   body.data("totalSalesRate", json.totalSalesRate);
-  body.data("baseSalesRate", json.baseSalesRate);
+  body.data("totalFlatSalesRate", json.totalFlatSalesRate);
+  body.data("totalFlatConsRate", json.totalFlatConsRate);
 
   body.data("project", json.project);
   body.data("projects", json.projects);
 
-  body.data("junior", json.junior);
-  body.data("consultant", json.consultant);
-  body.data("senior", json.senior);
-  body.data("salesPerson", json.salesPerson);
+  body.data("consultant", json.consultants);
+  body.data("sales", json.sales);
 
   body.data("clicking", json.clicking);
   body.data("upgrades", json.upgrades);
   body.data("buttons", json.buttons);
+}
+
+
+const updateConsultantRates = (activeUpgradeKeys=null) => {
+
+  if (activeUpgradeKeys==null) {
+    activeUpgradeKeys = getActiveUpgradeKeys()
+  }
+
+  const body = $("body")
+  const upgrades = body.data("upgrades")
+
+  var consultants = body.data("consultants")
+  var flatConsRate = 0
+
+  activeUpgradeKeys.forEach(key => {
+
+    const upgrade = upgrades[key]
+    
+    if (upgrade.hasOwnProperty("flat")) {
+      flatConsRate += upgrade.flat.consultants
+    }
+
+    if (upgrade.hasOwnProperty("rate")) {
+      Object.keys(consultants).forEach(key => {
+        const consultant = consultants[key] 
+        consultants[key].rate += consultant.baseRate * upgrade.rate.consultants
+      })
+    }
+  })
+  
+  var totalRate = flatConsRate
+  Object.keys(consultants).forEach(key => {
+    totalRate += consultants[key].rate
+  })
+  
+  body.data("consultants", consultants)
+  body.data("totalRate", totalRate)
+}
+
+const updateClickingRate = (activeUpgradeKeys=null) => {
+
+  if (activeUpgradeKeys==null) {
+    activeUpgradeKeys = getActiveUpgradeKeys()
+  }
+
+  const body = $("body")
+  const upgrades = body.data("upgrades")
+  var clicking = body.data("clicking")
+
+  // calculate the base value
+  clicking.baseValue = activeUpgradeKeys.reduce( (total, key) => {
+
+    const upgrade = upgrades[key]
+
+    if (upgrade.hasOwnProperty("flat")) {
+      return total + upgrade.flat.clicking
+    }
+
+    return total
+  })
+
+  // calculate the full value (inkluding rates)
+  clicking.value = activeUpgradeKeys.reduce( (total, key) => {
+
+    if (total == 0) { total = clicking.baseValue }
+
+    const upgrade = upgrades[key]
+
+    if (upgrade.hasOwnProperty("rate")) {
+      return total * upgrade.rate.clicking;
+    }
+
+    return total
+  })  
+
+  body.data("clicking", clicking)
+}
+
+const updateSalesRates = (activeUpgradeKeys=null) => {
+
+  if (activeUpgradeKeys==null) {
+    activeUpgradeKeys = getActiveUpgradeKeys()
+  }
+
+  const body = $("body")
+  const upgrades = body.data("upgrades")
+
+  var sales = body.data("sales")
+  var flatSalesRate = 0
+
+  activeUpgradeKeys.forEach(key => {
+
+    const upgrade = upgrades[key]
+    
+    if (upgrade.hasOwnProperty("flat")) {
+      flatSalesRate += upgrade.flat.sales
+    }
+
+    if (upgrade.hasOwnProperty("rate")) {
+      Object.keys(sales).forEach(key => {
+        const salesMember = sales[key] 
+        sales[key].rate += salesMember.baseRate * upgrade.rate.sales
+      })
+    }
+
+    var totalSalesRate = flatSalesRate
+    totalSalesRate += Object.keys(sales).reduce( (total, key) => {
+      return total + sales[key].rate
+    })
+
+    body.data("sales", sales)
+    body.data("totalSalesRate", totalSalesRate)
+  })
 }

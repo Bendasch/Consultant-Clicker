@@ -14,20 +14,28 @@ export function addResource(sResId) {
   logAction("1 " + oResource.name +  " was added.");
 }
 
-export function buyUpgrade(upgradeId) {
+export function buyUpgrade(upgradeId, upgradeSpecial=null) {
 
-  const body = $("body");
-  var upgrades = body.data("upgrades");
+  const body = $("body")
 
-  addToBalance(-1 * upgrades[upgradeId].cost);
+  var upgrades = body.data("upgrades")
 
-  upgrades[upgradeId].owned = true;
+  addToBalance(-1 * upgrades[upgradeId].cost)
 
-  body.data("upgrades", upgrades);
+  upgrades[upgradeId].owned = true
 
-  logAction("Bought upgrade '" + upgrades[upgradeId].name + "'.");
+  body.data("upgrades", upgrades)
+
+  const upgradeSpecials = []
+
+  logAction("Bought upgrade '" + upgrades[upgradeId].name + "'.")
 } 
 
 export const officeButtonOwned = (buttonId) => {
   return $("body").data("upgrades")[`${buttonId}Upgrade`].owned
+}
+
+export const getActiveUpgradeKeys = () => {
+  const upgrades = $("body").data("upgrades")
+  return Object.keys(upgrades).filter(key => {return upgrades[key].owned})
 }

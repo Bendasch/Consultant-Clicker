@@ -3,14 +3,15 @@ import { officeButtonOwned, addResource, buyUpgrade } from './shop.js';
 import { projectClick, resetGame, officeClick } from './base.js';
 
 export function render() {
-    renderCashews();
-    renderStats();
-    renderResources();
-    renderResourceButtons();
-    renderUpgradeButtons();
-    renderProjects();
-    renderOfficeButtons();
-    renderFlyingNumbers();
+    renderCashews()
+    renderStats()
+    renderConsultants()
+    renderSales()
+    renderResourceButtons()
+    renderUpgradeButtons()
+    renderProjects()
+    renderOfficeButtons()
+    renderFlyingNumbers()
 }
 
 const renderCashews = () => {
@@ -113,34 +114,17 @@ function renderStats() {
     );
 }
 
-function renderResources() {
+function renderConsultants() {
 
-    const body = $( "body" );
+    const consultants = $("body").data("consultants");
 
-    const oJunior = body.data( "junior");
-    const oConsultant = body.data( "consultant");
-    const oSenior = body.data( "senior");
-    const oSalesPerson = body.data( "salesPerson");
-
-    // counts
-    $("#juniorCount").text(oJunior.quantity);
-    $("#consultantCount").text(oConsultant.quantity);
-    $("#seniorCount").text(oSenior.quantity);
-    $("#salesPersonCount").text(oSalesPerson.quantity);
-
-    // rates
-    $("#juniorRate").text("× " + oJunior.rate);
-    $("#consultantRate").text("× " + oConsultant.rate);
-    $("#seniorRate").text("× " + oSenior.rate);
-    $("#salesPersonRate").text((oSalesPerson.rate*100).toFixed(2) + " %");
-
-    // costs
-    $("#juniorCost").text("-" + FormatterNoDec.format(oJunior.cost));
-    $("#consultantCost").text("-" + FormatterNoDec.format(oConsultant.cost));
-    $("#seniorCost").text("-" + FormatterNoDec.format(oSenior.cost));
-    $("#salesPersonCost").text("-" + FormatterNoDec.format(oSalesPerson.cost));
+    Object.keys(consultants).forEach( key => {
+        const consultant = consultants[key]
+        $(`#${key}+Count`).text(consultant.quantity)
+        $(`#${key}+Rate`).text("× " + consultant.rate)
+        $(`#${key}+Cost`).text("-" + FormatterNoDec.format(consultant.cost))
+    })
 }
-
 
 function renderResourceButtons() {
 
@@ -545,4 +529,16 @@ export function resetTrelloPopup() {
     var descArea = $("#trelloDescr");
     descArea.prop("disabled", false);
     descArea.val("");
+}
+
+const renderSales = () => {
+    
+    const sales = body.data("sales");
+
+    Object.keys(sales).forEach(key => {
+        const salesMember = sales[key]
+        $(`${key}+Count`).text(salesMember.quantity);
+        $(`${key}+Rate`).text((salesMember.rate*100).toFixed(2) + " %");
+        $(`${key}+Cost`).text("-" + FormatterNoDec.format(salesMember.cost));
+    })
 }

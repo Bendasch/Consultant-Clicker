@@ -2,35 +2,40 @@
     "currentBalance": 500,
     "totalEarnings": 0,
     "totalRate": 0,
-    "totalSalesRate": 0.05,
-    "baseSalesRate": 0.05,
-    "junior": {
-        "quantity": 0,
-        "rate": 55,
-        "cost": 20000,
-        "name": "Junior Consultant",
-        "baseRate": 55
+    "totalSalesRate": 0,
+    "totalFlatSalesRate": 0,
+    "totalFlatConsRate": 0,
+    "consultants": {
+        "junior": {
+            "quantity": 0,
+            "rate": 55,
+            "cost": 20000,
+            "name": "Junior Consultant",
+            "baseRate": 55
+        },
+        "consultant": {
+            "quantity": 0,
+            "rate": 75,
+            "cost": 30000,
+            "name": "Consultant",
+            "baseRate": 75
+        },
+        "senior": {
+            "quantity": 0,
+            "rate": 125,
+            "cost": 50000,
+            "name": "Senior Consultant",
+            "baseRate": 125
+        }
     },
-    "consultant": {
-        "quantity": 0,
-        "rate": 75,
-        "cost": 30000,
-        "name": "Consultant",
-        "baseRate": 75
-    },
-    "senior": {
-        "quantity": 0,
-        "rate": 125,
-        "cost": 50000,
-        "name": "Senior Consultant",
-        "baseRate": 125
-    },
-    "salesPerson" :{
-        "quantity": 0,
-        "rate": 0.1,
-        "cost": 75000,
-        "name": "Salesperson",
-        "baseRate": 0.1
+    "sales": {
+        "salesPerson" :{
+            "quantity": 0,
+            "rate": 0.1,
+            "cost": 75000,
+            "name": "Salesperson",
+            "baseRate": 0.1
+        }
     },
     "project": {
         "expectedValue": 10000,
@@ -58,7 +63,12 @@
             "name": "Word",
             "description": "This enables you to progress your project by your own effort by clicking the Word icon.",
             "owned": false,
-            "cost": 500
+            "cost": 500,
+            "flat": {
+                "consultants": 0,
+                "sales": 0.05,
+                "clicking": 50
+            }
         },
         "secondMonitor": {
             "id": "secondMonitor",
@@ -107,8 +117,8 @@
         }
     },
     "clicking": {
-        "value": 50,
-        "baseValue": 50,
+        "value": 0,
+        "baseValue": 0,
         "clicks": 0,
         "totalProgress": 0,
         "indicators": {}

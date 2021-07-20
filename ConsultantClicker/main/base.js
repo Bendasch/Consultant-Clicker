@@ -1,14 +1,20 @@
-import { logAction, destroyProject, createProgressIndicator, startAddToBalanceAnimation } from "./render.js"
 import { Formatter, normRand, getRandomProjectName } from "./utils.js"
 import { initialize } from "./index.js"
 import { getActiveUpgradeKeys } from "./shop.js"
+import { 
+  logAction, 
+  destroyProject, 
+  createProgressIndicator, 
+  startAddToBalanceAnimation,
+  triggerOfficeAnimation 
+} from "./render.js"
 
 export function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 export function update(tick, cycle) {
-  findProject(tick, cycle);
+  projectCycle(tick, cycle);
   updateProjects(tick);
   updateRates();
 }
@@ -64,23 +70,41 @@ function getActiveProject(projects) {
   }
 }
 
-function findProject(tick, cycle) {
-  var body = $("body");
-  var quotient;
+function projectCycle(tick, cycle) {
 
-  // if there is a current project, we don't need to find one
-  const project = body.data("project");
-  var projects = body.data("projects");
-  if (Object.keys(projects).length >= project.projectBufferSize) {
-    return;
-  }
+  var body = $("body")
 
   // try to find a project every x seconds
-  var x = 1;
-  var iFrequency = (1000 / tick) * x;
+  const x = 1 // TODO: this should be dynamic later!
+  var iFrequency = (1000 / tick) * x
   if (cycle % iFrequency !== 0) {
-    return;
+    return
   }
+
+  // if the current buffer is full,
+  // we don't need to find additional projects
+  const project = body.data("project");
+  const projects = body.data("projects");
+  if (Object.keys(projects).length >= project.projectBufferSize) {
+    return
+  }
+
+  // do we even have sales people
+  // working at this moment?  
+  const sales = body.data("sales")
+  const salesActive = (Object.keys(sales).reduce( (total, key) => {
+    if (sales[key].quantity > 0) return 1
+  }, 0))
+  if (!salesActive) return
+
+  findProject()
+}
+
+function findProject() {
+
+  var body = $("body");
+  var projectMeta = body.data("project");
+  var projects = body.data("projects");
 
   // get a random number between 0 and 1
   // if the total sales rate is greater than the random number, we get a project
@@ -91,7 +115,6 @@ function findProject(tick, cycle) {
   }
 
   getRandomProjectName().then((data) => {
-    var projectMeta = body.data("project");
 
     // get an id for the new project
     projectMeta.totalProjectsFound += 1;
@@ -109,7 +132,7 @@ function findProject(tick, cycle) {
 
     // get the project value (normal distribution, rounded to 500)
     var newValue = normRand(0, 2) * projectMeta.expectedValue;
-    quotient = Math.floor(newValue / 500);
+    var quotient = Math.floor(newValue / 500);
     newProject.value = Math.max(quotient * 500, 500);
 
     // and effort (normal distribution, rounded to 250)
@@ -151,39 +174,57 @@ function updateRates() {
   updateConsultantRates(activeUpgradeKeys)
   updateSalesRates(activeUpgradeKeys)
   updateClickingRate(activeUpgradeKeys)
-
-  upgradeTotalRates()
 }
 
 export function officeClick(event, buttonId) {
+
+  triggerOfficeAnimation(buttonId)
+
   const body = $("body");
-  const oClicking = body.data("clicking");
-  oClicking.clicks += 1;
+  var clicking = body.data("clicking");
+  const project = getActiveProject(body.data("projects"));
 
-  // here we simply mark the animation to be started
-  var oButtons = body.data("buttons");
-  oButtons[buttonId].newAnimation = true;
-  body.data("buttons", oButtons);
+  // if there is no project, try to find one 
+  if (project === undefined) {
+    clicking = clickFindProject(event, clicking)
 
-  // we need to check whether there is a project to progress
-  var project = getActiveProject(body.data("projects"));
-  if (!(project === undefined)) {
-    addToProgress(oClicking.value);
-
-    // click progress indicator (i.e., flying numbers)
-    createProgressIndicator(
-      "click-" + oClicking.clicks,
-      event.clientX,
-      event.clientY,
-      oClicking.value
-    );
-
-    oClicking.totalProgress += oClicking.value;
+  // otherwise progress the project
   } else {
-    logAction("Choose a project or wait for the sales team to find one!");
+    clicking = clickProgress(event, clicking)
   }
 
-  body.data("clicking", oClicking);
+  clicking.clicks += 1
+  body.data("clicking", clicking)
+}
+
+const clickFindProject = (event, clicking) => {
+  
+  createProgressIndicator(
+    "click-" + clicking.clicks,
+    event.clientX,
+    event.clientY,
+    "findProject",
+    clicking.value
+  );
+
+  return clicking;
+}
+
+const clickProgress = (event, clicking) => {
+
+  addToProgress(clicking.value);
+
+  createProgressIndicator(
+    "click-" + clicking.clicks,
+    event.clientX,
+    event.clientY,
+    "progress",
+    clicking.value
+  );
+
+  clicking.totalProgress += clicking.value;
+
+  return clicking;
 }
 
 function updateProgress(projectId, tick) {
@@ -271,7 +312,7 @@ export const initData = (json) => {
   body.data("project", json.project);
   body.data("projects", json.projects);
 
-  body.data("consultant", json.consultants);
+  body.data("consultants", json.consultants);
   body.data("sales", json.sales);
 
   body.data("clicking", json.clicking);
@@ -310,7 +351,7 @@ const updateConsultantRates = (activeUpgradeKeys=null) => {
   
   var totalRate = flatConsRate
   Object.keys(consultants).forEach(key => {
-    totalRate += consultants[key].rate
+    totalRate += consultants[key].quantity * consultants[key].rate
   })
   
   body.data("consultants", consultants)
@@ -337,12 +378,10 @@ const updateClickingRate = (activeUpgradeKeys=null) => {
     }
 
     return total
-  })
+  }, 0)
 
   // calculate the full value (inkluding rates)
   clicking.value = activeUpgradeKeys.reduce( (total, key) => {
-
-    if (total == 0) { total = clicking.baseValue }
 
     const upgrade = upgrades[key]
 
@@ -351,7 +390,7 @@ const updateClickingRate = (activeUpgradeKeys=null) => {
     }
 
     return total
-  })  
+  }, clicking.baseValue)  
 
   body.data("clicking", clicking)
 }
@@ -385,10 +424,10 @@ const updateSalesRates = (activeUpgradeKeys=null) => {
 
     var totalSalesRate = flatSalesRate
     totalSalesRate += Object.keys(sales).reduce( (total, key) => {
-      return total + sales[key].rate
-    })
+      return total + sales[key].quantity * sales[key].rate
+    }, 0)
 
     body.data("sales", sales)
     body.data("totalSalesRate", totalSalesRate)
-  })
+  }, 0)
 }

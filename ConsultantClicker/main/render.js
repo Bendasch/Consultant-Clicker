@@ -120,26 +120,30 @@ function renderConsultants() {
 
     Object.keys(consultants).forEach( key => {
         const consultant = consultants[key]
-        $(`#${key}+Count`).text(consultant.quantity)
-        $(`#${key}+Rate`).text("× " + consultant.rate)
-        $(`#${key}+Cost`).text("-" + FormatterNoDec.format(consultant.cost))
+        $(`#${key}Count`).text(consultant.quantity)
+        $(`#${key}Rate`).text("× " + consultant.rate)
+        $(`#${key}Cost`).text("-" + FormatterNoDec.format(consultant.cost))
     })
 }
 
 function renderResourceButtons() {
 
     const body = $( "body" );
+    const balance = body.data( "currentBalance")
     
-    const balance = body.data( "currentBalance");
-    const oJunior = body.data( "junior");
-    const oConsultant = body.data( "consultant");
-    const oSenior = body.data( "senior");
-    const oSalesPerson = body.data( "salesPerson");
-  
-    (oJunior.cost <= balance) ? enableResButton("#juniorButton", "junior") : disableButton("#juniorButton");
-    (oConsultant.cost <= balance) ? enableResButton("#consultantButton", "consultant") : disableButton("#consultantButton");
-    (oSenior.cost <= balance) ? enableResButton("#seniorButton", "senior") : disableButton("#seniorButton");
-    (oSalesPerson.cost <= balance) ? enableResButton("#salesPersonButton", "salesPerson") : disableButton("#salesPersonButton");
+    // consultants     
+    const consultants = body.data("consultants")
+    Object.keys(consultants).forEach( key => {
+        const consultant = consultants[key];
+        (consultant.cost <= balance) ? enableResButton(`${key}Button`, key) : disableButton(`${key}Button`)
+    })
+
+    // sales
+    const sales = body.data("sales")
+    Object.keys(sales).forEach( key => {
+        const salesMember = sales[key];
+        (salesMember.cost <= balance) ? enableResButton(`${key}Button`, key) : disableButton(`${key}Button`)
+    })
 }
 
 
@@ -440,13 +444,22 @@ function renderProgressNumbers() {
     });
 }
 
-export function createProgressIndicator(id, x, y, value) {
+export function createProgressIndicator(id, x, y, type=null, value=null) {
 
     const body = $("body");
     
-    // render
-    var dot = $("<div id='" + id + "' class='clickProgressIndicator'>" + "+" + value + "</div>");
-    styleAnimationDot(dot, x, y);
+    if (type == 'progress') {
+        var dot = $("<div id='" + id + "' class='clickProgressIndicator'>" + "+" + value + "</div>");
+    } else if (type == 'findProject') {
+        var emoji;
+        (Math.random() > 0.5) ? emoji = '&#128169;' : emoji = '&#127881;'
+        var dot = $("<div id='" + id + "' class='clickProgressIndicator'>" + emoji + "</div>")
+    } else { 
+        console.error("No click type was provided. This should not happen!")
+        return
+    }
+    
+    styleAnimationDot(dot, x, y);        
     $("#clickProgressContainer").append(dot);
 
     // cache
@@ -533,12 +546,19 @@ export function resetTrelloPopup() {
 
 const renderSales = () => {
     
-    const sales = body.data("sales");
+    const sales = $("body").data("sales");
 
     Object.keys(sales).forEach(key => {
         const salesMember = sales[key]
-        $(`${key}+Count`).text(salesMember.quantity);
-        $(`${key}+Rate`).text((salesMember.rate*100).toFixed(2) + " %");
-        $(`${key}+Cost`).text("-" + FormatterNoDec.format(salesMember.cost));
+        $(`#${key}Count`).text(salesMember.quantity);
+        $(`#${key}Rate`).text((salesMember.rate*100).toFixed(2) + " %");
+        $(`#${key}Cost`).text("-" + FormatterNoDec.format(salesMember.cost));
     })
+}
+
+export const triggerOfficeAnimation = (buttonId) => {
+    const body = $("body")
+    var buttons = body.data("buttons")
+    buttons[buttonId].newAnimation = true
+    body.data("buttons", buttons)
 }

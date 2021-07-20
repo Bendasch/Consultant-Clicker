@@ -6,7 +6,8 @@ import {
   destroyProject, 
   createProgressIndicator, 
   startAddToBalanceAnimation,
-  triggerOfficeAnimation 
+  triggerOfficeAnimation,
+  startButtonGlow
 } from "./render.js"
 
 export function sleep(ms) {
@@ -46,7 +47,7 @@ function updateProjects(tick) {
 
 function addFinishedProject() {
   var body = $("body");
-  var project = body.data("project");
+  var project = body.data("projectMeta");
   project.totalProjectsFinished += 1;
   body.data("project", project);
 }
@@ -83,7 +84,7 @@ function projectCycle(tick, cycle) {
 
   // if the current buffer is full,
   // we don't need to find additional projects
-  const project = body.data("project");
+  const project = body.data("projectMeta");
   const projects = body.data("projects");
   if (Object.keys(projects).length >= project.projectBufferSize) {
     return
@@ -97,66 +98,73 @@ function projectCycle(tick, cycle) {
   }, 0))
   if (!salesActive) return
 
-  findProject()
+  // try to find a project if there is pending project promise
+  if (getProjectClickPending()) return
+  setProjectClickPending(true)
+  findProject().then(() => setProjectClickPending(false))
 }
 
-function findProject() {
+const findProject = async () => {
+
+  console.assert(getProjectClickPending(), "findProject: clickPending not set true!")
 
   var body = $("body");
-  var projectMeta = body.data("project");
+  var projectMeta = body.data("projectMeta");
   var projects = body.data("projects");
 
   // get a random number between 0 and 1
   // if the total sales rate is greater than the random number, we get a project
-  var iRand = Math.random();
+  const iRand = Math.random();
   if (body.data("totalSalesRate") < iRand) {
     logAction("Project proposal failed! Better luck next time.");
-    return;
+    return false;
   }
 
-  getRandomProjectName().then((data) => {
+  // get random project name from API
+  var data = await getRandomProjectName()
 
-    // get an id for the new project
-    projectMeta.totalProjectsFound += 1;
-    var id = projectMeta.totalProjectsFound;
-    var name = data.company;
+  // get an id for the new project
+  projectMeta.totalProjectsFound += 1;
+  var id = projectMeta.totalProjectsFound;
+  var name = data.company;
 
-    var newProject = {
-      id: id,
-      name: name,
-      value: 0,
-      effort: 0,
-      progress: 0,
-      active: Object.keys(projects).length == 0,
-    };
+  var newProject = {
+    id: id,
+    name: name,
+    value: 0,
+    effort: 0,
+    progress: 0,
+    active: Object.keys(projects).length == 0,
+  };
 
-    // get the project value (normal distribution, rounded to 500)
-    var newValue = normRand(0, 2) * projectMeta.expectedValue;
-    var quotient = Math.floor(newValue / 500);
-    newProject.value = Math.max(quotient * 500, 500);
+  // get the project value (normal distribution, rounded to 500)
+  var newValue = normRand(0, 2) * projectMeta.expectedValue;
+  var quotient = Math.floor(newValue / 500);
+  newProject.value = Math.max(quotient * 500, 500);
 
-    // and effort (normal distribution, rounded to 250)
-    var newEffort = Math.round(
-      normRand(0, 2) * (newProject.value * projectMeta.effortConversionRate)
-    );
-    quotient = Math.floor(newEffort / 250);
-    newProject.effort = Math.max(quotient * 250, 250);
+  // and effort (normal distribution, rounded to 250)
+  var newEffort = Math.round(
+    normRand(0, 2) * (newProject.value * projectMeta.effortConversionRate)
+  );
+  quotient = Math.floor(newEffort / 250);
+  newProject.effort = Math.max(quotient * 250, 250);
 
-    // add the new project to the datamodel
-    projects[id] = newProject;
+  // add the new project to the datamodel
+  projects[id] = newProject;
 
-    body.data("projects", projects);
-    body.data("project", projectMeta);
+  body.data("projects", projects);
+  body.data("project", projectMeta);
 
-    // output success message
-    logAction(
-      "Project proposal successful! Project value " +
-        Formatter.format(newProject.value) +
-        " (effort " +
-        newProject.effort +
-        ")."
-    );
-  });
+  // output success message
+  logAction(
+    "Project proposal successful! Project value " +
+      Formatter.format(newProject.value) +
+      " (effort " +
+      newProject.effort +
+      ")."
+  );
+
+  return true;
 }
 
 export function addToBalance(val) {
@@ -186,28 +194,41 @@ export function officeClick(event, buttonId) {
 
   // if there is no project, try to find one 
   if (project === undefined) {
-    clicking = clickFindProject(event, clicking)
+    clicking = clickFindProject(event, buttonId, clicking)
 
   // otherwise progress the project
   } else {
     clicking = clickProgress(event, clicking)
   }
-
-  clicking.clicks += 1
-  body.data("clicking", clicking)
 }
 
-const clickFindProject = (event, clicking) => {
+const clickFindProject = (event, buttonId, clicking) => {
   
-  createProgressIndicator(
-    "click-" + clicking.clicks,
-    event.clientX,
-    event.clientY,
-    "findProject",
-    clicking.value
-  );
+  if (getProjectClickPending()) return
 
-  return clicking;
+  // try to find a project for each click
+  setProjectClickPending(true)
+  findProject().then( projectFound => {
+
+    setProjectClickPending(false)
+
+    // give some additional visual feedback if a project was found
+    if(projectFound) {
+      startButtonGlow(buttonId)
+    }
+
+    // floating emojis
+    createProgressIndicator(
+      "click-" + clicking.clicks,
+      event.clientX,
+      event.clientY,
+      "findProject",
+      projectFound  // in this case the "value" is whether we found a project
+    );
+    
+    clicking.clicks += 1
+    $("body").data("clicking", clicking)
+  })
 }
 
 const clickProgress = (event, clicking) => {
@@ -223,8 +244,9 @@ const clickProgress = (event, clicking) => {
   );
 
   clicking.totalProgress += clicking.value;
+  clicking.clicks += 1
 
-  return clicking;
+  $("body").data("clicking", clicking)
 }
 
 function updateProgress(projectId, tick) {
@@ -309,7 +331,7 @@ export const initData = (json) => {
   body.data("totalFlatSalesRate", json.totalFlatSalesRate);
   body.data("totalFlatConsRate", json.totalFlatConsRate);
 
-  body.data("project", json.project);
+  body.data("projectMeta", json.projectMeta);
   body.data("projects", json.projects);
 
   body.data("consultants", json.consultants);
@@ -430,4 +452,15 @@ const updateSalesRates = (activeUpgradeKeys=null) => {
     body.data("sales", sales)
     body.data("totalSalesRate", totalSalesRate)
   }, 0)
+}
+
+const setProjectClickPending = (val=true) => {
+  const body = $("body")
+  var projectMeta = body.data("projectMeta")
+  projectMeta.clickPending = val
+  body.data("projectMeta", projectMeta)
+}
+
+const getProjectClickPending = () => {
+  return $("body").data("projectMeta").clickPending
 }

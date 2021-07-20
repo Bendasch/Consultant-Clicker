@@ -110,7 +110,7 @@ function renderStats() {
     );
 
     $("#totalProjectsFinished").text(
-        FormatterDec.format(body.data("project").totalProjectsFinished)
+        FormatterDec.format(body.data("projectMeta").totalProjectsFinished)
     );
 }
 
@@ -252,10 +252,42 @@ function renderOfficeButtons() {
 
             oButtons[buttonId].animationCyclesLeft = stepsLeft - 1;
             oButtons[buttonId].newAnimation = false;
-        }        
+        }   
+        
+        renderButtonGlow($button, buttonId)        
     });
     
     body.data("buttons", oButtons);
+}
+
+const renderButtonGlow = ($button, buttonId) => {
+
+    const body = $("body")
+    var buttons = body.data("buttons")
+    const glowCycles = buttons[buttonId].glowCycles
+
+    // change the glow
+    if (glowCycles > 0 && (glowCycles % 8 == 0)) {
+        switch (glowCycles / 8) {
+            case 10:
+            case 6:
+            case 2: setGlow($button, 1); break
+
+            case 9:
+            case 7:
+            case 5:
+            case 3: setGlow($button, 2); break
+
+            case 8: 
+            case 4: setGlow($button, 3); break
+
+            case 1: setGlow($button, 0); break
+        }
+    }
+
+    // update the glow index
+    buttons[buttonId].glowCycles = glowCycles - 1;
+    body.data("buttons", buttons)
 }
 
 function addUpgradeRow(upgrade) {
@@ -291,7 +323,7 @@ export const setUpgrades = () => {
 function renderProjects() {
     
     const body = $("body");
-    const projectMeta = body.data("project");
+    const projectMeta = body.data("projectMeta");
     var projects = body.data("projects");
 
     var width = ($("#projectBar").width() / Object.keys(projects).length) - 4;
@@ -393,7 +425,7 @@ function renderBalanceNumbers() {
     const body = $("body");
     const container = $("#projectBalanceContainer");
 
-    var project = body.data("project");
+    var project = body.data("projectMeta");
     var indicators = container.children("div");
 
     if (indicators.length <=  0) { return; }
@@ -452,7 +484,7 @@ export function createProgressIndicator(id, x, y, type=null, value=null) {
         var dot = $("<div id='" + id + "' class='clickProgressIndicator'>" + "+" + value + "</div>");
     } else if (type == 'findProject') {
         var emoji;
-        (Math.random() > 0.5) ? emoji = '&#128169;' : emoji = '&#127881;'
+        value ? emoji = '&#127881;' : emoji = '&#128169;' // the value is whether a project was found
         var dot = $("<div id='" + id + "' class='clickProgressIndicator'>" + emoji + "</div>")
     } else { 
         console.error("No click type was provided. This should not happen!")
@@ -487,7 +519,7 @@ export function startAddToBalanceAnimation(projectId, projectValue) {
     $("#projectBalanceContainer").append(dot);
 
     // cache ticks for indication
-    var project = body.data("project");
+    var project = body.data("projectMeta");
     project.indicators[ID] = 50;
     body.data("project", project);
 }
@@ -561,4 +593,16 @@ export const triggerOfficeAnimation = (buttonId) => {
     var buttons = body.data("buttons")
     buttons[buttonId].newAnimation = true
     body.data("buttons", buttons)
+}
+
+export const startButtonGlow = (buttonId) => {
+    const maxGlowCycles = 70
+    var buttons = $('body').data('buttons')
+    buttons[buttonId].glowCycles = maxGlowCycles
+    $('body').data('buttons', buttons)
+}
+
+export const setGlow = ($button, glowIdx) => {
+    $button.removeClass(["glow1", "glow2", "glow3"])
+    if (glowIdx != 0) $button.addClass(`glow${glowIdx}`)
 }

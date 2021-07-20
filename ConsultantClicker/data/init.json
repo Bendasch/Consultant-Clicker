@@ -37,7 +37,7 @@
             "baseRate": 0.1
         }
     },
-    "project": {
+    "projectMeta": {
         "expectedValue": 10000,
         "baseExpectedValue": 10000,
         "effortConversionRate": 0.25,
@@ -45,7 +45,8 @@
         "totalProjectsFinished": 0,
         "totalProjectsFound": 1,
         "projectBufferSize": 1,
-        "indicators": {}
+        "indicators": {},
+        "clickPending": false
     },
     "projects": {
         "init-1": {
@@ -127,22 +128,26 @@
         "word": {
             "unlocked": false,
             "animationCyclesLeft": 0,
-            "newAnimation": false
+            "newAnimation": false,
+            "glowCycles": 0
         },        
         "excel": {
             "unlocked": false,
             "animationCyclesLeft": 0,
-            "newAnimation": false
+            "newAnimation": false,
+            "glowCycles": 0
         },        
         "powerpoint": {
             "unlocked": false,
             "animationCyclesLeft": 0,
-            "newAnimation": false
+            "newAnimation": false,
+            "glowCycles": 0
         },        
         "outlook": {
             "unlocked": false,
             "animationCyclesLeft": 0,
-            "newAnimation": false
+            "newAnimation": false,
+            "glowCycles": 0
         }
     }
 }

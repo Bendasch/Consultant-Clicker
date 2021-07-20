@@ -135,14 +135,22 @@ function renderResourceButtons() {
     const consultants = body.data("consultants")
     Object.keys(consultants).forEach( key => {
         const consultant = consultants[key];
-        (consultant.cost <= balance) ? enableResButton(`${key}Button`, key) : disableButton(`${key}Button`)
+        if (consultant.cost <= balance) { 
+            enableResButton(`#${key}Button`, "consultants", key)
+        } else {
+            disableButton(`#${key}Button`)
+        } 
     })
 
     // sales
     const sales = body.data("sales")
     Object.keys(sales).forEach( key => {
         const salesMember = sales[key];
-        (salesMember.cost <= balance) ? enableResButton(`${key}Button`, key) : disableButton(`${key}Button`)
+        if (salesMember.cost <= balance) { 
+            enableResButton(`#${key}Button`, "sales", key)
+         } else {
+            disableButton(`#${key}Button`)
+         } 
     })
 }
 
@@ -177,16 +185,16 @@ function enableUpgradeButton(upgradeId) {
     $("#" + upgradeId).addClass("enabled");
 }
   
-function enableResButton(sSelector, sResId) {   
-    $(sSelector).unbind().click(() => addResource(sResId)); 
-    $(sSelector).removeClass("disabled");
-    $(sSelector).addClass("enabled");
+function enableResButton(selector, category, resId) {   
+    $(selector).unbind().click(() => addResource(category, resId)); 
+    $(selector).removeClass("disabled");
+    $(selector).addClass("enabled");
 }
 
-function disableButton(sSelector) {
-    $(sSelector).unbind();
-    $(sSelector).removeClass("enabled");
-    $(sSelector).addClass("disabled");
+function disableButton(selector) {
+    $(selector).unbind();
+    $(selector).removeClass("enabled");
+    $(selector).addClass("disabled");
 }
 
 function renderOfficeButtons() {

@@ -2,28 +2,28 @@
     "currentBalance": 500,
     "totalEarnings": 0,
     "totalRate": 0,
+    "totalFlatRate": 0,
     "totalSalesRate": 0,
-    "totalFlatSalesRate": 0,
-    "totalFlatConsRate": 0,
+    "totalSalesFlatRate": 0,
     "consultants": {
         "junior": {
             "quantity": 0,
             "rate": 55,
-            "cost": 20000,
+            "cost": 15000,
             "name": "Junior Consultant",
             "baseRate": 55
         },
         "consultant": {
             "quantity": 0,
             "rate": 75,
-            "cost": 30000,
+            "cost": 25000,
             "name": "Consultant",
             "baseRate": 75
         },
         "senior": {
             "quantity": 0,
             "rate": 125,
-            "cost": 50000,
+            "cost": 40000,
             "name": "Senior Consultant",
             "baseRate": 125
         }
@@ -32,7 +32,7 @@
         "salesPerson" :{
             "quantity": 0,
             "rate": 0.1,
-            "cost": 75000,
+            "cost": 50000,
             "name": "Salesperson",
             "baseRate": 0.1
         }

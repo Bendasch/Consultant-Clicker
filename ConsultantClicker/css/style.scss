@@ -217,7 +217,7 @@ html {
                 }
 
                 &.disabled {
-                  color: $notdarkgray;
+                  color: $inactivegray;
                 }
 
                 &:hover {
@@ -317,6 +317,7 @@ html {
           margin-left: 1vw;
           margin-right: 1vw;
           cursor: pointer;
+          border-radius: 0.5rem;
 
           &:hover { opacity: 95% }
           &.unlocked { display: inline-block }
@@ -362,6 +363,7 @@ html {
           position: relative;
           text-align: center;
           cursor: pointer;
+          border-radius: 1rem;
 
           p {
             position: relative;

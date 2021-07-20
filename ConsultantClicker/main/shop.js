@@ -1,17 +1,17 @@
 import { addToBalance } from './base.js';
 import { logAction } from './render.js';
 
-export function addResource(sResId) {
+export function addResource(category, resId) {
 
-  const body = $( "body" );
+  const body = $("body");
 
-  const oResource = body.data( sResId );
-  oResource.quantity = oResource.quantity + 1;
-  body.data( sResId, oResource );
+  var resources = body.data(category);
+  resources[resId].quantity = resources[resId].quantity + 1;
+  body.data(category, resources);
 
-  addToBalance(-1 * oResource.cost);
+  addToBalance(-1 * resources[resId].cost);
 
-  logAction("1 " + oResource.name +  " was added.");
+  logAction("1 " + resources[resId].name +  " was added.");
 }
 
 export function buyUpgrade(upgradeId, upgradeSpecial=null) {

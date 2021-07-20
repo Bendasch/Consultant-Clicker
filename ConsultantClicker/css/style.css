@@ -170,7 +170,7 @@ html body #canvas #menu .tabcontent .resourceTable .resourceRow .resourceButton.
   background-color: #2d2d2d;
 }
 html body #canvas #menu .tabcontent .resourceTable .resourceRow .resourceButton.disabled {
-  color: #aaa;
+  color: #777;
 }
 html body #canvas #menu .tabcontent .resourceTable .resourceRow .resourceButton:hover {
   background-color: #4d4a4a;
@@ -262,6 +262,7 @@ html body #canvas #workbar img {
   margin-left: 1vw;
   margin-right: 1vw;
   cursor: pointer;
+  border-radius: 0.5rem;
 }
 html body #canvas #workbar img:hover {
   opacity: 95%;
@@ -309,6 +310,7 @@ html body #canvas #projectBar .project {
   position: relative;
   text-align: center;
   cursor: pointer;
+  border-radius: 1rem;
 }
 html body #canvas #projectBar .project p {
   position: relative;

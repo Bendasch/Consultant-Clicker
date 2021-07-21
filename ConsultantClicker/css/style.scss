@@ -151,152 +151,171 @@ html {
         width: 100%;
         margin-top: 0px;
         display: none;
+        overflow: hidden;
 
         .tabcontent {
 
           @include side-space;
           display: none;
           line-height: 20px;
-          max-height: 45vh;
-          overflow: auto;
-         
-          .statTable {
+          
+          .contentWrapper {
 
-            @include menu-table;
+            overflow: auto;
+            max-height: 35vh;
+            
+            .statTable {
 
-            .statRow {
+              @include menu-table;
 
-              display: table-row;
-              width: 100%;
+              .statRow {
 
-              .statsLabel {
-                @include table-cell;
-              }
-              
-              .statsValue {
-                @include table-cell;
-                text-align: right;
-                border-right: 1px solid $lightgray;
+                display: table-row;
+                width: 100%;
+
+                .statsLabel {
+                  @include table-cell;
+                }
+                
+                .statsValue {
+                  @include table-cell;
+                  text-align: right;
+                  border-right: 1px solid $lightgray;
+                }
               }
             }
-          }
 
-          .resourceTable {
+            .resourceTable {
 
-            @include menu-table;
+              @include menu-table;
 
-            .resourceRow {
+              .resourceRow {
 
-              display: table-row;
+                display: table-row;
 
-              .resourceCount {
-                @include table-cell;
-                text-align: center;
-              }
+                .resourceCount {
+                  @include table-cell;
+                  text-align: center;
+                }
 
-              .resourceRate {
-                @include table-cell;
-                text-align: center;
-              }
+                .resourceRate {
+                  @include table-cell;
+                  text-align: center;
+                }
 
-              .resourceName {
-                @include table-cell;
-                padding-left: 5px;
-              }
+                .resourceName {
+                  @include table-cell;
+                  padding-left: 5px;
+                }
 
-              .resourceButton {
-                @include table-cell;
-                text-align: center;
-                user-select: none;
-                border-right: 1px solid $lightgray;
+                .resourceButton {
+                  @include table-cell;
+                  text-align: center;
+                  user-select: none;
+                  border-right: 1px solid $lightgray;
 
-                &.enabled {
-                  color: $almostwhite;
-                  
-                  &:active {
-                    background-color: $darkgray;
+                  &.enabled {
+                    color: $almostwhite;
+                    
+                    &:active {
+                      background-color: $darkgray;
+                    }
+                  }
+
+                  &.disabled {
+                    color: $notdarkgray;
+                  }
+
+                  &:hover {
+                    background-color: $quitedarkgray;
+                  }
+
+                  .buttonNumber {
+                    font-size: 120%;
+                  }
+
+                  .buttonCost {
+                    font-size: 90%;
+                    color: $costred;
                   }
                 }
-
-                &.disabled {
-                  color: $notdarkgray;
-                }
-
-                &:hover {
-                  background-color: $quitedarkgray;
-                }
-
-                .buttonNumber {
-                  font-size: 120%;
-                }
-
-                .buttonCost {
-                  font-size: 90%;
-                  color: $costred;
-                }
               }
             }
-          }
 
-          .upgradeTable {
+            .upgradeTable {
 
-            @include menu-table;
+              @include menu-table;
 
-            .upgradeRow {
+              .upgradeRow {
 
-              display: table-row;
-              
-              &.not-owned {
+                display: table-row;
                 
-                &.disabled {
-                  color: $lightgray;
+                &.not-owned {
+                  
+                  &.disabled {
+                    color: $lightgray;
+                  }
+                  
+                  &.enabled {
+                    color: $almostwhite;
+                  }                
+                }
+
+                &.owned {
+                  background-color: $activegreen;
+                  color: $darkgray;
+                }
+
+                .upgradeName {
+                  @include table-cell;
                 }
                 
-                &.enabled {
-                  color: $almostwhite;
-                }                
+                .upgradeDescription {
+                  @include table-cell;
+                }
+                
+                .upgradeCost {
+                  @include table-cell;
+                  text-align: right;
+                  border-right: 1px solid $lightgray;
+                }
               }
+            }    
 
-              &.owned {
-                background-color: $activegreen;
-                color: $darkgray;
-              }
+            #achievementBox {
+              display: flex;
+              flex-wrap: wrap; 
+              justify-content: flex-start; 
+              padding: 5px;            
 
-              .upgradeName {
-                @include table-cell;
-              }
-              
-              .upgradeDescription {
-                @include table-cell;
-              }
-              
-              .upgradeCost {
-                @include table-cell;
-                text-align: right;
-                border-right: 1px solid $lightgray;
+              .achievement {
+                width: 3.75rem;
+                height: 3.75rem;
+                background-color:rgb(242, 87, 76);
+                margin: 5px;
               }
             }
-          }    
 
-          #logBox {
-            box-sizing: border-box;
-            line-height: 15px;
-            overflow-y: auto;
-            scrollbar-width: none;
-            border: 1px solid $lightgray;
-            padding: 5px;
-          }
+            #logBox {
+              box-sizing: border-box;
+              line-height: 15px;
+              overflow-y: auto;
+              scrollbar-width: none;
+              border: 1px solid $lightgray;
+              padding: 5px;
+            }
 
-          &#settings {
-            ul {
-              li {
-                display: inline-block;
-                line-height: 1em;
-                img {
-                  vertical-align: middle;
-                  width: 1em;
-                  height: auto;
-                  cursor: pointer;
+            &#settings {
+              ul {
+                li {
+                  display: inline-block;
+                  line-height: 1em;
+                  img {
+                    vertical-align: middle;
+                    width: 1em;
+                    height: auto;
+                    cursor: pointer;
+                  }
                 }
               }
             }

@@ -1,4 +1,6 @@
-import { trelloCardSuccess, resetTrelloPopup } from './render.js';
+export function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 export const FormatterNoDec = new Intl.NumberFormat('de-DE', {
     style: 'currency',
@@ -47,34 +49,6 @@ function boxMullerTransform([u1,u2]) {
     return [v1, v2];
 }
 
-// creates a trello card
-export function createTrelloCard() {
-  
-    // button    
-    var button = $("#trelloSend");
-    var buttonState = button.text();
-
-    if (buttonState == "Create issue") {
-
-        var cardName =  encodeURIComponent($("#trelloName").val());
-        var cardDescription = encodeURIComponent($("#trelloDescr").val());
-        
-        const endpoint = "/api/trello?name=" + cardName + "&description=" + cardDescription; 
-
-        $.ajax({ 
-            url: endpoint, 
-            method: 'POST'
-        }).done( (jqXHR, textStatus, errorThrown) => {
-            if (jqXHR == "success") {
-                trelloCardSuccess();
-            }
-        })   
-
-    } else if (buttonState == "Issue created") {
-        resetTrelloPopup();
-    }
-}
-
 export function getRandomProjectName() {
 
     const url = "/api/namegen";
@@ -86,3 +60,10 @@ export function getRandomProjectName() {
         async: true
     })   
 }
+
+export function setTime(type, value) {
+    const T_NOW = (new Date()).getTime(); 
+    if (type == "update") { $("#updateTime").text("Update time: " + (T_NOW - value) + "ms"); return}
+    if (type == "render") { $("#renderTime").text("Render time: " + (T_NOW - value) + "ms"); return}
+    if (type == "tick") { $("#tick").text("Tick rate: " + (1000 / value) + "Hz"); return}
+} 

@@ -157,6 +157,8 @@ html {
           @include side-space;
           display: none;
           line-height: 20px;
+          max-height: 45vh;
+          overflow: auto;
          
           .statTable {
 
@@ -278,7 +280,6 @@ html {
 
           #logBox {
             box-sizing: border-box;
-            max-height: 45vh;
             line-height: 15px;
             overflow-y: auto;
             scrollbar-width: none;

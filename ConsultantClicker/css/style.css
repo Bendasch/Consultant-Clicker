@@ -89,6 +89,8 @@ html body #canvas #menu .tabcontent {
   width: calc(100% - 10px);
   display: none;
   line-height: 20px;
+  max-height: 45vh;
+  overflow: auto;
 }
 html body #canvas #menu .tabcontent .statTable {
   width: initial;
@@ -228,7 +230,6 @@ html body #canvas #menu .tabcontent .upgradeTable .upgradeRow .upgradeCost {
 }
 html body #canvas #menu .tabcontent #logBox {
   box-sizing: border-box;
-  max-height: 45vh;
   line-height: 15px;
   overflow-y: auto;
   scrollbar-width: none;

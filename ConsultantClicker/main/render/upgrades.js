@@ -1,4 +1,5 @@
 import { Formatter } from '../utils/utils.js'
+import { buyUpgrade } from '../logic/upgrades.js'
 
 export const renderUpgradeButtons = () => {
 

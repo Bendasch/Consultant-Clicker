@@ -1,12 +1,12 @@
 import { render } from './render/main.js'
 import { gameLogic } from './logic/main.js'
-import { initData, saveGame } from './logic/infra.js'
+import { initializeData, saveGame } from './logic/infra.js'
 import { initializeUpgrades, initializeButtons } from './render/infra.js'
 import { sleep, setTime } from './utils/utils.js'
 import { logAction } from './render/log.js'
 import { destroyAllProjects } from './render/project.js'
 
-function initialize() {
+export const initialize = () => {
 
   // clear project DOM elements 
   // this is especially relevant in case of game resets
@@ -21,7 +21,7 @@ function initialize() {
   // either continue the game
   if (json) {     
     const p = new Promise((resolve, reject) => {  
-      initData(JSON.parse(json)) 
+      initializeData(JSON.parse(json)) 
       initializeUpgrades()  
       welcomeMessage(false)  
       render()
@@ -32,14 +32,14 @@ function initialize() {
   
   // otherwise create a new game
   return fetch("./data/init.json").then( response => response.json() ).then( json => { 
-    initData(json)
-    setUpgrades() 
+    initializeData(json)
+    initializeUpgrades() 
     welcomeMessage(true)     
     render()
   });
 }
 
-let welcomeMessage = (newGame=true) => {
+const welcomeMessage = (newGame=true) => {
   if (newGame) {
     logAction("Welcome to a fresh game of Consultant Clicker!");
     logAction("Select a project to start the game.");
@@ -51,7 +51,7 @@ let welcomeMessage = (newGame=true) => {
 }
 
 // this is the main game loop
-function main(tick, start, cycle) {  
+const main = (tick, start, cycle) => {  
 
   const T_START = (new Date()).getTime();
   var delta = T_START - start;

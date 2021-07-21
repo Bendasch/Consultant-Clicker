@@ -1,3 +1,8 @@
+import { triggerOfficeAnimation, startButtonGlow } from '../render/office.js'
+import { getActiveProject, addToProgress, findProject } from './project.js'
+import { createProgressIndicator } from '../render/flyingIndicators.js'
+import { getProjectClickPending, setProjectClickPending } from './projectMeta.js'
+
 export function officeClick(event, buttonId) {
 
     triggerOfficeAnimation(buttonId)
@@ -7,41 +12,41 @@ export function officeClick(event, buttonId) {
     const project = getActiveProject(body.data("projects"));
   
     // if there is no project, try to find one 
-    if (project === undefined) {
-      clicking = clickFindProject(event, buttonId, clicking)
+    if (project == undefined) {
+      clickFindProject(event, buttonId, clicking)
   
     // otherwise progress the project
     } else {
-      clicking = clickProgress(event, clicking)
+      clickProgress(event, clicking)
     }
 }
   
 const clickFindProject = (event, buttonId, clicking) => {
 
-    if (getProjectClickPending()) return
+  if (getProjectClickPending()) return
 
-    // try to find a project for each click
-    setProjectClickPending(true)
-    findProject().then( projectFound => {
+  // try to find a project for each click
+  setProjectClickPending(true)
+  findProject().then( projectFound => {
 
-        setProjectClickPending(false)
+      setProjectClickPending(false)
 
-        // give some additional visual feedback if a project was found
-        if(projectFound) {
+      // give some additional visual feedback if a project was found
+      if(projectFound) {
         startButtonGlow(buttonId)
-        }
+      }
 
-        // floating emojis
-        createProgressIndicator(
+      // floating emojis
+      createProgressIndicator(
         "click-" + clicking.clicks,
         event.clientX,
         event.clientY,
         "findProject",
         projectFound  // in this case the "value" is whether we found a project
-        );
-        
-        clicking.clicks += 1
-        $("body").data("clicking", clicking)
+      );
+      
+      clicking.clicks += 1
+      $("body").data("clicking", clicking)
     })
 }
   

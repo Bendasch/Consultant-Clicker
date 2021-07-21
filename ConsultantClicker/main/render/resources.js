@@ -1,4 +1,5 @@
 import { FormatterNoDec } from '../utils/utils.js'
+import { addResource } from '../logic/resources.js'
 
 export const renderConsultants = () => {
 

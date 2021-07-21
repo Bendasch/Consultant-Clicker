@@ -1,3 +1,6 @@
+import { Formatter, FormatterDec } from '../utils/utils.js'
+import { projectClick } from '../logic/project.js'
+
 export const renderProjects = () => {
     
     const body = $("body");
@@ -57,7 +60,7 @@ const setProjectProgress = (projectId, progress, effort) => {
     $("#" + projectId + "-projectProgress").text(FormatterDec.format(progress.toFixed(0)) + " / " + FormatterDec.format(effort));
 }
 
-export const destroyProject = (projectId) => {
+export const destroyProjectDOM = (projectId) => {
     $("#" + projectId).empty();
     document.getElementById(projectId).remove();
 }

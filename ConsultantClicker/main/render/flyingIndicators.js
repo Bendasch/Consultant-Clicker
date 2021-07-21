@@ -1,3 +1,4 @@
+import { Formatter } from '../utils/utils.js'
 
 export const renderFlyingNumbers = () => {
     renderProgressNumbers()

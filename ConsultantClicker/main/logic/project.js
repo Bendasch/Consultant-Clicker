@@ -1,6 +1,10 @@
 import { Formatter, normRand, getRandomProjectName } from "../utils/utils.js"
+import { startAddToBalanceAnimation } from "../render/flyingIndicators.js"
+import { destroyProjectDOM } from '../render/project.js'
+import { getProjectClickPending, setProjectClickPending } from './projectMeta.js'
+import { logAction } from '../render/log.js'
 
-export function updateProjects(tick) {
+export const updateProjects = (tick) => {
 
     var body = $("body");
   
@@ -26,14 +30,14 @@ export function updateProjects(tick) {
     }
 }
   
-function addFinishedProject() {
+const addFinishedProject = () => {
     var body = $("body");
     var project = body.data("projectMeta");
     project.totalProjectsFinished += 1;
     body.data("project", project);
 }
   
-function getActiveProject(projects) {
+export const getActiveProject = (projects) => {
     var aProjects = Object.keys(projects);
     if (aProjects.length <= 0) {
       return undefined;
@@ -52,7 +56,7 @@ function getActiveProject(projects) {
     }
 }
   
-export function autoFindProject(tick, cycle) {
+export const autoFindProject = (tick, cycle) => {
   
     var body = $("body")
   
@@ -148,7 +152,7 @@ export const findProject = async () => {
     return true;
 }
 
-function updateProgress(projectId, tick) {
+const updateProgress = (projectId, tick) => {
 
     var body = $("body");
     var projects = body.data("projects");
@@ -163,7 +167,7 @@ function updateProgress(projectId, tick) {
     body.data("projects", projects);
 }
   
-export function addToProgress(progress) {
+export const addToProgress = (progress) => {
     var body = $("body");
     var projects = body.data("projects");
     var project = getActiveProject(projects);
@@ -174,7 +178,7 @@ export function addToProgress(progress) {
     body.data("projects", projects);
 }
   
-export function projectClick(projectId) {
+export const projectClick = (projectId) => {
     var body = $("body");
     var projects = body.data("projects");
     if (projects[projectId].active) {
@@ -189,7 +193,7 @@ export function projectClick(projectId) {
     body.data("projects", projects);
 }
   
-function removeProject(projectId) {
+const removeProject = (projectId) => {
     // remove the DM entry
     var body = $("body");
     var projects = body.data("projects");
@@ -206,10 +210,10 @@ function removeProject(projectId) {
     body.data("projects", projects);
   
     // remove the UI element
-    destroyProject(projectId);
+    destroyProjectDOM(projectId);
 }
 
-export function addToBalance(val) {
+export const addToBalance = (val) => {
   const body = $("body");
   body.data("currentBalance", body.data("currentBalance") + val);
   if (val > 0) {

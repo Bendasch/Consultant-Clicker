@@ -1,4 +1,5 @@
 import { officeButtonOwned } from '../logic/upgrades.js'
+import { officeClick } from '../logic/office.js'
 
 export const renderOfficeButtons = () => {
     
@@ -115,7 +116,7 @@ export const startButtonGlow = (buttonId) => {
     $('body').data('buttons', buttons)
 }
 
-export const setGlow = ($button, glowIdx) => {
+const setGlow = ($button, glowIdx) => {
     $button.removeClass(["glow1", "glow2", "glow3"])
     if (glowIdx != 0) $button.addClass(`glow${glowIdx}`)
 }

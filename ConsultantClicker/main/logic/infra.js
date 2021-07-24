@@ -24,7 +24,7 @@ export const initializeData = (json) => {
   body.data("totalFlatSalesRate", json.totalFlatSalesRate);
   body.data("totalFlatConsRate", json.totalFlatConsRate);
 
-  body.data("projectMeta", json.projectMeta);
+  initialieProjectMeta(json.projectMeta)
   body.data("projects", json.projects);
 
   body.data("consultants", json.consultants);
@@ -33,4 +33,10 @@ export const initializeData = (json) => {
   
   body.data("upgrades", json.upgrades);
   body.data("buttons", json.buttons);
+}
+
+const initialieProjectMeta = (projectMeta) => {
+  const body = $("body")
+  projectMeta.clickPending = false
+  body.data("projectMeta", projectMeta)
 }

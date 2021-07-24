@@ -49,16 +49,21 @@ function boxMullerTransform([u1,u2]) {
     return [v1, v2];
 }
 
-export function getRandomProjectName() {
+export const getRandomProjectName = async () => {
 
     const url = "/api/namegen";
     
-    return $.ajax({ 
+    var data = await $.ajax({ 
         url: url, 
         method: 'GET',
         dataType: 'json', 
         async: true
-    })   
+    }).catch((e)=>{
+        console.error('Name generation error!')
+        console.log(e)
+    })       
+    var name = data.company || "Random Company"
+    return name
 }
 
 export function setTime(type, value) {

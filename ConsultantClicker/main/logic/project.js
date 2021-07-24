@@ -106,12 +106,11 @@ export const findProject = async () => {
     }
   
     // get random project name from API
-    var data = await getRandomProjectName()
-  
+    var name = await getRandomProjectName()
+
     // get an id for the new project
     projectMeta.totalProjectsFound += 1;
     var id = projectMeta.totalProjectsFound;
-    var name = data.company;
   
     var newProject = {
       id: id,

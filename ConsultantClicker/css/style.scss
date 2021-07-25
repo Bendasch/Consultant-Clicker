@@ -26,7 +26,7 @@ $floating-number-size: calc(100% + 0.5vw);
 
 // this is used for the flex-items on the canvas
 @mixin side-space {
-  margin-top: 20px;
+  margin-top: 15px;
   margin-bottom: 0px; 
   margin-left: 5px;
   margin-right: 5px;
@@ -95,7 +95,7 @@ html {
         border: none;
         outline: none;
         cursor: pointer;
-        padding: 14px 16px;
+        padding: 14px 10px;
         transition: 0.3s;
         
         &.active {
@@ -194,7 +194,7 @@ html {
 
       display: flex;
       flex-wrap: wrap;
-      justify-content: flex-start;
+      justify-content: center;
       align-content: flex-start;
       margin: 0px;
 
@@ -347,16 +347,14 @@ html {
 
             &#settingsContent {
               ul {
+                border: 1px solid $lightgray;
                 li {
                   display: inline-block;
+                  width: 100%;
                   line-height: 1em;
-                  img {
-                    vertical-align: middle;
-                    max-width: 1em;
-                    height: auto;
-                    cursor: pointer;
-                    margin: 5px;
-                  }
+                  cursor: pointer;
+                  margin-top: 0.5em;
+                  margin-bottom: 0.5em;
                 }
               }
             }
@@ -406,28 +404,23 @@ html {
                         0px 0px 8px #f8e432;
           }
         }
-      }       
-        
+      }     
+
+      #projectBuffer {
+        font-size: calc(#{$project-fontsize} * 1.25);
+        &.full { color: $fullred }
+        &.not-full { color: $almostwhite }
+        margin-top: 1em;
+      }
+
       #projectBar {
         
         @include side-space;
-        height: 200px;
+        height: calc(12vh + 60px);
         display: flex;
         flex-shrink: 1;
         justify-content: space-around;
         position: relative;
-        
-        p {
-          position: absolute;
-          left: 50%;
-          bottom: -10px;
-          -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
-          font-size: calc(#{$project-fontsize} * 1.25);
-
-          &.full { color: $fullred }
-          &.not-full { color: $almostwhite }
-        }
 
         .project {
           
@@ -438,6 +431,7 @@ html {
           border-radius: 1rem;
 
           p {
+            margin-top: 0.25em;
             position: relative;
             font-size: $project-fontsize;
             color:$darkgray;
@@ -476,7 +470,7 @@ html {
           .progressWrapper {
 
             position: absolute;
-            bottom: 27%;
+            bottom: 30%;
             width: 100%;
             height: 15%;
             text-align: center;
@@ -485,7 +479,7 @@ html {
             z-index: 1;
 
             p {
-              margin: 0;
+              margin-top: 5px;
               padding: 0;
               font-size: $project-fontsize;
               z-index: 10;
@@ -514,6 +508,7 @@ html {
           height: 48px;
           background-image: url("../img/trello-icon.png");
           cursor: pointer;
+          display: none;
         }
     
         #trello {
@@ -575,6 +570,7 @@ html {
           right: 0px;
           margin: 5px;
           text-align: left;
+          display: none;
   
           p {
             font-size: 80%;

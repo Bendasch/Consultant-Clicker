@@ -5,6 +5,7 @@ import { renderProjects } from './project.js'
 import { renderOfficeButtons } from './office.js'
 import { renderFlyingNumbers } from './flyingIndicators.js'
 import { renderNotifications } from './notifications.js'
+import { renderFooter } from '../utils/utils.js'
 
 export const render = () => {
     renderCashews()
@@ -17,4 +18,5 @@ export const render = () => {
     renderOfficeButtons()
     renderFlyingNumbers()
     renderNotifications()
+    renderFooter()
 }

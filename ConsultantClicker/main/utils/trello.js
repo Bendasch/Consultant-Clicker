@@ -64,3 +64,12 @@ export const bindTrelloButtons = () => {
     $("#trelloButton").unbind().click(() => {popup("#trello")})
     $("#trelloSend").unbind().click((event) => {createTrelloCard(event)})
 }
+
+export const toggleTrelloButton = () => {
+    var $trelloButton = $("#trelloButton")
+    if ($trelloButton.css("display") == "none") {
+        $trelloButton.css("display", "block")
+    } else {
+        $trelloButton.css("display", "none")
+    }
+}

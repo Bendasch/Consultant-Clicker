@@ -91,3 +91,26 @@ export const welcomeLog = (newGame=true) => {
     logAction("Good luck!");
   }
 }
+
+export const toggleTimesDisplay = () => {
+    var $timesDisplay = $("#times") 
+    if ($timesDisplay.css("display") == "none") {
+        $timesDisplay.css("display", "block")
+    } else {
+        $timesDisplay.css("display", "none")
+    }
+}
+
+export const renderFooter = () => {
+    // check whether both trello and the resource timer are disabled
+    // if so, we can hide the entire footer and vice versa
+    var trello = $("#trelloButton")
+    var timer = $("#times")
+    var footer = $("#footer")
+    if (trello.css("display") != "none" || timer.css("display") != "none") {
+        footer.css("display", "block")
+    } else {
+        footer.css("display", "none")
+    }
+
+}

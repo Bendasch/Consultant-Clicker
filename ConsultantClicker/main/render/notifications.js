@@ -39,7 +39,8 @@ export const showNotification = (headerText, mainText, achievement=false) => {
 
 const destroyNotification = (id) => {
     $(`#${id}`).empty()
-    document.getElementById(id).remove()
+    var doc = document.getElementById(id)
+    if (doc) doc.remove()
 }
 
 const getNextId = (notifications, id) => {

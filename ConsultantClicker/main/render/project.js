@@ -9,13 +9,21 @@ export const renderProjects = () => {
 
     var width = ($("#projectBar").width() / Object.keys(projects).length) - 4;
 
-    var projectBuffer = $("#projectBuffer");
-    projectBuffer.text(Object.keys(projects).length + " / " + projectMeta.projectBufferSize);
-    (projectMeta.projectBufferSize > Object.keys(projects).length) ? setNotFull(projectBuffer) : setFull(projectBuffer);
+    setProjectBuffer(projects, projectMeta)
 
     Object.keys(projects).forEach( (projectId) => {
         renderProject(projects[projectId], width);
     });
+}
+
+const setProjectBuffer = (projects, projectMeta) => {
+    var projectBuffer = $("#projectBuffer")
+    projectBuffer.text(Object.keys(projects).length + " / " + projectMeta.projectBufferSize + " project(s)")
+    if (projectMeta.projectBufferSize > Object.keys(projects).length) {
+        setNotFull(projectBuffer)
+    } else {
+        setFull(projectBuffer)
+    }
 }
 
 const renderProject = (oProject, width) => {

@@ -12,3 +12,12 @@ export function logAction(str) {
     // scroll down animation
     logBox.animate({scrollTop: logBox.prop("scrollHeight")}, 75);
 }
+
+export const toggleLog = () => {
+    var $log = $("#logTab")
+    if ($log.css("display") == "none") {
+        $log.css("display", "inline-block")
+    } else {
+        $log.css("display", "none")
+    }
+}

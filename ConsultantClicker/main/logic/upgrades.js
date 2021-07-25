@@ -1,24 +1,7 @@
 import { addToBalance } from './project.js'
 import { logAction } from '../render/log.js'
 
-<<<<<<< HEAD:ConsultantClicker/main/shop.js
-export function addResource(category, resId) {
-
-  const body = $("body");
-
-  var resources = body.data(category);
-  resources[resId].quantity = resources[resId].quantity + 1;
-  body.data(category, resources);
-
-  addToBalance(-1 * resources[resId].cost);
-
-  logAction("1 " + resources[resId].name +  " was added.");
-}
-
-export function buyUpgrade(upgradeId, upgradeSpecial=null) {
-=======
 export const buyUpgrade = (upgradeId, upgradeSpecial=null) => {
->>>>>>> achievements:ConsultantClicker/main/logic/upgrades.js
 
   const body = $("body")
   var upgrades = body.data("upgrades")

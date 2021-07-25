@@ -222,15 +222,9 @@ html {
                     }
                   }
 
-<<<<<<< HEAD
                 &.disabled {
                   color: $inactivegray;
                 }
-=======
-                  &.disabled {
-                    color: $notdarkgray;
-                  }
->>>>>>> achievements
 
                   &:hover {
                     background-color: $quitedarkgray;
@@ -411,11 +405,7 @@ html {
           position: relative;
           text-align: center;
           cursor: pointer;
-<<<<<<< HEAD
           border-radius: 1rem;
-=======
-          border-radius: 1em 1em;
->>>>>>> achievements
 
           p {
             position: relative;

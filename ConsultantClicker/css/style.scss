@@ -11,6 +11,9 @@ $costred: red;
 $fullred: rgb(245, 67, 67);
 $cashgreen: rgb(65, 194, 69);
 $trelloblue: #1E88E5;
+$notification: rgb(47, 64, 122);
+$noficationText: $almostwhite;
+$achievementNotification: rgb(245, 82, 60);
 $create: brown;
 $progressorange: rgb(242, 87, 76);
 
@@ -18,6 +21,8 @@ $progressorange: rgb(242, 87, 76);
 $cashew-fontsize: calc(125% + 0.5vw);
 $project-fontsize: calc(90% + 0.5vw);
 $floating-number-size: calc(100% + 0.5vw);
+
+
 
 // this is used for the flex-items on the canvas
 @mixin side-space {
@@ -33,6 +38,7 @@ $floating-number-size: calc(100% + 0.5vw);
   width: initial;
   display: table;
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 // used to format the cells inside the menu tabs
@@ -58,7 +64,7 @@ $floating-number-size: calc(100% + 0.5vw);
 
 html {
 
-  font-family: "Calibri";
+  font-family: "Consolas";
   user-select: none;
   color: $almostwhite;
   background-color: $darkgray;
@@ -106,6 +112,10 @@ html {
           }
         }
 
+        &#logTab {
+          display: none;
+        }
+        
         &#settingsTab {
 
           position: absolute;
@@ -135,6 +145,48 @@ html {
         color: $cashgreen;
         border-top: 2px solid $lightgray;
         line-height: 40px;        
+      }
+    }
+
+    #notifications {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-content: space-around;
+      justify-content: flex-start;
+      align-items: center;
+      width: 100%;
+      height: 84%;
+      top: 7%;
+      pointer-events: none;
+
+      .notification {
+
+        z-index: 5000;
+        width: 90%;
+        height: auto;
+        border-radius: 0.5em;
+        background-color: $notification;
+        color: $noficationText;
+        margin-bottom: 1em;
+
+        h1 {
+          text-align: center;
+          font-size: 130%;
+        }
+
+        p {
+          text-align: center;
+          font-size: 100%;
+          padding: 0.2em;
+          margin-bottom: 0.3em;
+        }  
+
+        &.achievement {
+          width: 80%;
+          font-size: 90%;
+          background-color: $achievementNotification;
+        }     
       }
     }
 
@@ -193,6 +245,9 @@ html {
 
                 display: table-row;
 
+                &.disabled { color: $inactivegray; }
+                &:hover { background-color: $quitedarkgray; }
+
                 .resourceCount {
                   @include table-cell;
                   text-align: center;
@@ -200,7 +255,7 @@ html {
 
                 .resourceRate {
                   @include table-cell;
-                  text-align: center;
+                  text-align: left;
                 }
 
                 .resourceName {
@@ -208,36 +263,10 @@ html {
                   padding-left: 5px;
                 }
 
-                .resourceButton {
+                .resourceCost {
                   @include table-cell;
-                  text-align: center;
-                  user-select: none;
+                  color: $costred;
                   border-right: 1px solid $lightgray;
-
-                  &.enabled {
-                    color: $almostwhite;
-                    
-                    &:active {
-                      background-color: $darkgray;
-                    }
-                  }
-
-                &.disabled {
-                  color: $inactivegray;
-                }
-
-                  &:hover {
-                    background-color: $quitedarkgray;
-                  }
-
-                  .buttonNumber {
-                    font-size: 120%;
-                  }
-
-                  .buttonCost {
-                    font-size: 90%;
-                    color: $costred;
-                  }
                 }
               }
             }
@@ -277,7 +306,8 @@ html {
                 .upgradeCost {
                   @include table-cell;
                   text-align: right;
-                  border-right: 1px solid $lightgray;
+                  border-right: 1px solid $lightgray;                  
+                  color: $costred;
                 }
               }
             }    
@@ -289,7 +319,7 @@ html {
               padding: 5px;            
 
               .achievement {
-                margin: 5px;
+                margin: 3px;
                 height: 0px;
                 width: 0px;
                 padding: 30px;

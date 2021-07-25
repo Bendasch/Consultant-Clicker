@@ -8,7 +8,7 @@ export const renderConsultants = () => {
     Object.keys(consultants).forEach( key => {
         const consultant = consultants[key]
         $(`#${key}Count`).text(consultant.quantity)
-        $(`#${key}Rate`).text("× " + consultant.rate)
+        $(`#${key}Rate`).text(consultant.rate + " progress/s")
         $(`#${key}Cost`).text("-" + FormatterNoDec.format(consultant.cost))
     })
 }
@@ -20,7 +20,7 @@ export const renderSales = () => {
     Object.keys(sales).forEach(key => {
         const salesMember = sales[key]
         $(`#${key}Count`).text(salesMember.quantity);
-        $(`#${key}Rate`).text((salesMember.rate*100).toFixed(2) + " %");
+        $(`#${key}Rate`).text((salesMember.rate*100).toFixed(2) + "% sales chance");
         $(`#${key}Cost`).text("-" + FormatterNoDec.format(salesMember.cost));
     })
 }
@@ -35,9 +35,9 @@ export function renderResourceButtons() {
     Object.keys(consultants).forEach( key => {
         const consultant = consultants[key];
         if (consultant.cost <= balance) { 
-            enableResButton(`#${key}Button`, "consultants", key)
+            enableResButton(`#${key}`, "consultants", key)
         } else {
-            disableButton(`#${key}Button`)
+            disableButton(`#${key}`)
         } 
     })
 
@@ -46,9 +46,9 @@ export function renderResourceButtons() {
     Object.keys(sales).forEach( key => {
         const salesMember = sales[key];
         if (salesMember.cost <= balance) { 
-            enableResButton(`#${key}Button`, "sales", key)
+            enableResButton(`#${key}`, "sales", key)
          } else {
-            disableButton(`#${key}Button`)
+            disableButton(`#${key}`)
          } 
     })
 }

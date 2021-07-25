@@ -1,6 +1,7 @@
 import { getTotalConsultantsQuantity, getTotalSalesQuantity } from './resources.js'
 import { getUnlockedUpgradeAmount } from './upgrades.js'
 import { unlockAchievement } from '../render/achievements.js'
+import { showNotification } from '../render/notifications.js'
 
 export const updateAchievements = (cycle) => {
 
@@ -27,11 +28,16 @@ export const updateAchievements = (cycle) => {
             if (!(meetsThreshold(type, achievement.threshold))) break;
 
             unlockAchievement(`ach-${type}-${achievement.id}`)
+            showNotification("New Achievement!", getNoficationText(achievementGroup, level), true)
             achievements[type].current = level
         }
 
         body.data("achievements", achievements)
     })
+}
+
+const getNoficationText = (achievementGroup, level) => {
+    return `You reached ${achievementGroup.name}-level ${level}. Check the achievement tab.`
 }
 
 const meetsThreshold = (type, threshold) => {
@@ -66,10 +72,10 @@ const getUnlockedAchievementAmount = () => {
 
 export const getTypeAndLevelFromId = (achievementId) => {
     var parts = achievementId.split("-")
-    return [parts[1], getLevelFromId(parts[2])]
+    return [parts[1], getLevelNumberFromId(parts[2])]
 }
 
-const getLevelFromId = (level) => {
+const getLevelNumberFromId = (level) => {
     switch(level) {
         case "beginner":    return 1
         case "common":      return 2

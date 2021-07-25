@@ -4,22 +4,15 @@
     "totalRate": 0,
     "totalFlatRate": 0,
     "totalSalesRate": 0,
-<<<<<<< HEAD
-    "totalSalesFlatRate": 0,
-=======
     "totalFlatSalesRate": 0,
     "totalFlatConsRate": 0,
     "totalProgress": 0,
->>>>>>> achievements
     "consultants": {
         "junior": {
             "quantity": 0,
             "rate": 55,
             "cost": 15000,
-<<<<<<< HEAD
-=======
             "baseCost": 15000,
->>>>>>> achievements
             "name": "Junior Consultant",
             "baseRate": 55
         },
@@ -27,10 +20,7 @@
             "quantity": 0,
             "rate": 75,
             "cost": 25000,
-<<<<<<< HEAD
-=======
             "baseCost": 25000,
->>>>>>> achievements
             "name": "Consultant",
             "baseRate": 75
         },
@@ -38,10 +28,7 @@
             "quantity": 0,
             "rate": 125,
             "cost": 40000,
-<<<<<<< HEAD
-=======
             "baseCost": 40000,
->>>>>>> achievements
             "name": "Senior Consultant",
             "baseRate": 125
         }
@@ -49,14 +36,9 @@
     "sales": {
         "salesPerson" :{
             "quantity": 0,
-<<<<<<< HEAD
-            "rate": 0.1,
-            "cost": 50000,
-=======
             "rate": 0.05,
             "cost": 50000,
             "baseCost": 50000,
->>>>>>> achievements
             "name": "Salesperson",
             "baseRate": 0.05
         }
@@ -213,6 +195,8 @@
     "achievements": {
         "clicks": {
             "current": 0,
+            "name": "click",
+            "condition": "total number of clicks",
             "tooltip": "You managed to click {THRESHOLD} times!",
             "1": {
                 "id": "beginner",
@@ -252,6 +236,8 @@
         },
         "totalEarned": {
             "current": 0,
+            "name": "total-earnings",
+            "condition": "total earnings",
             "tooltip": "You managed to earn {THRESHOLD}€ throughout the game!",
             "1": {
                 "id": "beginner",
@@ -290,7 +276,9 @@
             }
         },
         "balance": {
-            "current": 0,
+            "current": 0,            
+            "name": "concurrent-balance",
+            "condition": "concurrent balance",
             "tooltip": "You managed to accumulated {THRESHOLD}€ at one point the game!",
             "1": {
                 "id": "beginner",
@@ -330,6 +318,8 @@
         },
         "projects": {
             "current": 0,
+            "name": "projects",
+            "condition": "finished projects",
             "tooltip": "You managed to finish {THRESHOLD} projects throughout the game!",
             "1": {
                 "id": "beginner",
@@ -369,6 +359,8 @@
         },        
         "progress": {
             "current": 0,
+            "name": "progress",
+            "condition": "total effort of finished projects",
             "tooltip": "You managed to finish projects with a total effort of {THRESHOLD}!",
             "1": {
                 "id": "beginner",
@@ -407,7 +399,9 @@
             }
         },
         "consultants": {
-            "current": 0,
+            "current": 0,            
+            "name": "consultant",
+            "condition": "number of consultants",
             "tooltip": "You recruited {THRESHOLD} consultant(s) throughout the game!",
             "1": {
                 "id": "beginner",
@@ -447,6 +441,8 @@
         },
         "sales": {
             "current": 0,
+            "name": "sales",
+            "condition": "number of salespeople",
             "tooltip": "You recruited {THRESHOLD} person/people into your sales staff!",
             "1": {
                 "id": "beginner",
@@ -486,6 +482,8 @@
         },
         "upgrades": {
             "current": 0,
+            "name": "upgrade",
+            "condition": "number of upgrades",
             "tooltip": "You bought {THRESHOLD} upgrade(s) throughout the game!",
             "1": {
                 "id": "beginner",
@@ -525,6 +523,8 @@
         },
         "achievements": {
             "current": 0,
+            "name": "achievement",
+            "condition": "number of achievements",
             "tooltip": "You earned {THRESHOLD} achievement(s) throughout the game!",
             "1": {
                 "id": "beginner",
@@ -562,5 +562,6 @@
                 "unlocked": false
             }
         }
-    }
+    },
+    "notifications": {}
 }

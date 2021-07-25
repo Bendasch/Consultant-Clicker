@@ -1,7 +1,7 @@
 import { triggerOfficeAnimation, startButtonGlow } from '../render/office.js'
 import { getActiveProject, addToProgress, findProject } from './project.js'
 import { createProgressIndicator } from '../render/flyingIndicators.js'
-import { getProjectClickPending, setProjectClickPending } from './projectMeta.js'
+import { getProjectClickPending, setProjectClickPending, isProjectBufferFull } from './projectMeta.js'
 
 export function officeClick(event, buttonId) {
 
@@ -13,6 +13,8 @@ export function officeClick(event, buttonId) {
   
     // if there is no project, try to find one 
     if (project == undefined) {
+      
+      if (isProjectBufferFull()) return // unless the project buffer is full!
       clickFindProject(event, buttonId, clicking)
   
     // otherwise progress the project

@@ -1,5 +1,5 @@
 html {
-  font-family: "Calibri";
+  font-family: "Consolas";
   user-select: none;
   color: #eee;
   background-color: #2d2d2d;
@@ -46,6 +46,9 @@ html body #navbar button.inactive:hover {
   background-color: #aaa;
   color: #2d2d2d;
 }
+html body #navbar button#logTab {
+  display: none;
+}
 html body #navbar button#settingsTab {
   position: absolute;
   padding: 1.5px 1.5px;
@@ -68,6 +71,42 @@ html body #navbar #cashews {
   color: #41c245;
   border-top: 2px solid #ccc;
   line-height: 40px;
+}
+html body #notifications {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 84%;
+  top: 7%;
+  pointer-events: none;
+}
+html body #notifications .notification {
+  z-index: 5000;
+  width: 90%;
+  height: auto;
+  border-radius: 0.5em;
+  background-color: #2f407a;
+  color: #eee;
+  margin-bottom: 1em;
+}
+html body #notifications .notification h1 {
+  text-align: center;
+  font-size: 130%;
+}
+html body #notifications .notification p {
+  text-align: center;
+  font-size: 100%;
+  padding: 0.2em;
+  margin-bottom: 0.3em;
+}
+html body #notifications .notification.achievement {
+  width: 80%;
+  font-size: 90%;
+  background-color: #f5523c;
 }
 html body #canvas {
   display: flex;
@@ -99,6 +138,7 @@ html body #canvas #menu .tabcontent .contentWrapper .statTable {
   width: initial;
   display: table;
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 html body #canvas #menu .tabcontent .contentWrapper .statTable .statRow {
   display: table-row;
@@ -126,9 +166,16 @@ html body #canvas #menu .tabcontent .contentWrapper .resourceTable {
   width: initial;
   display: table;
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 html body #canvas #menu .tabcontent .contentWrapper .resourceTable .resourceRow {
   display: table-row;
+}
+html body #canvas #menu .tabcontent .contentWrapper .resourceTable .resourceRow.disabled {
+  color: #777;
+}
+html body #canvas #menu .tabcontent .contentWrapper .resourceTable .resourceRow:hover {
+  background-color: #4d4a4a;
 }
 html body #canvas #menu .tabcontent .contentWrapper .resourceTable .resourceRow .resourceCount {
   display: table-cell;
@@ -146,7 +193,7 @@ html body #canvas #menu .tabcontent .contentWrapper .resourceTable .resourceRow 
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
-  text-align: center;
+  text-align: left;
 }
 html body #canvas #menu .tabcontent .contentWrapper .resourceTable .resourceRow .resourceName {
   display: table-cell;
@@ -157,40 +204,21 @@ html body #canvas #menu .tabcontent .contentWrapper .resourceTable .resourceRow 
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
   padding-left: 5px;
 }
-html body #canvas #menu .tabcontent .contentWrapper .resourceTable .resourceRow .resourceButton {
+html body #canvas #menu .tabcontent .contentWrapper .resourceTable .resourceRow .resourceCost {
   display: table-cell;
   vertical-align: middle;
   border-left: 1px solid #ccc;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
-  text-align: center;
-  user-select: none;
-  border-right: 1px solid #ccc;
-}
-html body #canvas #menu .tabcontent .contentWrapper .resourceTable .resourceRow .resourceButton.enabled {
-  color: #eee;
-}
-html body #canvas #menu .tabcontent .contentWrapper .resourceTable .resourceRow .resourceButton.enabled:active {
-  background-color: #2d2d2d;
-}
-html body #canvas #menu .tabcontent .contentWrapper .resourceTable .resourceRow .resourceButton.disabled {
-  color: #777;
-}
-html body #canvas #menu .tabcontent .contentWrapper .resourceTable .resourceRow .resourceButton:hover {
-  background-color: #4d4a4a;
-}
-html body #canvas #menu .tabcontent .contentWrapper .resourceTable .resourceRow .resourceButton .buttonNumber {
-  font-size: 120%;
-}
-html body #canvas #menu .tabcontent .contentWrapper .resourceTable .resourceRow .resourceButton .buttonCost {
-  font-size: 90%;
   color: red;
+  border-right: 1px solid #ccc;
 }
 html body #canvas #menu .tabcontent .contentWrapper .upgradeTable {
   width: initial;
   display: table;
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 html body #canvas #menu .tabcontent .contentWrapper .upgradeTable .upgradeRow {
   display: table-row;
@@ -230,6 +258,7 @@ html body #canvas #menu .tabcontent .contentWrapper .upgradeTable .upgradeRow .u
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
   text-align: right;
   border-right: 1px solid #ccc;
+  color: red;
 }
 html body #canvas #menu .tabcontent .contentWrapper #achievementBox {
   display: flex;
@@ -238,7 +267,7 @@ html body #canvas #menu .tabcontent .contentWrapper #achievementBox {
   padding: 5px;
 }
 html body #canvas #menu .tabcontent .contentWrapper #achievementBox .achievement {
-  margin: 5px;
+  margin: 3px;
   height: 0px;
   width: 0px;
   padding: 30px;

@@ -1,40 +1,48 @@
 import { Formatter, normRand, getRandomProjectName } from "../utils/utils.js"
 import { startAddToBalanceAnimation } from "../render/flyingIndicators.js"
 import { destroyProjectDOM } from '../render/project.js'
-import { getProjectClickPending, setProjectClickPending } from './projectMeta.js'
+import { getProjectClickPending, setProjectClickPending, getTotalProjectsFinished, addFinishedProject } from './projectMeta.js'
 import { logAction } from '../render/log.js'
+import { showNotification } from '../render/notifications.js'
 
 export const updateProjects = (tick) => {
 
-    var body = $("body");
+    var project = getActiveProject($("body").data("projects"))
   
-    var projects = body.data("projects");
-    var oProject = getActiveProject(projects);
+    if (project === undefined) return
+
+    project = updateProgress(project.id, tick)
   
-    if (oProject === undefined) {
-      return;
-    }
-  
-    // update the progress
-    updateProgress(oProject.id, tick);
-  
-    // update the earnings if the project is done
-    if (oProject.progress >= oProject.effort) {
-      addToBalance(oProject.value)  
-      startAddToBalanceAnimation(oProject.id, oProject.value)  
-      addFinishedProject(oProject.effort)      
-      removeProject(oProject.id)
-    }
+    if (project.progress >= project.effort) finishProject(project)
 }
-  
-const addFinishedProject = (effort) => {
-    var body = $("body");
-    var project = body.data("projectMeta");
-    project.totalProjectsFinished += 1;
-    body.data("project", project);
-    body.data("totalProgress", body.data("totalProgress") + effort)
+
+const finishProject = (project) => {
+  startAddToBalanceAnimation(project.id, project.value)  
+  addToBalance(project.value)  
+  addFinishedProject()      
+  addTotalEffort(project.effort)
+  removeProject(project.id)
+  if (getTotalProjectsFinished() == 1) findProjectNotification()
+  if (getTotalProjectsFinished() == 2) suggestShopNotification()
 }
-  
+
+const addTotalEffort = (effort) => {
+  const body = $("body")
+  body.data("totalProgress", body.data("totalProgress") + effort)
+}
+
+const findProjectNotification = () => {
+  const header = 'First project finished!'
+  const main = 'In order to find another project keep pressing the Word button.'
+  showNotification(header, main)
+}
+
+const suggestShopNotification = () => {
+  const header = 'Second project finished!'
+  const main = 'Check the "Staff" and "Upgrades" tabs in order to spend the money you earn.'
+  showNotification(header, main)
+}
+
 export const getActiveProject = (projects) => {
     var aProjects = Object.keys(projects);
     if (aProjects.length <= 0) {
@@ -162,6 +170,8 @@ const updateProgress = (projectId, tick) => {
   
     projects[projectId] = project;
     body.data("projects", projects);
+
+    return project
 }
   
 export const addToProgress = (progress) => {
@@ -211,9 +221,9 @@ const removeProject = (projectId) => {
 }
 
 export const addToBalance = (val) => {
-  const body = $("body");
-  body.data("currentBalance", body.data("currentBalance") + val);
+  const body = $("body")
+  body.data("currentBalance", body.data("currentBalance") + val)
   if (val > 0) {
-    body.data("totalEarnings", body.data("totalEarnings") + val);
+    body.data("totalEarnings", body.data("totalEarnings") + val)
   }
 }

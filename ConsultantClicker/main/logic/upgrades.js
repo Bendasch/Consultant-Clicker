@@ -1,7 +1,8 @@
-import { addToBalance } from './project.js'
+import { addToBalance, getActiveProject } from './project.js'
 import { logAction } from '../render/log.js'
+import { showNotification } from '../render/notifications.js'
 
-export const buyUpgrade = (upgradeId, upgradeSpecial=null) => {
+export const buyUpgrade = (upgradeId) => {
 
   const body = $("body")
   var upgrades = body.data("upgrades")
@@ -12,6 +13,8 @@ export const buyUpgrade = (upgradeId, upgradeSpecial=null) => {
   body.data("upgrades", upgrades)
 
   logAction("Bought upgrade '" + upgrades[upgradeId].name + "'.")
+
+  if (upgradeId=="wordUpgrade") wordNotification()
 } 
 
 export const officeButtonOwned = (buttonId) => {
@@ -25,4 +28,15 @@ export const getActiveUpgradeKeys = () => {
 
 export const getUnlockedUpgradeAmount = () => {
   return getActiveUpgradeKeys().length 
+}
+
+const wordNotification = () => {
+  const header = 'Word Upgrade activated!'
+  var main;
+  if (getActiveProject($("body").data("projects"))) {
+    main = "You can progress your active project by clicking the Word button."
+  } else {
+    main = "Select your project to activate it. Then press the Word button to progress it."
+  }
+  showNotification(header, main)
 }

@@ -1,6 +1,7 @@
-import { addToBalance } from './base.js';
-import { logAction } from './render.js';
+import { addToBalance } from './project.js'
+import { logAction } from '../render/log.js'
 
+<<<<<<< HEAD:ConsultantClicker/main/shop.js
 export function addResource(category, resId) {
 
   const body = $("body");
@@ -15,18 +16,17 @@ export function addResource(category, resId) {
 }
 
 export function buyUpgrade(upgradeId, upgradeSpecial=null) {
+=======
+export const buyUpgrade = (upgradeId, upgradeSpecial=null) => {
+>>>>>>> achievements:ConsultantClicker/main/logic/upgrades.js
 
   const body = $("body")
-
   var upgrades = body.data("upgrades")
 
   addToBalance(-1 * upgrades[upgradeId].cost)
-
   upgrades[upgradeId].owned = true
 
   body.data("upgrades", upgrades)
-
-  const upgradeSpecials = []
 
   logAction("Bought upgrade '" + upgrades[upgradeId].name + "'.")
 } 
@@ -38,4 +38,8 @@ export const officeButtonOwned = (buttonId) => {
 export const getActiveUpgradeKeys = () => {
   const upgrades = $("body").data("upgrades")
   return Object.keys(upgrades).filter(key => {return upgrades[key].owned})
+}
+
+export const getUnlockedUpgradeAmount = () => {
+  return getActiveUpgradeKeys().length 
 }

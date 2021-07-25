@@ -4,12 +4,22 @@
     "totalRate": 0,
     "totalFlatRate": 0,
     "totalSalesRate": 0,
+<<<<<<< HEAD
     "totalSalesFlatRate": 0,
+=======
+    "totalFlatSalesRate": 0,
+    "totalFlatConsRate": 0,
+    "totalProgress": 0,
+>>>>>>> achievements
     "consultants": {
         "junior": {
             "quantity": 0,
             "rate": 55,
             "cost": 15000,
+<<<<<<< HEAD
+=======
+            "baseCost": 15000,
+>>>>>>> achievements
             "name": "Junior Consultant",
             "baseRate": 55
         },
@@ -17,6 +27,10 @@
             "quantity": 0,
             "rate": 75,
             "cost": 25000,
+<<<<<<< HEAD
+=======
+            "baseCost": 25000,
+>>>>>>> achievements
             "name": "Consultant",
             "baseRate": 75
         },
@@ -24,6 +38,10 @@
             "quantity": 0,
             "rate": 125,
             "cost": 40000,
+<<<<<<< HEAD
+=======
+            "baseCost": 40000,
+>>>>>>> achievements
             "name": "Senior Consultant",
             "baseRate": 125
         }
@@ -31,10 +49,16 @@
     "sales": {
         "salesPerson" :{
             "quantity": 0,
+<<<<<<< HEAD
             "rate": 0.1,
             "cost": 50000,
+=======
+            "rate": 0.05,
+            "cost": 50000,
+            "baseCost": 50000,
+>>>>>>> achievements
             "name": "Salesperson",
-            "baseRate": 0.1
+            "baseRate": 0.05
         }
     },
     "projectMeta": {
@@ -76,11 +100,47 @@
             "name": "Second monitor",
             "description": "Everyone will be able to see two office apps at the same time. This increases ALL rates by 50%.",
             "owned": false,
-            "cost": 1500,
+            "cost": 7500,
             "rate": {
                 "consultants": 1.5,
                 "sales": 1.5,
                 "clicking": 1.5
+            }
+        },
+        "wordTraining": {
+            "id": "wordTraining",
+            "name": "Word Training",
+            "description": "This teaches your staff some crucial word techniques (+5% consultants and sales).",
+            "owned": false,
+            "cost": 25000,
+            "rate": {
+                "consultants": 1.05,
+                "sales": 1.05,
+                "clicking": 1.05
+            }
+        },
+        "waterScrum": {
+            "id": "waterScrum",
+            "name": "Water-Scrum",
+            "description": "Agile but not really! This slightly decreases productivity (-5%) but helps sales (+10%)!",
+            "owned": false,
+            "cost": 75000,
+            "rate": {
+                "consultants": 0.95,
+                "sales": 1.1,
+                "clicking": 1
+            }
+        },
+        "salesTraining": {
+            "id": "salesTraining",
+            "name": "Sales Training",
+            "description": "This teaches your sales staff some new techniques (+5%).",
+            "owned": false,
+            "cost": 250000,
+            "rate": {
+                "consultants": 1,
+                "sales": 1.05,
+                "clicking": 1.05
             }
         },
         "outlookUpgrade": {
@@ -88,18 +148,18 @@
             "name": "Outlook",
             "description": "This enables you to progress your project by your own effort by clicking the Outlook icon.",
             "owned": false,
-            "cost": 5000
+            "cost": 500000
         },
-        "waterScrum": {
-            "id": "waterScrum",
-            "name": "Water-Scrum",
-            "description": "Agile but not really! This slightly decreases productivity (-10%) but helps sales (+25%)!",
+        "newWebsite": {
+            "id": "newWebsite",
+            "name": "New Website",
+            "description": "The new website increases sales (+5%).",
             "owned": false,
-            "cost": 15000,
+            "cost": 1000000,
             "rate": {
-                "consultants": 0.9,
-                "sales": 1.25,
-                "clicking": 1
+                "consultants": 1,
+                "sales": 1.05,
+                "clicking": 1.05
             }
         },
         "powerpointUpgrade": {
@@ -107,14 +167,14 @@
             "name": "Powerpoint",
             "description": "This enables you to progress your project by your own effort by clicking the Powerpoint icon.",
             "owned": false,
-            "cost": 50000
+            "cost": 5000000
         },
         "excelUpgrade": {
             "id": "excelUpgrade",
             "name": "Excel",
             "description": "This enables you to progress your project by your own effort by clicking the Excel icon.",
             "owned": false,
-            "cost": 500000
+            "cost": 50000000
         }
     },
     "clicking": {
@@ -148,6 +208,359 @@
             "animationCyclesLeft": 0,
             "newAnimation": false,
             "glowCycles": 0
+        }
+    },
+    "achievements": {
+        "clicks": {
+            "current": 0,
+            "tooltip": "You managed to click {THRESHOLD} times!",
+            "1": {
+                "id": "beginner",
+                "threshold": 1,
+                "unlocked": false
+            },
+            "2": {
+                "id": "common",
+                "threshold": 50,
+                "unlocked": false
+            },
+            "3": {
+                "id": "uncommon",
+                "threshold": 500,
+                "unlocked": false
+            },
+            "4": {
+                "id": "rare",
+                "threshold": 5000,
+                "unlocked": false
+            },
+            "5": {
+                "id": "epic",
+                "threshold": 50000,
+                "unlocked": false
+            }, 
+            "6": {
+                "id": "legendary",
+                "threshold": 500000,
+                "unlocked": false
+            },
+            "7": {
+                "id": "god",
+                "threshold": 1000000,
+                "unlocked": false
+            }
+        },
+        "totalEarned": {
+            "current": 0,
+            "tooltip": "You managed to earn {THRESHOLD}€ throughout the game!",
+            "1": {
+                "id": "beginner",
+                "threshold": 100000,
+                "unlocked": false
+            },
+            "2": {
+                "id": "common",
+                "threshold": 1000000,
+                "unlocked": false
+            },
+            "3": {
+                "id": "uncommon",
+                "threshold": 10000000,
+                "unlocked": false
+            },
+            "4": {
+                "id": "rare",
+                "threshold": 100000000,
+                "unlocked": false
+            }, 
+            "5": {
+                "id": "epic",
+                "threshold": 1000000000,
+                "unlocked": false
+            }, 
+            "6": {
+                "id": "legendary",
+                "threshold": 10000000000,
+                "unlocked": false
+            },
+            "7": {
+                "id": "god",
+                "threshold": 100000000000,
+                "unlocked": false
+            }
+        },
+        "balance": {
+            "current": 0,
+            "tooltip": "You managed to accumulated {THRESHOLD}€ at one point the game!",
+            "1": {
+                "id": "beginner",
+                "threshold": 5000,
+                "unlocked": false
+            }, 
+            "2": {
+                "id": "common",
+                "threshold": 50000,
+                "unlocked": false
+            }, 
+            "3": {
+                "id": "uncommon",
+                "threshold": 500000,
+                "unlocked": false
+            },         
+            "4": {
+                "id": "rare",
+                "threshold": 5000000,
+                "unlocked": false
+            }, 
+            "5": {
+                "id": "epic",
+                "threshold": 50000000,
+                "unlocked": false
+            }, 
+            "6": {
+                "id": "legendary",
+                "threshold": 500000000,
+                "unlocked": false
+            }, 
+            "7": {
+                "id": "god",
+                "threshold": 5000000000,
+                "unlocked": false
+            }
+        },
+        "projects": {
+            "current": 0,
+            "tooltip": "You managed to finish {THRESHOLD} projects throughout the game!",
+            "1": {
+                "id": "beginner",
+                "threshold": 5,
+                "unlocked": false
+            }, 
+            "2": {
+                "id": "common",
+                "threshold": 25,
+                "unlocked": false
+            },
+            "3": {
+                "id": "uncommon",
+                "threshold": 250,
+                "unlocked": false
+            }, 
+            "4": {
+                "id": "rare",
+                "threshold": 2500,
+                "unlocked": false
+            },
+            "5": {
+                "id": "epic",
+                "threshold": 25000,
+                "unlocked": false
+            },
+            "6": {
+                "id": "legendary",
+                "threshold": 100000,
+                "unlocked": false
+            },
+            "7": {
+                "id": "god",
+                "threshold": 500000,
+                "unlocked": false
+            }
+        },        
+        "progress": {
+            "current": 0,
+            "tooltip": "You managed to finish projects with a total effort of {THRESHOLD}!",
+            "1": {
+                "id": "beginner",
+                "threshold": 100000,
+                "unlocked": false
+            }, 
+            "2": {
+                "id": "common",
+                "threshold": 1000000,
+                "unlocked": false
+            },
+            "3": {
+                "id": "uncommon",
+                "threshold": 10000000,
+                "unlocked": false
+            }, 
+            "4": {
+                "id": "rare",
+                "threshold": 100000000,
+                "unlocked": false
+            },
+            "5": {
+                "id": "epic",
+                "threshold": 1000000000,
+                "unlocked": false
+            },
+            "6": {
+                "id": "legendary",
+                "threshold": 10000000000,
+                "unlocked": false
+            },
+            "7": {
+                "id": "god",
+                "threshold": 100000000000,
+                "unlocked": false
+            }
+        },
+        "consultants": {
+            "current": 0,
+            "tooltip": "You recruited {THRESHOLD} consultant(s) throughout the game!",
+            "1": {
+                "id": "beginner",
+                "threshold": 1,
+                "unlocked": false
+            },
+            "2": {
+                "id": "common",
+                "threshold": 5,
+                "unlocked": false
+            },
+            "3": {
+                "id": "uncommon",
+                "threshold": 10,
+                "unlocked": false
+            },
+            "4": {
+                "id": "rare",
+                "threshold": 50,
+                "unlocked": false
+            }, 
+            "5": {
+                "id": "epic",
+                "threshold": 100,
+                "unlocked": false
+            }, 
+            "6": {
+                "id": "legendary",
+                "threshold": 500,
+                "unlocked": false
+            },
+            "7": {
+                "id": "god",
+                "threshold": 1000,
+                "unlocked": false
+            }
+        },
+        "sales": {
+            "current": 0,
+            "tooltip": "You recruited {THRESHOLD} person/people into your sales staff!",
+            "1": {
+                "id": "beginner",
+                "threshold": 1,
+                "unlocked": false
+            },
+            "2": {
+                "id": "common",
+                "threshold": 2,
+                "unlocked": false
+            },
+            "3": {
+                "id": "uncommon",
+                "threshold": 3,
+                "unlocked": false
+            },
+            "4": {
+                "id": "rare",
+                "threshold": 5,
+                "unlocked": false
+            },
+            "5": {
+                "id": "epic",
+                "threshold": 8,
+                "unlocked": false
+            },
+            "6": {
+                "id": "legendary",
+                "threshold": 13,
+                "unlocked": false
+            },
+            "7": {
+                "id": "god",
+                "threshold": 21,
+                "unlocked": false
+            }
+        },
+        "upgrades": {
+            "current": 0,
+            "tooltip": "You bought {THRESHOLD} upgrade(s) throughout the game!",
+            "1": {
+                "id": "beginner",
+                "threshold": 1,
+                "unlocked": false
+            }, 
+            "2": {
+                "id": "common",
+                "threshold": 2,
+                "unlocked": false
+            },
+            "3": {
+                "id": "uncommon",
+                "threshold": 3,
+                "unlocked": false
+            },
+            "4": {
+                "id": "rare",
+                "threshold": 5,
+                "unlocked": false
+            },
+            "5": {
+                "id": "epic",
+                "threshold": 8,
+                "unlocked": false
+            },
+            "6": {
+                "id": "legendary",
+                "threshold": 13,
+                "unlocked": false
+            },
+            "7": {
+                "id": "god",
+                "threshold": "all",
+                "unlocked": false
+            }
+        },
+        "achievements": {
+            "current": 0,
+            "tooltip": "You earned {THRESHOLD} achievement(s) throughout the game!",
+            "1": {
+                "id": "beginner",
+                "threshold": 1,
+                "unlocked": false
+            },
+            "2": {
+                "id": "common",
+                "threshold": 10,
+                "unlocked": false
+            },
+            "3": {
+                "id": "uncommon",
+                "threshold": 20,
+                "unlocked": false
+            },
+            "4": {
+                "id": "rare",
+                "threshold": 30,
+                "unlocked": false
+            }, 
+            "5": {
+                "id": "epic",
+                "threshold": 40,
+                "unlocked": false
+            }, 
+            "6": {
+                "id": "legendary",
+                "threshold": 50,
+                "unlocked": false
+            },
+            "7": {
+                "id": "god",
+                "threshold": "all",
+                "unlocked": false
+            }
         }
     }
 }

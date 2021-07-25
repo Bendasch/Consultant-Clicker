@@ -15,6 +15,7 @@
             <button id="statsTab" class="tablinks inactive">Stats</button>
             <button id="staffTab" class="tablinks inactive">Staff</button>
             <button id="upgradeTab" class="tablinks inactive">Upgrades</button>
+            <button id="achievementTab" class="tablinks inactive">Achievements</button>
             <button id="logTab" class="tablinks inactive">Log</button>
             <button id="settingsTab" class="tablinks inactive">
                 <img src="./img/cog.png"></img>
@@ -29,188 +30,276 @@
                 <div id="stats" class="tabcontent"> 
 
                     <h1>Stats</h1>
+                    <div class="contentWrapper">                            
+                        <div class="statTable">
+                            <div class="statRow">
+                                <div class="statsLabel">
+                                    Balance
+                                </div>
+                                <div class="statsValue">
+                                    <p id="currentBalance"></p>
+                                </div>
+                            </div>
+            
+                            <div class="statRow">
+                                <div class="statsLabel">
+                                    Earnings since start
+                                </div>
+                                <div class="statsValue">
+                                    <p id="totalEarnings"></p>
+                                </div>
+                            </div>
+            
+                            <div class="statRow">
+                                <div class="statsLabel">
+                                    Progress per second
+                                </div>
+                                <div class="statsValue">
+                                    <p id="rate"></p>
+                                </div>
+                            </div>
+            
+                            
+                            <div class="statRow">
+                                <div class="statsLabel">
+                                    Total sales chance
+                                </div>
+                                <div class="statsValue">
+                                    <p id="totalSalesRate"></p>
+                                </div>
+                            </div>                        
+                            
+                            <div class="statRow">
+                                <div class="statsLabel">
+                                    Progress per click
+                                </div>
+                                <div class="statsValue">
+                                    <p id="clickingRate"></p>
+                                </div>
+                            </div>                        
+                            
+                            <div class="statRow">
+                                <div class="statsLabel">
+                                    Progress by clicking since start
+                                </div>
+                                <div class="statsValue">
+                                    <p id="totalClickProgress"></p>
+                                </div>
+                            </div>                        
+                            
+                            <div class="statRow">
+                                <div class="statsLabel">
+                                    Total clicks since start
+                                </div>
+                                <div class="statsValue">
+                                    <p id="totalClicks"></p>
+                                </div>
+                            </div>
 
-                    <div class="statTable">
-                        <div class="statRow">
-                            <div class="statsLabel">
-                                Balance
+                            <div class="statRow">
+                                <div class="statsLabel">
+                                    Projects finished since start
+                                </div>
+                                <div class="statsValue">
+                                    <p id="totalProjectsFinished"></p>
+                                </div>
                             </div>
-                            <div class="statsValue">
-                                <p id="currentBalance"></p>
-                            </div>
-                        </div>
-        
-                        <div class="statRow">
-                            <div class="statsLabel">
-                                Earnings since start
-                            </div>
-                            <div class="statsValue">
-                                <p id="totalEarnings"></p>
-                            </div>
-                        </div>
-        
-                        <div class="statRow">
-                            <div class="statsLabel">
-                                Progress per second
-                            </div>
-                            <div class="statsValue">
-                                <p id="rate"></p>
-                            </div>
-                        </div>
-        
-                        
-                        <div class="statRow">
-                            <div class="statsLabel">
-                                Total sales chance
-                            </div>
-                            <div class="statsValue">
-                                <p id="totalSalesRate"></p>
-                            </div>
-                        </div>                        
-                        
-                        <div class="statRow">
-                            <div class="statsLabel">
-                                Progress per click
-                            </div>
-                            <div class="statsValue">
-                                <p id="clickingRate"></p>
-                            </div>
-                        </div>                        
-                        
-                        <div class="statRow">
-                            <div class="statsLabel">
-                                Progress by clicking since start
-                            </div>
-                            <div class="statsValue">
-                                <p id="totalClickProgress"></p>
-                            </div>
-                        </div>                        
-                        
-                        <div class="statRow">
-                            <div class="statsLabel">
-                                Total clicks since start
-                            </div>
-                            <div class="statsValue">
-                                <p id="totalClicks"></p>
-                            </div>
-                        </div>
 
-                        <div class="statRow">
-                            <div class="statsLabel">
-                                Projects finished since start
-                            </div>
-                            <div class="statsValue">
-                                <p id="totalProjectsFinished"></p>
+                            <div class="statRow">
+                                <div class="statsLabel">
+                                    Total effort of finished projects
+                                </div>
+                                <div class="statsValue">
+                                    <p id="totalProgress"></p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div id="staff" class="tabcontent">                 
-                    <h1>Staff</h1>
-                    <div class="resourceTable">
-                        <div class="resourceRow">
-                            <div class="resourceCount" id="salesPersonCount">
-                                <p></p>
-                            </div>
-                            <div class="resourceRate" id="salesPersonRate">
-                                <p></p>
-                            </div>
-                            <div class="resourceName">
-                                <p>Sales person</p>
-                            </div>
-                            <div class="resourceButton" id="salesPersonButton">
-                                <div class="buttonNumber">
-                                    <b>+1</b>
+                    <h1>Staff</h1>                    
+                    <div class="contentWrapper">
+                        <div class="resourceTable">
+                            <div class="resourceRow">
+                                <div class="resourceCount" id="salesPersonCount">
+                                    <p></p>
                                 </div>
-                                <div class="buttonCost">
-                                    <p id="salesPersonCost"></p>
+                                <div class="resourceRate" id="salesPersonRate">
+                                    <p></p>
+                                </div>
+                                <div class="resourceName">
+                                    <p>Sales person</p>
+                                </div>
+                                <div class="resourceButton" id="salesPersonButton">
+                                    <div class="buttonNumber">
+                                        <b>+1</b>
+                                    </div>
+                                    <div class="buttonCost">
+                                        <p id="salesPersonCost"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="resourceRow">
+                                <div class="resourceCount" id="juniorCount">
+                                    <p></p>
+                                </div>
+                                <div class="resourceRate" id="juniorRate">
+                                    <p></p>
+                                </div>
+                                <div class="resourceName">
+                                    <p>Junior Consultant</p>
+                                </div>
+                                <div class="resourceButton" id="juniorButton">
+                                    <div class="buttonNumber">
+                                        <b>+1</b>
+                                    </div>
+                                    <div class="buttonCost">
+                                        <p id="juniorCost"></p>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <div class="resourceRow">
+                                <div class="resourceCount" id="consultantCount">
+                                    <p></p>
+                                </div>
+                                <div class="resourceRate" id="consultantRate">
+                                    <p></p>
+                                </div>
+                                <div class="resourceName">
+                                    <p>Consultant</p>
+                                </div>
+                                <div class="resourceButton" id="consultantButton">
+                                    <div class="buttonNumber">
+                                        <b>+1</b>
+                                    </div>
+                                    <div class="buttonCost">
+                                        <p id="consultantCost"></p>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <div class="resourceRow">
+                                <div class="resourceCount" id="seniorCount">
+                                    <p></p>
+                                </div>
+                                <div class="resourceRate" id="seniorRate">
+                                    <p></p>
+                                </div>
+                                <div class="resourceName">
+                                    <p>Senior Consultant</p>
+                                </div>
+                                <div class="resourceButton" id="seniorButton">
+                                    <div class="buttonNumber">
+                                        <b>+1</b>
+                                    </div>
+                                    <div class="buttonCost">
+                                        <p id="seniorCost"></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        
-                        <div class="resourceRow">
-                            <div class="resourceCount" id="juniorCount">
-                                <p></p>
-                            </div>
-                            <div class="resourceRate" id="juniorRate">
-                                <p></p>
-                            </div>
-                            <div class="resourceName">
-                                <p>Junior Consultant</p>
-                            </div>
-                            <div class="resourceButton" id="juniorButton">
-                                <div class="buttonNumber">
-                                    <b>+1</b>
-                                </div>
-                                <div class="buttonCost">
-                                    <p id="juniorCost"></p>
-                                </div>
-                            </div>
-                        </div>
-    
-                        <div class="resourceRow">
-                            <div class="resourceCount" id="consultantCount">
-                                <p></p>
-                            </div>
-                            <div class="resourceRate" id="consultantRate">
-                                <p></p>
-                            </div>
-                            <div class="resourceName">
-                                <p>Consultant</p>
-                            </div>
-                            <div class="resourceButton" id="consultantButton">
-                                <div class="buttonNumber">
-                                    <b>+1</b>
-                                </div>
-                                <div class="buttonCost">
-                                    <p id="consultantCost"></p>
-                                </div>
-                            </div>
-                        </div>
-    
-                        <div class="resourceRow">
-                            <div class="resourceCount" id="seniorCount">
-                                <p></p>
-                            </div>
-                            <div class="resourceRate" id="seniorRate">
-                                <p></p>
-                            </div>
-                            <div class="resourceName">
-                                <p>Senior Consultant</p>
-                            </div>
-                            <div class="resourceButton" id="seniorButton">
-                                <div class="buttonNumber">
-                                    <b>+1</b>
-                                </div>
-                                <div class="buttonCost">
-                                    <p id="seniorCost"></p>
-                                </div>
-                            </div>
-                        </div>
-    
                     </div>
                 </div>
                 
                 <div id="upgrades" class="tabcontent">                   
-                    <h1>Upgrades</h1>
-                    <div class="upgradeTable" id="upgradeTable">
+                    <h1>Upgrades</h1>      
+                    <div class="contentWrapper">
+                        <div class="upgradeTable" id="upgradeTable">
+                        </div>
                     </div>
                 </div>
                 
+                <div id="achievements" class="tabcontent"> 
+                    <h1>Achievements</h1>                    
+                    <div class="contentWrapper">
+                        <div id="achievementBox">
+                            <img src="./img/achievements/clicks/Beginner.png" id="ach-clicks-beginner" class="achievement"/>
+                            <img src="./img/achievements/clicks/Common.png" id="ach-clicks-common" class="achievement"/>
+                            <img src="./img/achievements/clicks/Uncommon.png" id="ach-clicks-uncommon" class="achievement"/>
+                            <img src="./img/achievements/clicks/Rare.png" id="ach-clicks-rare" class="achievement"/>
+                            <img src="./img/achievements/clicks/Epic.png" id="ach-clicks-epic" class="achievement"/>
+                            <img src="./img/achievements/clicks/Legendary.png" id="ach-clicks-legendary" class="achievement"/>
+                            <img src="./img/achievements/clicks/God.png" id="ach-clicks-god" class="achievement"/>
+                            <img src="./img/achievements/total-earned/Beginner.png" id="ach-totalEarned-beginner" class="achievement"/>
+                            <img src="./img/achievements/total-earned/Common.png" id="ach-totalEarned-common" class="achievement"/>
+                            <img src="./img/achievements/total-earned/Uncommon.png" id="ach-totalEarned-uncommon" class="achievement"/>
+                            <img src="./img/achievements/total-earned/Rare.png" id="ach-totalEarned-rare" class="achievement"/>
+                            <img src="./img/achievements/total-earned/Epic.png" id="ach-totalEarned-epic" class="achievement"/>
+                            <img src="./img/achievements/total-earned/Legendary.png" id="ach-totalEarned-legendary" class="achievement"/>
+                            <img src="./img/achievements/total-earned/God.png" id="ach-totalEarned-god" class="achievement"/>
+                            <img src="./img/achievements/balance/Beginner.png" id="ach-balance-beginner" class="achievement"/>
+                            <img src="./img/achievements/balance/Common.png" id="ach-balance-common" class="achievement"/>
+                            <img src="./img/achievements/balance/Uncommon.png" id="ach-balance-uncommon" class="achievement"/>
+                            <img src="./img/achievements/balance/Rare.png" id="ach-balance-rare" class="achievement"/>
+                            <img src="./img/achievements/balance/Epic.png" id="ach-balance-epic" class="achievement"/>
+                            <img src="./img/achievements/balance/Legendary.png" id="ach-balance-legendary" class="achievement"/>
+                            <img src="./img/achievements/balance/God.png" id="ach-balance-god" class="achievement"/>
+                            <img src="./img/achievements/projects/Beginner.png" id="ach-projects-beginner" class="achievement"/>
+                            <img src="./img/achievements/projects/Common.png" id="ach-projects-common" class="achievement"/>
+                            <img src="./img/achievements/projects/Uncommon.png" id="ach-projects-uncommon" class="achievement"/>
+                            <img src="./img/achievements/projects/Rare.png" id="ach-projects-rare" class="achievement"/>
+                            <img src="./img/achievements/projects/Epic.png" id="ach-projects-epic" class="achievement"/>
+                            <img src="./img/achievements/projects/Legendary.png" id="ach-projects-legendary" class="achievement"/>
+                            <img src="./img/achievements/projects/God.png" id="ach-projects-god" class="achievement"/>
+                            <img src="./img/achievements/progress/Beginner.png" id="ach-progress-beginner" class="achievement"/>
+                            <img src="./img/achievements/progress/Common.png" id="ach-progress-common" class="achievement"/>
+                            <img src="./img/achievements/progress/Uncommon.png" id="ach-progress-uncommon" class="achievement"/>
+                            <img src="./img/achievements/progress/Rare.png" id="ach-progress-rare" class="achievement"/>
+                            <img src="./img/achievements/progress/Epic.png" id="ach-progress-epic" class="achievement"/>
+                            <img src="./img/achievements/progress/Lgendary.png" id="ach-progress-legendary" class="achievement"/>
+                            <img src="./img/achievements/progress/God.png" id="ach-progress-god" class="achievement"/>
+                            <img src="./img/achievements/consultants/Beginner.png" id="ach-consultants-beginner" class="achievement"/>
+                            <img src="./img/achievements/consultants/Common.png" id="ach-consultants-common" class="achievement"/>
+                            <img src="./img/achievements/consultants/Uncommon.png" id="ach-consultants-uncommon" class="achievement"/>
+                            <img src="./img/achievements/consultants/Rare.png" id="ach-consultants-rare" class="achievement"/>
+                            <img src="./img/achievements/consultants/Epic.png" id="ach-consultants-epic" class="achievement"/>
+                            <img src="./img/achievements/consultants/Legendary.png" id="ach-consultants-legendary" class="achievement"/>
+                            <img src="./img/achievements/consultants/God.png" id="ach-consultants-god" class="achievement"/>
+                            <img src="./img/achievements/sales/Beginner.png" id="ach-sales-beginner" class="achievement"/>
+                            <img src="./img/achievements/sales/Common.png" id="ach-sales-common" class="achievement"/>
+                            <img src="./img/achievements/sales/Uncommon.png" id="ach-sales-uncommon" class="achievement"/>
+                            <img src="./img/achievements/sales/Rare.png" id="ach-sales-rare" class="achievement"/>
+                            <img src="./img/achievements/sales/Epic.png" id="ach-sales-epic" class="achievement"/>
+                            <img src="./img/achievements/sales/Legendary.png" id="ach-sales-legendary" class="achievement"/>
+                            <img src="./img/achievements/sales/God.png" id="ach-sales-god" class="achievement"/>
+                            <img src="./img/achievements/upgrades/Beginner.png" id="ach-upgrades-beginner" class="achievement"/>
+                            <img src="./img/achievements/upgrades/Common.png" id="ach-upgrades-common" class="achievement"/>
+                            <img src="./img/achievements/upgrades/Uncommon.png" id="ach-upgrades-uncommon" class="achievement"/>
+                            <img src="./img/achievements/upgrades/Rare.png" id="ach-upgrades-rare" class="achievement"/>
+                            <img src="./img/achievements/upgrades/Epic.png" id="ach-upgrades-epic" class="achievement"/>
+                            <img src="./img/achievements/upgrades/Legendary.png" id="ach-upgrades-legendary" class="achievement"/>
+                            <img src="./img/achievements/upgrades/God.png" id="ach-upgrades-god" class="achievement"/>
+                            <img src="./img/achievements/achievements/Beginner.png" id="ach-achievements-beginner" class="achievement"/>
+                            <img src="./img/achievements/achievements/Common.png" id="ach-achievements-common" class="achievement"/>
+                            <img src="./img/achievements/achievements/Uncommon.png" id="ach-achievements-uncommon" class="achievement"/>
+                            <img src="./img/achievements/achievements/Rare.png" id="ach-achievements-rare" class="achievement"/>
+                            <img src="./img/achievements/achievements/Epic.png" id="ach-achievements-epic" class="achievement"/>
+                            <img src="./img/achievements/achievements/Legendary.png" id="ach-achievements-legendary" class="achievement"/>
+                            <img src="./img/achievements/achievements/God.png" id="ach-achievements-god" class="achievement"/>
+                        </div>
+                    </div>
+                </div>
+
                 <div id="log" class="tabcontent">                                       
-                    <h1>Log</h1>
-                    <div id="logBox"></div>
+                    <h1>Log</h1>          
+                    <div class="contentWrapper">
+                        <div id="logBox"></div>
+                    </div>
                 </div>
 
                 <div id="settings" class="tabcontent">
-                    <h1>Settings</h1>
-                    <ul>
-                        <li id="resetGame">
-                            <img src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png"></img>
-                            Reset the game!
-                        </li>
-                    </ul>
+                    <h1>Settings</h1>                              
+                    <div id="settingsContent" class="contentWrapper">
+                        <ul>
+                            <li id="resetGame">
+                                <img src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png"></img>
+                                Reset the game!
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
@@ -246,11 +335,11 @@
                 </div>
             </div> 
         </div>    
-
+        
         <div id="clickProgressContainer"></div>
         <div id="projectBalanceContainer"></div>
 
-        <script type="module" src="./main/main.js" defer></script>
+        <script type="module" src="./main/index.js" defer></script>
     </body>
 
 </html>

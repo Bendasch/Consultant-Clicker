@@ -20,21 +20,19 @@ export const updateProjects = (tick) => {
   
     // update the earnings if the project is done
     if (oProject.progress >= oProject.effort) {
-      addToBalance(oProject.value);
-  
-      startAddToBalanceAnimation(oProject.id, oProject.value);
-  
-      addFinishedProject();
-  
-      removeProject(oProject.id);
+      addToBalance(oProject.value)  
+      startAddToBalanceAnimation(oProject.id, oProject.value)  
+      addFinishedProject(oProject.effort)      
+      removeProject(oProject.id)
     }
 }
   
-const addFinishedProject = () => {
+const addFinishedProject = (effort) => {
     var body = $("body");
     var project = body.data("projectMeta");
     project.totalProjectsFinished += 1;
     body.data("project", project);
+    body.data("totalProgress", body.data("totalProgress") + effort)
 }
   
 export const getActiveProject = (projects) => {

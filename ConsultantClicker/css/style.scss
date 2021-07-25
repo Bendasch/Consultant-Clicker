@@ -289,9 +289,20 @@ html {
               padding: 5px;            
 
               .achievement {
-                width: 3.75rem;
-                height: 3.75rem;
                 margin: 5px;
+                height: 0px;
+                width: 0px;
+                padding: 30px;
+                background: url('../img/achievements/locked.png') ;
+                background-size: auto;
+                opacity: 40%;
+
+                &.unlocked {
+                  width: 3.75rem;
+                  height: 3.75rem;
+                  padding: 0px;
+                  opacity: 100%;
+                }
               }
             }
 
@@ -304,21 +315,33 @@ html {
               padding: 5px;
             }
 
-            &#settings {
+            &#settingsContent {
               ul {
                 li {
                   display: inline-block;
                   line-height: 1em;
                   img {
                     vertical-align: middle;
-                    width: 1em;
+                    max-width: 1em;
                     height: auto;
                     cursor: pointer;
+                    margin: 5px;
                   }
                 }
               }
             }
           }
+        }
+
+        .tooltip {
+          position: absolute;
+          height: auto;
+          width: auto;
+          background-color: $lightgray;
+          color: $darkgray;
+          border-radius: 0.25em;
+          pointer-events: none;
+          padding: 0.25em
         }
       }    
 
@@ -381,6 +404,7 @@ html {
           position: relative;
           text-align: center;
           cursor: pointer;
+          border-radius: 1em 1em;
 
           p {
             position: relative;

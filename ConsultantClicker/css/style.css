@@ -238,9 +238,19 @@ html body #canvas #menu .tabcontent .contentWrapper #achievementBox {
   padding: 5px;
 }
 html body #canvas #menu .tabcontent .contentWrapper #achievementBox .achievement {
+  margin: 5px;
+  height: 0px;
+  width: 0px;
+  padding: 30px;
+  background: url("../img/achievements/locked.png");
+  background-size: auto;
+  opacity: 40%;
+}
+html body #canvas #menu .tabcontent .contentWrapper #achievementBox .achievement.unlocked {
   width: 3.75rem;
   height: 3.75rem;
-  margin: 5px;
+  padding: 0px;
+  opacity: 100%;
 }
 html body #canvas #menu .tabcontent .contentWrapper #logBox {
   box-sizing: border-box;
@@ -250,15 +260,26 @@ html body #canvas #menu .tabcontent .contentWrapper #logBox {
   border: 1px solid #ccc;
   padding: 5px;
 }
-html body #canvas #menu .tabcontent .contentWrapper#settings ul li {
+html body #canvas #menu .tabcontent .contentWrapper#settingsContent ul li {
   display: inline-block;
   line-height: 1em;
 }
-html body #canvas #menu .tabcontent .contentWrapper#settings ul li img {
+html body #canvas #menu .tabcontent .contentWrapper#settingsContent ul li img {
   vertical-align: middle;
-  width: 1em;
+  max-width: 1em;
   height: auto;
   cursor: pointer;
+  margin: 5px;
+}
+html body #canvas #menu .tooltip {
+  position: absolute;
+  height: auto;
+  width: auto;
+  background-color: #ccc;
+  color: #2d2d2d;
+  border-radius: 0.25em;
+  pointer-events: none;
+  padding: 0.25em;
 }
 html body #canvas #workbar {
   margin-top: 20px;
@@ -324,6 +345,7 @@ html body #canvas #projectBar .project {
   position: relative;
   text-align: center;
   cursor: pointer;
+  border-radius: 1em 1em;
 }
 html body #canvas #projectBar .project p {
   position: relative;

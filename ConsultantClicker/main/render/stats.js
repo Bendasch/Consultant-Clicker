@@ -18,15 +18,22 @@ export function renderStats() {
     $("#clickingRate").text(
         FormatterDec.format(oClicking.value)
     );
+    
     $("#totalClickProgress").text(
         FormatterDec.format(oClicking.totalProgress)
     );
+    
     $("#totalClicks").text(
         FormatterDec.format(oClicking.clicks)
     );
 
     $("#totalProjectsFinished").text(
         FormatterDec.format(body.data("projectMeta").totalProjectsFinished)
+    );
+
+        
+    $("#totalProgress").text(
+        FormatterDec.format(body.data("totalProgress"))
     );
 }
 

@@ -18,6 +18,7 @@ export const initializeData = (json) => {
 
   body.data("totalEarnings", json.totalEarnings);
   body.data("currentBalance", json.currentBalance);
+  body.data("totalProgress", json.totalProgress);
 
   body.data("totalRate", json.totalRate);
   body.data("totalSalesRate", json.totalSalesRate);
@@ -33,6 +34,7 @@ export const initializeData = (json) => {
   
   body.data("upgrades", json.upgrades);
   body.data("buttons", json.buttons);
+  body.data("achievements", json.achievements);
 }
 
 const initialieProjectMeta = (projectMeta) => {

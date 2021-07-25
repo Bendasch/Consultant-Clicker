@@ -1,7 +1,11 @@
 import { render } from './render/main.js'
 import { gameLogic } from './logic/main.js'
 import { initializeData, saveGame } from './logic/infra.js'
-import { initializeUpgrades, initializeButtons } from './render/infra.js'
+import { 
+  initializeUpgrades, 
+  initializeButtons, 
+  initializeAchievements 
+} from './render/infra.js'
 import { sleep, setTime } from './utils/utils.js'
 import { logAction } from './render/log.js'
 import { destroyAllProjects } from './render/project.js'
@@ -23,6 +27,7 @@ export const initialize = () => {
     const p = new Promise((resolve, reject) => {  
       initializeData(JSON.parse(json)) 
       initializeUpgrades()  
+      initializeAchievements()
       welcomeMessage(false)  
       render()
       resolve() 

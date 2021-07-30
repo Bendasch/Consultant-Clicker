@@ -37,7 +37,7 @@ export const updateAchievements = (cycle) => {
 }
 
 const getNoficationText = (achievementGroup, level) => {
-    return `You reached ${achievementGroup.name}-level ${level}. Check the achievement tab.`
+    return `You reached ${achievementGroup.name}-level ${level}.`
 }
 
 const meetsThreshold = (type, threshold) => {

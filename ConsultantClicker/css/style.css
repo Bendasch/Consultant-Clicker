@@ -46,6 +46,14 @@ html body #navbar button.inactive:hover {
   background-color: #aaa;
   color: #2d2d2d;
 }
+html body #navbar button.disabled {
+  background-color: #4d4a4a;
+  color: #2d2d2d;
+}
+html body #navbar button.disabled:hover {
+  color: #2d2d2d;
+  background-color: #4d4a4a;
+}
 html body #navbar button#logTab {
   display: none;
 }

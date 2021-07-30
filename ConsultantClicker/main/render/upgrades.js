@@ -53,4 +53,3 @@ export const addUpgradeRow = (upgrade) => {
     $("#" + upgrade.id + "-description").append('<p>' + upgrade.description + '</p>');
     $("#" + upgrade.id + "-cost").append('<p>' + Formatter.format(upgrade.cost) + '</p>');
 }
-

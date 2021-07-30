@@ -1,6 +1,7 @@
 import { addToBalance, getActiveProject } from './project.js'
 import { logAction } from '../render/log.js'
 import { showNotification } from '../render/notifications.js'
+import { enableStaffTab } from '../render/navbar.js'
 
 export const buyUpgrade = (upgradeId) => {
 
@@ -15,6 +16,10 @@ export const buyUpgrade = (upgradeId) => {
   logAction("Bought upgrade '" + upgrades[upgradeId].name + "'.")
 
   if (upgradeId=="wordUpgrade") wordNotification()
+  if (upgradeId=="staffUpgrade") {
+    enableStaffTab()
+    staffNotification()
+  }
 } 
 
 export const officeButtonOwned = (buttonId) => {
@@ -39,4 +44,15 @@ const wordNotification = () => {
     main = "Select your project to activate it. Then press the Word button to progress it."
   }
   showNotification(header, main)
+}
+
+const staffNotification = () => {
+  const header = 'Staff Upgrade activated!'
+  var main = "In the 'Staff' tab, you can now recruit employees who will make you rich."
+  showNotification(header, main)
+}
+
+export const isUpgradeOwned = (upgradeId) => {
+  const upgrades = $("body").data("upgrades")
+  return upgrades[upgradeId].owned
 }

@@ -39,7 +39,7 @@ const findProjectNotification = () => {
 
 const suggestShopNotification = () => {
   const header = 'Second project finished!'
-  const main = 'Check the "Staff" and "Upgrades" tabs in order to spend the money you earn.'
+  const main = `Check the 'Upgrades' tab in order to spend your money.`
   showNotification(header, main)
 }
 

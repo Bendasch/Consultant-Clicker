@@ -77,6 +77,13 @@
                 "clicking": 50
             }
         },
+        "staffUpgrade": {
+            "id": "staffUpgrade",
+            "name": "Staff",
+            "description": "This enables the 'Staff' tab where employees can be recruited.",
+            "owned": false,
+            "cost": 5000
+        },
         "secondMonitor": {
             "id": "secondMonitor",
             "name": "Second monitor",

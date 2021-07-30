@@ -112,6 +112,14 @@ html {
           }
         }
 
+        &.disabled {
+          background-color: $quitedarkgray;
+          color: $darkgray;
+          &:hover{ 
+            color: $darkgray;           
+            background-color: $quitedarkgray;}
+        }
+        
         &#logTab {
           display: none;
         }

@@ -1,10 +1,12 @@
+import { isUpgradeOwned } from '../logic/upgrades.js'
+
 export const bindTabButtons = () => {
-    $("#statsTab").unbind().click((event) => {toggleTab(event, "stats")});
-    $("#staffTab").unbind().click((event) => {toggleTab(event, "staff")});
-    $("#upgradeTab").unbind().click((event) => {toggleTab(event, "upgrades")});
-    $("#achievementTab").unbind().click((event) => {toggleTab(event, "achievements")});
-    $("#logTab").unbind().click((event) => {toggleTab(event, "log")})
-    $("#settingsTab").unbind().click((event) => {toggleTab(event, "settings")})
+  $("#upgradeTab").unbind().click((event) => {toggleTab(event, "upgrades")});
+  if(isUpgradeOwned("staffUpgrade")) enableStaffTab()
+  $("#statsTab").unbind().click((event) => {toggleTab(event, "stats")});
+  $("#achievementTab").unbind().click((event) => {toggleTab(event, "achievements")});
+  $("#logTab").unbind().click((event) => {toggleTab(event, "log")})
+  $("#settingsTab").unbind().click((event) => {toggleTab(event, "settings")})
 }
 
 const toggleTab = (event, tabId) => {
@@ -34,4 +36,10 @@ const toggleTab = (event, tabId) => {
     } else {
         menu.css("display", "none");
     }
+}
+
+export const enableStaffTab = () => {
+  var staffTab = $("#staffTab") 
+  staffTab.removeClass("disabled")
+  staffTab.unbind().click((event) => {toggleTab(event, "staff")})
 }

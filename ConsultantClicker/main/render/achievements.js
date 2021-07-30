@@ -41,7 +41,8 @@ const showTooltip = (event) => {
 const destroyTooltip = () => { 
     const tooltipId = "ach-tooltip"
     $(`#${tooltipId}`).empty()
-    document.getElementById(tooltipId).remove()
+    var tooltip = document.getElementById(tooltipId)
+    if (tooltip) tooltip.remove()
 }
 
 const setTooltip = (tooltipId, tooltip, X, Y) => {

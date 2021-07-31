@@ -103,18 +103,14 @@ const updateSalesRates = (activeUpgradeKeys=null) => {
         sales[salesId].rate = salesMember.baseRate
 
         activeUpgradeKeys.forEach(key => {
-        const upgrade = upgrades[key]  
-        if (upgrade.hasOwnProperty("rate")) {
-            sales[salesId].rate *= upgrade.rate.sales
-        }
+            const upgrade = upgrades[key]  
+            if (upgrade.hasOwnProperty("rate")) sales[salesId].rate *= upgrade.rate.sales
         })
     })
 
     var totalSalesFlatRate = activeUpgradeKeys.reduce( (total, key) => {
         const upgrade = upgrades[key]  
-        if (upgrade.hasOwnProperty("flat")) {
-        return total + upgrade.flat.sales
-        }
+        if (upgrade.hasOwnProperty("flat")) return total + upgrade.flat.sales
         return total
     }, 0)
 
@@ -122,6 +118,14 @@ const updateSalesRates = (activeUpgradeKeys=null) => {
         return total + sales[key].quantity * sales[key].rate
     }, totalSalesFlatRate)
 
+    // handle power-ups
+    const powerups = body.data("powerups")
+    Object.keys(powerups).forEach((key) => {
+        var powerup = powerups[key]
+        if ("salesboost" in powerup) totalSalesRate *= powerup["salesboost"]
+    })
+
+    // save the final results
     body.data("sales", sales)
     body.data("totalSalesRate", totalSalesRate)
     body.data("totalSalesFlatRate", totalSalesFlatRate)         

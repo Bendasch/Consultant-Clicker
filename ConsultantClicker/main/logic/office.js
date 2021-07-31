@@ -5,24 +5,49 @@ import { getProjectClickPending, setProjectClickPending, isProjectBufferFull } f
 
 export function officeClick(event, buttonId) {
 
-    triggerOfficeAnimation(buttonId)
-  
-    const body = $("body");
-    var clicking = body.data("clicking");
-    const project = getActiveProject(body.data("projects"));
-  
-    // if there is no project, try to find one 
-    if (project == undefined) {
-      
-      if (isProjectBufferFull()) return // unless the project buffer is full!
-      clickFindProject(event, buttonId, clicking)
-  
-    // otherwise progress the project
-    } else {
-      clickProgress(event, clicking)
-    }
+  triggerOfficeAnimation(buttonId)
+
+  switch(buttonId) {
+    case "word": wordClick(event); break
+    case "excel": excelClick(event); break
+    case "powerpoint": powerpointClick(event); break 
+    case "outlook": outlookClick(event); break
+  }
 }
-  
+
+const wordClick = (event) => {
+  const body = $("body");
+  var clicking = body.data("clicking");
+  const project = getActiveProject(body.data("projects"));
+
+  // if there is no project, try to find one 
+  if (project == undefined) {
+    
+    if (isProjectBufferFull()) return // unless the project buffer is full!
+    clickFindProject(event, "word", clicking)
+
+  // otherwise progress the project
+  } else {
+    clickProgress(event, clicking)
+  }
+}
+
+const excelClick = (event) => {
+  return
+}
+
+const powerpointClick = (event) => {
+  return
+}
+
+const outlookClick = () => {
+  const body = $("body")
+  const salesboost = body.data("upgrades").outlook.powerupValue
+  var powerups = body.data("powerups")
+  powerups["outlook"] = {"secondsleft": 30, "salesboost": salesboost}
+  body.data("powerups", powerups)
+}
+
 const clickFindProject = (event, buttonId, clicking) => {
 
   if (getProjectClickPending()) return

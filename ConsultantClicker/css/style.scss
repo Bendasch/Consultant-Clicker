@@ -317,6 +317,11 @@ html {
                   
                   &.disabled {
                     color: $lightgray;
+                    opacity: 90%;
+                    
+                    .upgradeCost {             
+                      color: $lightgray;
+                    }
                   }
                   
                   &.enabled {
@@ -523,26 +528,30 @@ html {
           .progressWrapper {
 
             position: absolute;
-            bottom: 0;
-            width: 95%;
-            height: 50%;
+            width: 100%;
+            height: 100%;
             text-align: center;
             box-sizing: border-box;
             z-index: 1;
+            margin: 0;
+            padding: 0;
+            bottom: 0;
 
             p {
-              bottom: 0;
+              position: absolute;
               width: 100%;
               font-size: calc(#{$project-fontsize} * 1.1);
               z-index: 10;
-              padding: 0.5vh;
-              margin: 0.25vh;
-              height: 45%;
+              padding: 0;
+              margin: 0;
+              bottom: 0.5em;
+              left: 0;
             }
 
             .progressBar {
-              bottom: 2vh;
-              height: 45%;
+              position: absolute;
+              border-radius: 1rem;
+              height: 100%;
               width:0%;
               z-index: 2;
             }

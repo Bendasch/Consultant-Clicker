@@ -196,7 +196,8 @@
             "unlocked": false,
             "animationCyclesLeft": 0,
             "newAnimation": false,
-            "glowCycles": 0
+            "glowCycles": 0,
+            "powerupValue": 1.5
         }
     },
     "achievements": {
@@ -570,5 +571,6 @@
             }
         }
     },
-    "notifications": {}
+    "notifications": {},
+    "powerups": {}
 }

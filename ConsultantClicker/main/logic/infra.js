@@ -37,4 +37,5 @@ export const initializeData = (json) => {
   body.data("buttons", json.buttons)
   body.data("achievements", json.achievements)
   body.data("notifications", json.notifications)
+  body.data("powerups", json.powerups)
 }

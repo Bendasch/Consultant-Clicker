@@ -5,8 +5,8 @@ export function renderStats() {
     const body = $( "body" );
 
     // earnings
-    $("#totalEarnings").text(Formatter.format(body.data("totalEarnings")));
-    $("#currentBalance").text(Formatter.format(body.data("currentBalance")));
+    $("#totalEarnings").text(FormatterNoDec.format(body.data("totalEarnings")));
+    $("#currentBalance").text(FormatterNoDec.format(body.data("currentBalance")));
 
     // total rates
     $("#rate").text(FormatterDec.format(body.data("totalRate")));  

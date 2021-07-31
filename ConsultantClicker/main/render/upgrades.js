@@ -1,4 +1,4 @@
-import { Formatter } from '../utils/utils.js'
+import { formatMillions, Formatter } from '../utils/utils.js'
 import { buyUpgrade } from '../logic/upgrades.js'
 
 export const renderUpgradeButtons = () => {
@@ -51,5 +51,5 @@ export const addUpgradeRow = (upgrade) => {
     // values
     $("#" + upgrade.id + "-name").append('<p>' + upgrade.name + '</p>');
     $("#" + upgrade.id + "-description").append('<p>' + upgrade.description + '</p>');
-    $("#" + upgrade.id + "-cost").append('<p>' + Formatter.format(upgrade.cost) + '</p>');
+    $("#" + upgrade.id + "-cost").append('<p>' + formatMillions(upgrade.cost) + '</p>');
 }

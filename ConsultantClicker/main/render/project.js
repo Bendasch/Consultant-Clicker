@@ -1,4 +1,4 @@
-import { Formatter, FormatterDec } from '../utils/utils.js'
+import { FormatterDec, FormatterNoDec} from '../utils/utils.js'
 import { projectClick } from '../logic/project.js'
 
 export const renderProjects = () => {
@@ -41,7 +41,7 @@ const renderProject = (oProject, width) => {
 
         // the details
         projectDiv.append('<p>' + oProject.name + '</p>');
-        projectDiv.append('<p>' + Formatter.format(oProject.value) + '</p>');
+        projectDiv.append('<p>' + FormatterNoDec.format(oProject.value) + '</p>');
 
         // the progress bar and prog + effort numbers
         var progressWrapper = $("<div id='" + projectId + "-progressWrapper' class='progressWrapper'></div>")

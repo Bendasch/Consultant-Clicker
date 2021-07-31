@@ -38,7 +38,7 @@ const showTooltip = (event) => {
     setTooltip(tooltipId, tooltip, X, Y)
 }
 
-const destroyTooltip = () => { 
+export const destroyTooltip = () => { 
     const tooltipId = "ach-tooltip"
     $(`#${tooltipId}`).empty()
     var tooltip = document.getElementById(tooltipId)

@@ -15,18 +15,19 @@ $notification: rgb(47, 64, 122);
 $noficationText: $almostwhite;
 $achievementNotification: rgb(245, 82, 60);
 $create: brown;
-$progressorange: rgb(242, 87, 76);
+$progressorange: rgb(241, 98, 88);
 
 // font sizes
 $cashew-fontsize: calc(125% + 0.5vw);
 $project-fontsize: calc(90% + 0.5vw);
 $floating-number-size: calc(100% + 0.5vw);
 
-
+// project related sizes
+$barHeight: calc(12vh + 50px);
 
 // this is used for the flex-items on the canvas
 @mixin side-space {
-  margin-top: 15px;
+  margin-top: 0.75vh;
   margin-bottom: 0px; 
   margin-left: 5px;
   margin-right: 5px;
@@ -35,20 +36,25 @@ $floating-number-size: calc(100% + 0.5vw);
 
 @mixin menu-table {
   //@include side-space;
-  width: initial;
+  width: 100%;
   display: table;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  table-layout: auto;
+}
+
+@mixin table-row {
+  display: table-row;
+  width: 100%;
 }
 
 // used to format the cells inside the menu tabs
 @mixin table-cell {
   display: table-cell;
   vertical-align: middle;
-  border-left: 1px solid $lightgray;
-  border-top: 1px solid $lightgray;
   border-bottom: 1px solid $lightgray;
+  //border-radius: 5px;
+  border-collapse: collapse;
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+  width: auto;
 }
 
 @mixin no-select {
@@ -62,9 +68,15 @@ $floating-number-size: calc(100% + 0.5vw);
   -webkit-tap-highlight-color: transparent;
 }
 
+@font-face
+{
+    font-family:'Roboto Mono';
+    src:url('../fonts/RobotoMono-Regular.ttf');
+}
+
 html {
 
-  font-family: "Consolas";
+  font-family: "Roboto Mono";
   user-select: none;
   color: $almostwhite;
   background-color: $darkgray;
@@ -99,7 +111,7 @@ html {
         transition: 0.3s;
         
         &.active {
-          background-color: $activegreen;
+          background-color: $progressorange;
           color: $darkgray;
         }
 
@@ -218,20 +230,23 @@ html {
           @include side-space;
           display: none;
           line-height: 20px;
-          
+
           .contentWrapper {
 
             overflow: auto;
-            max-height: 35vh;
-            
+            max-height: 35vh;            
+            border: 1px solid $lightgray;
+            border-radius: 5px;
+            border-collapse: collapse;
+
             .statTable {
 
               @include menu-table;
 
               .statRow {
 
-                display: table-row;
-                width: 100%;
+                @include table-row;
+                font-size: 70%;
 
                 .statsLabel {
                   @include table-cell;
@@ -240,7 +255,6 @@ html {
                 .statsValue {
                   @include table-cell;
                   text-align: right;
-                  border-right: 1px solid $lightgray;
                 }
               }
             }
@@ -251,30 +265,42 @@ html {
 
               .resourceRow {
 
-                display: table-row;
+                @include table-row;
 
-                &.disabled { color: $inactivegray; }
+                &.disabled { 
+                  color: $inactivegray; 
+                  .resourceCost { color: $inactivegray }
+                }
                 &:hover { background-color: $quitedarkgray; }
 
                 .resourceCount {
                   @include table-cell;
                   text-align: center;
+                  font-size: 150%;
+                  padding: 0.25rem 1rem 0.25rem 1rem;
+                  color: $inactivegray;
+                  &.atleastone { color: $progressorange }
                 }
 
                 .resourceRate {
                   @include table-cell;
                   text-align: left;
+                  font-size: 65%;
+                  color: $almostwhite;
                 }
 
                 .resourceName {
                   @include table-cell;
                   padding-left: 5px;
+                  font-size: 80%;
+                  color: $almostwhite;
                 }
 
                 .resourceCost {
                   @include table-cell;
                   color: $costred;
-                  border-right: 1px solid $lightgray;
+                  font-size: 95%;
+                  //border-right: 1px solid $lightgray;
                 }
               }
             }
@@ -285,7 +311,7 @@ html {
 
               .upgradeRow {
 
-                display: table-row;
+                @include table-row;
                 
                 &.not-owned {
                   
@@ -299,22 +325,29 @@ html {
                 }
 
                 &.owned {
-                  background-color: $activegreen;
-                  color: $darkgray;
+                  //background-color: $progressorange;
+                  //color: $darkgray;
+                  color: $progressorange;
+                  .upgradeCost {
+                    @include table-cell;
+                    text-align: right;               
+                    color: $darkgray;
+                  }
                 }
 
                 .upgradeName {
                   @include table-cell;
+                  font-size: 80%;
                 }
                 
                 .upgradeDescription {
                   @include table-cell;
+                  font-size: 65%;
                 }
                 
                 .upgradeCost {
                   @include table-cell;
-                  text-align: right;
-                  border-right: 1px solid $lightgray;                  
+                  text-align: right;               
                   color: $costred;
                 }
               }
@@ -355,8 +388,8 @@ html {
 
             &#settingsContent {
               ul {
-                border: 1px solid $lightgray;
                 li {
+                  font-size: 90%;
                   display: inline-block;
                   width: 100%;
                   line-height: 1em;
@@ -387,6 +420,8 @@ html {
         display: block;
         text-align: center;
         height: calc(50px + 5vw);
+        margin-top: 2vh; 
+        margin-bottom: 1vh; 
 
         img {
           display: none;
@@ -418,13 +453,17 @@ html {
         font-size: calc(#{$project-fontsize} * 1.25);
         &.full { color: $fullred }
         &.not-full { color: $almostwhite }
-        margin-top: 1em;
+        margin-top: 1vh;
+        margin-bottom: 1vh;
+        padding: 0;
+        line-height: calc(#{$project-fontsize} * 1.25);
       }
 
       #projectBar {
         
         @include side-space;
-        height: calc(12vh + 60px);
+        height: $barHeight;
+        width: 100%;
         display: flex;
         flex-shrink: 1;
         justify-content: space-around;
@@ -432,17 +471,23 @@ html {
 
         .project {
           
-          height: 85%;
+          height: 100%;
           position: relative;
           text-align: center;
           cursor: pointer;
           border-radius: 1rem;
+          border: 0;
+          display: inline-block;
 
           p {
-            margin-top: 0.25em;
+            width: 100%;
+            display: inline-block;
+            padding: 0.25vh;
+            margin: 0;
             position: relative;
-            font-size: $project-fontsize;
+            font-size: calc(#{$barHeight} / 6);
             color:$darkgray;
+            z-index: 15;
           }
 
           &.active {
@@ -478,23 +523,26 @@ html {
           .progressWrapper {
 
             position: absolute;
-            bottom: 30%;
-            width: 100%;
-            height: 15%;
+            bottom: 0;
+            width: 95%;
+            height: 50%;
             text-align: center;
-            font-size: calc(#{$project-fontsize} * 0.9);
             box-sizing: border-box;
             z-index: 1;
 
             p {
-              margin-top: 5px;
-              padding: 0;
-              font-size: $project-fontsize;
+              bottom: 0;
+              width: 100%;
+              font-size: calc(#{$project-fontsize} * 1.1);
               z-index: 10;
+              padding: 0.5vh;
+              margin: 0.25vh;
+              height: 45%;
             }
 
             .progressBar {
-              height: 100%;
+              bottom: 2vh;
+              height: 45%;
               width:0%;
               z-index: 2;
             }
@@ -530,6 +578,7 @@ html {
           padding: 5px;
           display: none;
           z-index: 100;
+          border-radius: 5px;
     
           
           h1 {

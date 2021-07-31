@@ -1,4 +1,5 @@
 import { isUpgradeOwned } from '../logic/upgrades.js'
+import { destroyTooltip } from './achievements.js'
 
 export const bindTabButtons = () => {
   $("#upgradeTab").unbind().click((event) => {toggleTab(event, "upgrades")});
@@ -10,6 +11,9 @@ export const bindTabButtons = () => {
 }
 
 const toggleTab = (event, tabId) => {
+
+    // start by destroying any tooltip that is currently shown
+    destroyTooltip()
 
     var i, tabcontent, tablinks;
     

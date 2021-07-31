@@ -8,8 +8,9 @@ export const renderConsultants = () => {
     Object.keys(consultants).forEach( key => {
         const consultant = consultants[key]
         $(`#${key}Count`).text(consultant.quantity)
-        $(`#${key}Rate`).text(consultant.rate + " progress/s")
-        $(`#${key}Cost`).text("-" + FormatterNoDec.format(consultant.cost))
+        if (consultant.quantity > 0) $(`#${key}Count`).addClass("atleastone")
+        $(`#${key}Rate`).text(consultant.rate + " progress per sec")
+        $(`#${key}Cost`).text(FormatterNoDec.format(consultant.cost))
     })
 }
 
@@ -19,9 +20,10 @@ export const renderSales = () => {
 
     Object.keys(sales).forEach(key => {
         const salesMember = sales[key]
-        $(`#${key}Count`).text(salesMember.quantity);
-        $(`#${key}Rate`).text((salesMember.rate*100).toFixed(2) + "% sales chance");
-        $(`#${key}Cost`).text("-" + FormatterNoDec.format(salesMember.cost));
+        $(`#${key}Count`).text(salesMember.quantity)
+        if (salesMember.quantity > 0) $(`#${key}Count`).addClass("atleastone")
+        $(`#${key}Rate`).text((salesMember.rate*100).toFixed(2) + "% sales chance")
+        $(`#${key}Cost`).text(FormatterNoDec.format(salesMember.cost))
     })
 }
 

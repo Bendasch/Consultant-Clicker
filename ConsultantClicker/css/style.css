@@ -1,5 +1,9 @@
+@font-face {
+  font-family: "Roboto Mono";
+  src: url("../fonts/RobotoMono-Regular.ttf");
+}
 html {
-  font-family: "Consolas";
+  font-family: "Roboto Mono";
   user-select: none;
   color: #eee;
   background-color: #2d2d2d;
@@ -36,7 +40,7 @@ html body #navbar button {
   transition: 0.3s;
 }
 html body #navbar button.active {
-  background-color: #18e083;
+  background-color: #f16258;
   color: #2d2d2d;
 }
 html body #navbar button.inactive {
@@ -130,7 +134,7 @@ html body #canvas #menu {
   overflow: hidden;
 }
 html body #canvas #menu .tabcontent {
-  margin-top: 15px;
+  margin-top: 0.75vh;
   margin-bottom: 0px;
   margin-left: 5px;
   margin-right: 5px;
@@ -141,45 +145,50 @@ html body #canvas #menu .tabcontent {
 html body #canvas #menu .tabcontent .contentWrapper {
   overflow: auto;
   max-height: 35vh;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  border-collapse: collapse;
 }
 html body #canvas #menu .tabcontent .contentWrapper .statTable {
-  width: initial;
+  width: 100%;
   display: table;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  table-layout: auto;
 }
 html body #canvas #menu .tabcontent .contentWrapper .statTable .statRow {
   display: table-row;
   width: 100%;
+  font-size: 70%;
 }
 html body #canvas #menu .tabcontent .contentWrapper .statTable .statRow .statsLabel {
   display: table-cell;
   vertical-align: middle;
-  border-left: 1px solid #ccc;
-  border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
+  border-collapse: collapse;
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+  width: auto;
 }
 html body #canvas #menu .tabcontent .contentWrapper .statTable .statRow .statsValue {
   display: table-cell;
   vertical-align: middle;
-  border-left: 1px solid #ccc;
-  border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
+  border-collapse: collapse;
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+  width: auto;
   text-align: right;
-  border-right: 1px solid #ccc;
 }
 html body #canvas #menu .tabcontent .contentWrapper .resourceTable {
-  width: initial;
+  width: 100%;
   display: table;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  table-layout: auto;
 }
 html body #canvas #menu .tabcontent .contentWrapper .resourceTable .resourceRow {
   display: table-row;
+  width: 100%;
 }
 html body #canvas #menu .tabcontent .contentWrapper .resourceTable .resourceRow.disabled {
+  color: #777;
+}
+html body #canvas #menu .tabcontent .contentWrapper .resourceTable .resourceRow.disabled .resourceCost {
   color: #777;
 }
 html body #canvas #menu .tabcontent .contentWrapper .resourceTable .resourceRow:hover {
@@ -188,48 +197,58 @@ html body #canvas #menu .tabcontent .contentWrapper .resourceTable .resourceRow:
 html body #canvas #menu .tabcontent .contentWrapper .resourceTable .resourceRow .resourceCount {
   display: table-cell;
   vertical-align: middle;
-  border-left: 1px solid #ccc;
-  border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
+  border-collapse: collapse;
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+  width: auto;
   text-align: center;
+  font-size: 150%;
+  padding: 0.25rem 1rem 0.25rem 1rem;
+  color: #777;
+}
+html body #canvas #menu .tabcontent .contentWrapper .resourceTable .resourceRow .resourceCount.atleastone {
+  color: #f16258;
 }
 html body #canvas #menu .tabcontent .contentWrapper .resourceTable .resourceRow .resourceRate {
   display: table-cell;
   vertical-align: middle;
-  border-left: 1px solid #ccc;
-  border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
+  border-collapse: collapse;
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+  width: auto;
   text-align: left;
+  font-size: 65%;
+  color: #eee;
 }
 html body #canvas #menu .tabcontent .contentWrapper .resourceTable .resourceRow .resourceName {
   display: table-cell;
   vertical-align: middle;
-  border-left: 1px solid #ccc;
-  border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
+  border-collapse: collapse;
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+  width: auto;
   padding-left: 5px;
+  font-size: 80%;
+  color: #eee;
 }
 html body #canvas #menu .tabcontent .contentWrapper .resourceTable .resourceRow .resourceCost {
   display: table-cell;
   vertical-align: middle;
-  border-left: 1px solid #ccc;
-  border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
+  border-collapse: collapse;
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+  width: auto;
   color: red;
-  border-right: 1px solid #ccc;
+  font-size: 95%;
 }
 html body #canvas #menu .tabcontent .contentWrapper .upgradeTable {
-  width: initial;
+  width: 100%;
   display: table;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  table-layout: auto;
 }
 html body #canvas #menu .tabcontent .contentWrapper .upgradeTable .upgradeRow {
   display: table-row;
+  width: 100%;
 }
 html body #canvas #menu .tabcontent .contentWrapper .upgradeTable .upgradeRow.not-owned.disabled {
   color: #ccc;
@@ -238,34 +257,44 @@ html body #canvas #menu .tabcontent .contentWrapper .upgradeTable .upgradeRow.no
   color: #eee;
 }
 html body #canvas #menu .tabcontent .contentWrapper .upgradeTable .upgradeRow.owned {
-  background-color: #18e083;
+  color: #f16258;
+}
+html body #canvas #menu .tabcontent .contentWrapper .upgradeTable .upgradeRow.owned .upgradeCost {
+  display: table-cell;
+  vertical-align: middle;
+  border-bottom: 1px solid #ccc;
+  border-collapse: collapse;
+  padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+  width: auto;
+  text-align: right;
   color: #2d2d2d;
 }
 html body #canvas #menu .tabcontent .contentWrapper .upgradeTable .upgradeRow .upgradeName {
   display: table-cell;
   vertical-align: middle;
-  border-left: 1px solid #ccc;
-  border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
+  border-collapse: collapse;
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+  width: auto;
+  font-size: 80%;
 }
 html body #canvas #menu .tabcontent .contentWrapper .upgradeTable .upgradeRow .upgradeDescription {
   display: table-cell;
   vertical-align: middle;
-  border-left: 1px solid #ccc;
-  border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
+  border-collapse: collapse;
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+  width: auto;
+  font-size: 65%;
 }
 html body #canvas #menu .tabcontent .contentWrapper .upgradeTable .upgradeRow .upgradeCost {
   display: table-cell;
   vertical-align: middle;
-  border-left: 1px solid #ccc;
-  border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
+  border-collapse: collapse;
   padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+  width: auto;
   text-align: right;
-  border-right: 1px solid #ccc;
   color: red;
 }
 html body #canvas #menu .tabcontent .contentWrapper #achievementBox {
@@ -297,10 +326,8 @@ html body #canvas #menu .tabcontent .contentWrapper #logBox {
   border: 1px solid #ccc;
   padding: 5px;
 }
-html body #canvas #menu .tabcontent .contentWrapper#settingsContent ul {
-  border: 1px solid #ccc;
-}
 html body #canvas #menu .tabcontent .contentWrapper#settingsContent ul li {
+  font-size: 90%;
   display: inline-block;
   width: 100%;
   line-height: 1em;
@@ -319,7 +346,7 @@ html body #canvas #menu .tooltip {
   padding: 0.25em;
 }
 html body #canvas #workbar {
-  margin-top: 15px;
+  margin-top: 0.75vh;
   margin-bottom: 0px;
   margin-left: 5px;
   margin-right: 5px;
@@ -327,6 +354,8 @@ html body #canvas #workbar {
   display: block;
   text-align: center;
   height: calc(50px + 5vw);
+  margin-top: 2vh;
+  margin-bottom: 1vh;
 }
 html body #canvas #workbar img {
   display: none;
@@ -354,7 +383,10 @@ html body #canvas #workbar img.glow3 {
 }
 html body #canvas #projectBuffer {
   font-size: calc(calc(90% + 0.5vw) * 1.25);
-  margin-top: 1em;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  padding: 0;
+  line-height: calc(calc(90% + 0.5vw) * 1.25);
 }
 html body #canvas #projectBuffer.full {
   color: #f54343;
@@ -363,29 +395,36 @@ html body #canvas #projectBuffer.not-full {
   color: #eee;
 }
 html body #canvas #projectBar {
-  margin-top: 15px;
+  margin-top: 0.75vh;
   margin-bottom: 0px;
   margin-left: 5px;
   margin-right: 5px;
   width: calc(100% - 10px);
-  height: calc(12vh + 60px);
+  height: calc(12vh + 50px);
+  width: 100%;
   display: flex;
   flex-shrink: 1;
   justify-content: space-around;
   position: relative;
 }
 html body #canvas #projectBar .project {
-  height: 85%;
+  height: 100%;
   position: relative;
   text-align: center;
   cursor: pointer;
   border-radius: 1rem;
+  border: 0;
+  display: inline-block;
 }
 html body #canvas #projectBar .project p {
-  margin-top: 0.25em;
+  width: 100%;
+  display: inline-block;
+  padding: 0.25vh;
+  margin: 0;
   position: relative;
-  font-size: calc(90% + 0.5vw);
+  font-size: calc(calc(12vh + 50px) / 6);
   color: #2d2d2d;
+  z-index: 15;
 }
 html body #canvas #projectBar .project.active {
   background-color: #f7f4a1;
@@ -394,7 +433,7 @@ html body #canvas #projectBar .project.active:hover {
   background-color: #fbfad0;
 }
 html body #canvas #projectBar .project.active .progressBar {
-  background-color: #f2574c;
+  background-color: #f16258;
 }
 html body #canvas #projectBar .project.inactive {
   background-color: #777;
@@ -410,27 +449,30 @@ html body #canvas #projectBar .project.inactive .progressBar {
 }
 html body #canvas #projectBar .project .progressWrapper {
   position: absolute;
-  bottom: 30%;
-  width: 100%;
-  height: 15%;
+  bottom: 0;
+  width: 95%;
+  height: 50%;
   text-align: center;
-  font-size: calc(calc(90% + 0.5vw) * 0.9);
   box-sizing: border-box;
   z-index: 1;
 }
 html body #canvas #projectBar .project .progressWrapper p {
-  margin-top: 5px;
-  padding: 0;
-  font-size: calc(90% + 0.5vw);
+  bottom: 0;
+  width: 100%;
+  font-size: calc(calc(90% + 0.5vw) * 1.1);
   z-index: 10;
+  padding: 0.5vh;
+  margin: 0.25vh;
+  height: 45%;
 }
 html body #canvas #projectBar .project .progressWrapper .progressBar {
-  height: 100%;
+  bottom: 2vh;
+  height: 45%;
   width: 0%;
   z-index: 2;
 }
 html body #canvas #footer {
-  margin-top: 15px;
+  margin-top: 0.75vh;
   margin-bottom: 0px;
   margin-left: 5px;
   margin-right: 5px;
@@ -459,6 +501,7 @@ html body #canvas #footer #trello {
   padding: 5px;
   display: none;
   z-index: 100;
+  border-radius: 5px;
 }
 html body #canvas #footer #trello h1 {
   line-height: 18px;
@@ -513,7 +556,7 @@ html body .clickProgressIndicator {
   border-radius: 40%;
   z-index: 25;
   pointer-events: none;
-  color: #f2574c;
+  color: #f16258;
   font-size: calc(100% + 0.5vw);
   font-weight: bold;
 }

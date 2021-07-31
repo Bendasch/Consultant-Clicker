@@ -4,23 +4,39 @@ export function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-export const FormatterNoDec = new Intl.NumberFormat('de-DE', {
+export const FormatterNoDec = new Intl.NumberFormat('en-US', {
     style: 'currency',
-    currency: 'EUR',
+    currency: 'USD',
 
     // These options are needed to round to whole numbers if that's what you want.
     minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
     maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
 });
   
-export const Formatter = new Intl.NumberFormat('de-DE', {
+export const Formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
-    currency: 'EUR'
+    currency: 'USD'
 });
 
-export const FormatterDec =  new Intl.NumberFormat('de-DE', {
+export const FormatterDec =  new Intl.NumberFormat('en-US', {
     style: 'decimal'
 });
+
+export const formatMillions = (number, type='cur') => {
+
+    var returnValue = number
+    var millions = false
+    if (number >= 1000000) {
+        millions = true 
+        returnValue = number / 1000000
+    }
+
+    if (type != 'cur') return FormatterDec.format(returnValue)
+
+    if (millions) return `${Formatter.format(returnValue)} million`
+    
+    return FormatterNoDec.format(returnValue)
+}
 
 export function normRand(from=0, to=1) {
 

@@ -25,6 +25,9 @@ $floating-number-size: calc(100% + 0.5vw);
 // project related sizes
 $barHeight: calc(12vh + 50px);
 
+// workbar sizes
+$wbHeight: calc(50px + 5vw);
+
 // this is used for the flex-items on the canvas
 @mixin side-space {
   margin-top: 0.75vh;
@@ -340,6 +343,10 @@ html {
                   }
                 }
 
+                &.conditionUnmet {
+                  display: none;
+                }
+
                 .upgradeName {
                   @include table-cell;
                   font-size: 80%;
@@ -424,32 +431,55 @@ html {
         @include side-space;
         display: block;
         text-align: center;
-        height: calc(50px + 5vw);
+        height: $wbHeight;
         margin-top: 2vh; 
         margin-bottom: 1vh; 
 
-        img {
-          display: none;
-          width: calc(50px + 5vw);
-          height: auto;
+        .officeContainer {
+          position: relative;
+          display: none;          
+          height: 100%;
+          width: $wbHeight;
+          border-radius: 0.5rem;
           margin-left: 1vw;
           margin-right: 1vw;
-          cursor: pointer;
-          border-radius: 0.5rem;
 
-          &:hover { opacity: 95% }
           &.unlocked { display: inline-block }
-          &.glow1 { 
-            box-shadow: 0px 0px 25px #d8993b,
-                        0px 0px 15px #f8e432;
-          }
-          &.glow2 { 
-            box-shadow: 0px 0px 20px #d8993b,
-                        0px 0px 10px #f8e432;
-          }
-          &.glow3 { 
-            box-shadow: 0px 0px 15px #d8993b,
-                        0px 0px 8px #f8e432;
+          &.cooldown { background: $inactivegray; }
+
+          img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: auto;
+            cursor: pointer;
+            border-radius: 0.5rem;
+
+            &.cooldown,
+            &.cooldown:hover { 
+              opacity: 35%;
+              cursor: default;
+
+              &.glow1, &.glow2, &.glow3 {
+                opacity: 100%;
+              }
+            }
+
+            &:hover { opacity: 95% } 
+            &.glow1 { 
+              box-shadow: 0px 0px 25px #d8993b,
+                          0px 0px 15px #f8e432;
+            }
+            &.glow2 { 
+              box-shadow: 0px 0px 20px #d8993b,
+                          0px 0px 10px #f8e432;
+            }
+            &.glow3 { 
+              box-shadow: 0px 0px 15px #d8993b,
+                          0px 0px 8px #f8e432;
+            }
           }
         }
       }     
@@ -536,6 +566,8 @@ html {
             margin: 0;
             padding: 0;
             bottom: 0;
+            border-radius: 1rem;
+            overflow: hidden;
 
             p {
               position: absolute;
@@ -550,7 +582,6 @@ html {
 
             .progressBar {
               position: absolute;
-              border-radius: 1rem;
               height: 100%;
               width:0%;
               z-index: 2;

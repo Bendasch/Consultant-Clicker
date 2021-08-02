@@ -2,6 +2,7 @@ import { addToBalance, getActiveProject } from './project.js'
 import { logAction } from '../render/log.js'
 import { showNotification } from '../render/notifications.js'
 import { enableStaffTab } from '../render/navbar.js'
+import { addToProjectBuffer } from './projectMeta.js'
 
 export const buyUpgrade = (upgradeId) => {
 
@@ -20,6 +21,7 @@ export const buyUpgrade = (upgradeId) => {
     enableStaffTab()
     staffNotification()
   }
+  if (upgradeId=="salesTeam") addToProjectBuffer(1)
 } 
 
 export const officeButtonOwned = (buttonId) => {

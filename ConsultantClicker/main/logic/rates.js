@@ -44,6 +44,13 @@ const updateConsultantRates = (activeUpgradeKeys=null) => {
       return t + consultants[key].quantity * consultants[key].rate
     }, totalFlatRate)
     
+    // handle power-ups
+    const powerups = body.data("powerups")
+    Object.keys(powerups).forEach((key) => {
+        var powerup = powerups[key]
+        if ("consultantBoost" in powerup) totalRate *= powerup["consultantBoost"]
+    })
+
     body.data("consultants", consultants)
     body.data("totalRate", totalRate)
     body.data("totalFlatRate", totalFlatRate)

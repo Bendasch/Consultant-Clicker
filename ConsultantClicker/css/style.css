@@ -273,6 +273,9 @@ html body #canvas #menu .tabcontent .contentWrapper .upgradeTable .upgradeRow.ow
   text-align: right;
   color: #2d2d2d;
 }
+html body #canvas #menu .tabcontent .contentWrapper .upgradeTable .upgradeRow.conditionUnmet {
+  display: none;
+}
 html body #canvas #menu .tabcontent .contentWrapper .upgradeTable .upgradeRow .upgradeName {
   display: table-cell;
   vertical-align: middle;
@@ -361,28 +364,48 @@ html body #canvas #workbar {
   margin-top: 2vh;
   margin-bottom: 1vh;
 }
-html body #canvas #workbar img {
+html body #canvas #workbar .officeContainer {
+  position: relative;
   display: none;
+  height: 100%;
   width: calc(50px + 5vw);
-  height: auto;
+  border-radius: 0.5rem;
   margin-left: 1vw;
   margin-right: 1vw;
+}
+html body #canvas #workbar .officeContainer.unlocked {
+  display: inline-block;
+}
+html body #canvas #workbar .officeContainer.cooldown {
+  background: #777;
+}
+html body #canvas #workbar .officeContainer img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: auto;
   cursor: pointer;
   border-radius: 0.5rem;
 }
-html body #canvas #workbar img:hover {
+html body #canvas #workbar .officeContainer img.cooldown, html body #canvas #workbar .officeContainer img.cooldown:hover {
+  opacity: 35%;
+  cursor: default;
+}
+html body #canvas #workbar .officeContainer img.cooldown.glow1, html body #canvas #workbar .officeContainer img.cooldown.glow2, html body #canvas #workbar .officeContainer img.cooldown.glow3, html body #canvas #workbar .officeContainer img.cooldown:hover.glow1, html body #canvas #workbar .officeContainer img.cooldown:hover.glow2, html body #canvas #workbar .officeContainer img.cooldown:hover.glow3 {
+  opacity: 100%;
+}
+html body #canvas #workbar .officeContainer img:hover {
   opacity: 95%;
 }
-html body #canvas #workbar img.unlocked {
-  display: inline-block;
-}
-html body #canvas #workbar img.glow1 {
+html body #canvas #workbar .officeContainer img.glow1 {
   box-shadow: 0px 0px 25px #d8993b, 0px 0px 15px #f8e432;
 }
-html body #canvas #workbar img.glow2 {
+html body #canvas #workbar .officeContainer img.glow2 {
   box-shadow: 0px 0px 20px #d8993b, 0px 0px 10px #f8e432;
 }
-html body #canvas #workbar img.glow3 {
+html body #canvas #workbar .officeContainer img.glow3 {
   box-shadow: 0px 0px 15px #d8993b, 0px 0px 8px #f8e432;
 }
 html body #canvas #projectBuffer {
@@ -461,6 +484,8 @@ html body #canvas #projectBar .project .progressWrapper {
   margin: 0;
   padding: 0;
   bottom: 0;
+  border-radius: 1rem;
+  overflow: hidden;
 }
 html body #canvas #projectBar .project .progressWrapper p {
   position: absolute;
@@ -474,7 +499,6 @@ html body #canvas #projectBar .project .progressWrapper p {
 }
 html body #canvas #projectBar .project .progressWrapper .progressBar {
   position: absolute;
-  border-radius: 1rem;
   height: 100%;
   width: 0%;
   z-index: 2;

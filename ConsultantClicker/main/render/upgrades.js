@@ -1,5 +1,13 @@
-import { formatMillions, Formatter } from '../utils/utils.js'
+import { formatMillions } from '../utils/utils.js'
 import { buyUpgrade } from '../logic/upgrades.js'
+import { getNumberofSalesPeople }from '../logic/resources.js'
+
+
+const hasThreeSalesPeople = () => {
+    return (getNumberofSalesPeople() >= 3)
+}
+ 
+const conditions = [ hasThreeSalesPeople ]
 
 export const renderUpgradeButtons = () => {
 
@@ -8,7 +16,18 @@ export const renderUpgradeButtons = () => {
     const balance = body.data("currentBalance");
 
     Object.keys(allUpgrades).forEach( (key) => {
+
         const upgrade = allUpgrades[key];
+
+        // hide or show upgrades which have a special condition
+        if ("condition" in upgrade) {
+            if (conditions[upgrade["condition"]]()) {
+                $(`#${upgrade.id}`).removeClass("conditionUnmet")
+            } else {
+                $(`#${upgrade.id}`).addClass("conditionUnmet")
+            }
+        }
+
         if (upgrade.owned) {
             $("#" + upgrade.id).removeClass("not-owned");
             $("#" + upgrade.id).addClass("owned");
@@ -24,7 +43,7 @@ export const renderUpgradeButtons = () => {
         } 
     });
 }
-  
+
 const enableUpgradeButton = (upgradeId) => {   
     $("#" + upgradeId).unbind().click(() => buyUpgrade(upgradeId)); 
     $("#" + upgradeId).removeClass("disabled");
@@ -53,3 +72,4 @@ export const addUpgradeRow = (upgrade) => {
     $("#" + upgrade.id + "-description").append('<p>' + upgrade.description + '</p>');
     $("#" + upgrade.id + "-cost").append('<p>' + formatMillions(upgrade.cost) + '</p>');
 }
+

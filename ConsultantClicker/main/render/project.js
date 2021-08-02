@@ -26,10 +26,10 @@ const setProjectBuffer = (projects, projectMeta) => {
     }
 }
 
-const renderProject = (oProject, width) => {
+const renderProject = (project, width) => {
 
     const projectBar = $("#projectBar");
-    const projectId = oProject.id;
+    const projectId = project.id;
     var projectDiv; 
 
     // creat the div if it does not exist
@@ -40,8 +40,9 @@ const renderProject = (oProject, width) => {
         projectDiv = $("#"+projectId);
 
         // the details
-        projectDiv.append('<p>' + oProject.name + '</p>');
-        projectDiv.append('<p>' + FormatterNoDec.format(oProject.value) + '</p>');
+        projectDiv.append('<p>' + project.name + '</p>');
+        projectDiv.append('<p>' + FormatterNoDec.format(project.value) + '</p>');
+        setProjectFontSize(project.name, projectId)
 
         // the progress bar and prog + effort numbers
         var progressWrapper = $("<div id='" + projectId + "-progressWrapper' class='progressWrapper'></div>")
@@ -57,11 +58,26 @@ const renderProject = (oProject, width) => {
         projectDiv = $("#"+projectId);
     }
 
-    oProject.active ? setActive(projectDiv) : setInactive(projectDiv);
+    project.active ? setActive(projectDiv) : setInactive(projectDiv);
     projectDiv.css("width", width);
 
-    setProjectProgress(projectId, oProject.progress, oProject.effort)
-    setProgressBar(projectId, oProject.progress, oProject.effort);
+    setProjectProgress(projectId, project.progress, project.effort)
+    setProgressBar(projectId, project.progress, project.effort);
+}
+
+const setProjectFontSize = (projectName, projectId) => {
+
+    var fontSize = parseInt($(`#${projectId}`).children('p').css('font-size'))
+    if (projectName.length > 25) {
+        fontSize *= 0.7
+    } else if (projectName.length > 20) {
+        fontSize *= 0.75
+    } else if (projectName.length > 15) {
+        fontSize *= 0.8
+    } else if (projectName.length > 10) {
+        fontSize *= 0.85           
+    }
+    $(`#${projectId}`).children('p').css('font-size', `${fontSize}px`)
 }
 
 const setProjectProgress = (projectId, progress, effort) => {

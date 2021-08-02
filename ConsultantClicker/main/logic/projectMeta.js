@@ -27,8 +27,15 @@ export const getTotalProjectsFinished = () => {
 }
 
 export const addFinishedProject = () => {
-    var body = $("body");
-    var project = body.data("projectMeta");
-    project.totalProjectsFinished += 1;
-    body.data("project", project);
+    var body = $("body")
+    var project = body.data("projectMeta")
+    project.totalProjectsFinished += 1
+    body.data("project", project)
+}
+
+export const addToProjectBuffer = () => {
+    var body = $("body")
+    var project = body.data("projectMeta")
+    project.projectBufferSize += 1 
+    body.data("projectMeta", project)
 }

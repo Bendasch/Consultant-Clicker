@@ -120,6 +120,14 @@
                 "clicking": 1
             }
         },
+        "salesTeam": {
+            "id": "salesTeam",
+            "name": "Sales team",
+            "description": "Increases your project buffer by 1.",
+            "owned": false,
+            "cost": 100000,
+            "condition": "0"
+        },
         "salesTraining": {
             "id": "salesTraining",
             "name": "Sales Training",
@@ -135,7 +143,7 @@
         "outlookUpgrade": {
             "id": "outlookUpgrade",
             "name": "Outlook",
-            "description": "This enables you to progress your project by your own effort by clicking the Outlook icon.",
+            "description": "This allows you to make your sales staff 1.5x as productive for 30s by clicking the outlook icon (90s cooldown).",
             "owned": false,
             "cost": 500000
         },
@@ -151,19 +159,19 @@
                 "clicking": 1.05
             }
         },
-        "powerpointUpgrade": {
-            "id": "powerpointUpgrade",
-            "name": "Powerpoint",
-            "description": "This enables you to progress your project by your own effort by clicking the Powerpoint icon.",
-            "owned": false,
-            "cost": 5000000
-        },
         "excelUpgrade": {
             "id": "excelUpgrade",
             "name": "Excel",
-            "description": "This enables you to progress your project by your own effort by clicking the Excel icon.",
+            "description": "This allows you to make your consultants 3x as productive for 30s by clicking the excel icon (90s cooldown).",
             "owned": false,
-            "cost": 50012340.05
+            "cost": 5000000
+        },
+        "powerpointUpgrade": {
+            "id": "powerpointUpgrade",
+            "name": "Powerpoint",
+            "description": "This allows you to fill your project buffer instantly by clicking the powerpoint button (60s cooldown).",
+            "owned": false,
+            "cost": 50000000
         }
     },
     "clicking": {
@@ -178,26 +186,31 @@
             "unlocked": false,
             "animationCyclesLeft": 0,
             "newAnimation": false,
-            "glowCycles": 0
-        },        
-        "excel": {
-            "unlocked": false,
-            "animationCyclesLeft": 0,
-            "newAnimation": false,
-            "glowCycles": 0
-        },        
-        "powerpoint": {
-            "unlocked": false,
-            "animationCyclesLeft": 0,
-            "newAnimation": false,
-            "glowCycles": 0
+            "glowCycles": 0,
+            "cooldown": 0
         },        
         "outlook": {
             "unlocked": false,
             "animationCyclesLeft": 0,
             "newAnimation": false,
             "glowCycles": 0,
-            "powerupValue": 1.5
+            "powerupValue": 1.5,            
+            "cooldown": 0
+        },        
+        "excel": {
+            "unlocked": false,
+            "animationCyclesLeft": 0,
+            "newAnimation": false,
+            "glowCycles": 0,
+            "powerupValue": 3,   
+            "cooldown": 0
+        },        
+        "powerpoint": {
+            "unlocked": false,
+            "animationCyclesLeft": 0,
+            "newAnimation": false,
+            "glowCycles": 0,
+            "cooldown": 0
         }
     },
     "achievements": {

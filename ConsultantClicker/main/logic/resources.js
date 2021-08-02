@@ -49,3 +49,11 @@ const getNewPrice = (baseCost, quantity) => {
   var quotient = Math.floor(roughValue / 500);
   return Math.max(quotient * 500, 500);
 }
+
+export const getNumberofSalesPeople = () => {
+  const sales = $("body").data("sales")
+  var totalQuantity = Object.keys(sales).reduce( (total, key) => {
+      return total += sales[key].quantity
+  }, 0)
+  return totalQuantity
+}

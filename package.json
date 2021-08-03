@@ -4,6 +4,7 @@
     "sass": "^1.35.2"
   },
   "scripts": {
-    "sass": "sass --watch ./ConsultantClicker/css/style.scss ./ConsultantClicker/css/style.css"
+    "sass": "sass --watch ./ConsultantClicker/css/style.scss ./ConsultantClicker/css/style.css",
+    "start": "node server.js"
   }
 }

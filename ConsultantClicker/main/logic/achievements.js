@@ -30,6 +30,7 @@ export const updateAchievements = (cycle) => {
             unlockAchievement(`ach-${type}-${achievement.id}`)
             showNotification("New Achievement!", getNoficationText(achievementGroup, level), true)
             achievements[type].current = level
+            achievements[type][level].unlocked = true
         }
 
         body.data("achievements", achievements)
@@ -50,7 +51,7 @@ const getTotalByAchievementType = (type) => {
 
     switch (type) {
         case "clicks":          return body.data("clicking").clicks
-        case "total-earned":    return body.data("totalEarnings")
+        case "totalEarned":     return body.data("totalEarnings")
         case "balance":         return body.data("currentBalance")
         case "projects":        return body.data("projectMeta").totalProjectsFinished
         case "progress":        return body.data("totalProgress")

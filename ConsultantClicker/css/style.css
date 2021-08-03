@@ -503,17 +503,17 @@ html body #canvas #projectBar .project .progressWrapper .progressBar {
   width: 0%;
   z-index: 2;
 }
-html body #canvas #footer {
+html body #footer {
   margin-top: 0.75vh;
   margin-bottom: 0px;
   margin-left: 5px;
   margin-right: 5px;
   width: calc(100% - 10px);
-  position: relative;
+  position: absolute;
   bottom: 0;
   height: calc(3rem + 5px);
 }
-html body #canvas #footer #trelloButton {
+html body #footer #trelloButton {
   position: absolute;
   left: -3px;
   bottom: 0;
@@ -523,7 +523,7 @@ html body #canvas #footer #trelloButton {
   cursor: pointer;
   display: none;
 }
-html body #canvas #footer #trello {
+html body #footer #trello {
   position: absolute;
   bottom: 50px;
   left: 2px;
@@ -535,7 +535,7 @@ html body #canvas #footer #trello {
   z-index: 100;
   border-radius: 5px;
 }
-html body #canvas #footer #trello h1 {
+html body #footer #trello h1 {
   line-height: 18px;
   font-weight: bold;
   font-size: 130%;
@@ -543,20 +543,20 @@ html body #canvas #footer #trello h1 {
   margin-top: 10px;
   margin-left: 5px;
 }
-html body #canvas #footer #trello .trelloLabel {
+html body #footer #trello .trelloLabel {
   display: flex;
   width: 96%;
   margin-top: 20px;
 }
-html body #canvas #footer #trello #trelloDescr {
+html body #footer #trello #trelloDescr {
   position: absolute;
   width: 93%;
   resize: none;
 }
-html body #canvas #footer #trello #trelloName {
+html body #footer #trello #trelloName {
   width: 96%;
 }
-html body #canvas #footer #trello #trelloSend {
+html body #footer #trello #trelloSend {
   position: absolute;
   bottom: 1%;
   right: 2%;
@@ -568,7 +568,16 @@ html body #canvas #footer #trello #trelloSend {
   background-color: brown;
   font-weight: bold;
 }
-html body #canvas #footer .times {
+html body #footer #version {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 0.75em;
+  margin: 5px;
+}
+html body #footer .times {
   position: absolute;
   bottom: 0;
   right: 0px;
@@ -576,8 +585,8 @@ html body #canvas #footer .times {
   text-align: left;
   display: none;
 }
-html body #canvas #footer .times p {
-  font-size: 80%;
+html body #footer .times p {
+  font-size: 0.75em;
   color: #eee;
 }
 html body .clickProgressIndicator {

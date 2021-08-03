@@ -18,5 +18,5 @@ export const render = () => {
     renderOfficeButtons()
     renderFlyingNumbers()
     renderNotifications()
-    renderFooter()
+    //renderFooter()
 }

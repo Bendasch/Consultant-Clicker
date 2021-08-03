@@ -589,90 +589,101 @@ html {
           }          
         } 
       }
+    }
 
-      #footer {
-        @include side-space;
-        position: relative;
+    
+    #footer {
+
+      @include side-space;
+      position: absolute;
+      bottom: 0;
+      height: calc(3rem + 5px);
+
+      #trelloButton {
+        position: absolute;
+        left: -3px;
         bottom: 0;
-        height: calc(3rem + 5px);
-  
-        #trelloButton {
-          position: absolute;
-          left: -3px;
-          bottom: 0;
-          width: 48px;
-          height: 48px;
-          background-image: url("../img/trello-icon.png");
-          cursor: pointer;
-          display: none;
-        }
-    
-        #trello {
-          
-          position:absolute;
-          bottom: 50px;
-          left: 2px;
-          height: 300px;
-          width: 220px;
-          background-color: $trelloblue;
-          padding: 5px;
-          display: none;
-          z-index: 100;
-          border-radius: 5px;
-    
-          
-          h1 {
-            line-height: 18px;
-            font-weight: bold;
-            font-size: 130%;
-            margin-bottom: 28px;
-            margin-top: 10px;
-            margin-left: 5px;
-          }
-    
-          .trelloLabel {
-            display: flex;
-            width: 96%;
-            margin-top: 20px;
-          }
-    
-          #trelloDescr {
-            position: absolute;
-            width: 93%;
-            resize: none;
-          }
-    
-          #trelloName {
-            width: 96%;
-          }
-    
-          #trelloSend {
-            position: absolute;
-            bottom: 1%;
-            right: 2%;
-            height: 10%;
-            width: 96%;
-            justify-content: center;
-            align-items: center;
-            display: flex;
-            background-color: $create;
-            font-weight: bold;
-          }
-        }
+        width: 48px;
+        height: 48px;
+        background-image: url("../img/trello-icon.png");
+        cursor: pointer;
+        display: none;
+      }
+
+      #trello {
         
-        .times {
+        position:absolute;
+        bottom: 50px;
+        left: 2px;
+        height: 300px;
+        width: 220px;
+        background-color: $trelloblue;
+        padding: 5px;
+        display: none;
+        z-index: 100;
+        border-radius: 5px;
   
+        h1 {
+          line-height: 18px;
+          font-weight: bold;
+          font-size: 130%;
+          margin-bottom: 28px;
+          margin-top: 10px;
+          margin-left: 5px;
+        }
+  
+        .trelloLabel {
+          display: flex;
+          width: 96%;
+          margin-top: 20px;
+        }
+  
+        #trelloDescr {
           position: absolute;
-          bottom: 0;
-          right: 0px;
-          margin: 5px;
-          text-align: left;
-          display: none;
+          width: 93%;
+          resize: none;
+        }
   
-          p {
-            font-size: 80%;
-            color:$almostwhite;
-          }
+        #trelloName {
+          width: 96%;
+        }
+  
+        #trelloSend {
+          position: absolute;
+          bottom: 1%;
+          right: 2%;
+          height: 10%;
+          width: 96%;
+          justify-content: center;
+          align-items: center;
+          display: flex;
+          background-color: $create;
+          font-weight: bold;
+        }
+      }
+      
+      #version {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-size: 0.75em;
+        margin: 5px;
+      }
+
+      .times {
+
+        position: absolute;
+        bottom: 0;
+        right: 0px;
+        margin: 5px;
+        text-align: left;
+        display: none;
+
+        p {
+          font-size: 0.75em;
+          color:$almostwhite;
         }
       }
     }

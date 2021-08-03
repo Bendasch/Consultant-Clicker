@@ -128,5 +128,4 @@ export const renderFooter = () => {
     } else {
         footer.css("display", "none")
     }
-
 }

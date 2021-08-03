@@ -1,7 +1,7 @@
 const express = require('express')
 const https = require('https')
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000
 
 const red = "\x1b[31m"
 const yellow = "\x1b[33m"

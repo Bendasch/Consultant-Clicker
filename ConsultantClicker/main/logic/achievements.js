@@ -56,7 +56,7 @@ const getTotalByAchievementType = (type) => {
         case "projects":        return body.data("projectMeta").totalProjectsFinished
         case "progress":        return body.data("totalProgress")
         case "consultants":     return getTotalConsultantsQuantity()
-        case "sales":           return getTotalSalesQuantity()
+        case "sales":           return 100 * body.data("totalSalesRateWithoutBoost")
         case "upgrades":        return getUnlockedUpgradeAmount()
         case "achievements":    return getUnlockedAchievementAmount()
     }

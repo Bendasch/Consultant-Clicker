@@ -12,9 +12,6 @@ export const initialize = () => {
     
     // remove all pending notifications
     destroyAllNotifications()
-
-    // when the (static) DOM is ready, bind click events
-    $(document).ready(() => initializeButtons());
   
     // get data from local storage
     var json = window.localStorage.getItem("CONS_CLICKER") || null;
@@ -25,6 +22,7 @@ export const initialize = () => {
             initializeData(JSON.parse(json)) 
             initializeUpgrades()  
             initializeAchievements()
+            initializeButtons()
             resolve(true)
         })
     } 
@@ -34,5 +32,6 @@ export const initialize = () => {
         initializeData(json)
         initializeUpgrades() 
         initializeAchievements()
+        initializeButtons()
     });
 }

@@ -3,7 +3,7 @@ import { destroyTooltip } from './achievements.js'
 
 export const bindTabButtons = () => {
   $("#upgradeTab").unbind().click((event) => {toggleTab(event, "upgrades")});
-  if(isUpgradeOwned("staffUpgrade")) enableStaffTab()
+  setStaffTab();
   $("#statsTab").unbind().click((event) => {toggleTab(event, "stats")});
   $("#achievementTab").unbind().click((event) => {toggleTab(event, "achievements")});
   $("#logTab").unbind().click((event) => {toggleTab(event, "log")})
@@ -42,8 +42,13 @@ const toggleTab = (event, tabId) => {
     }
 }
 
-export const enableStaffTab = () => {
-  var staffTab = $("#staffTab") 
-  staffTab.removeClass("disabled")
-  staffTab.unbind().click((event) => {toggleTab(event, "staff")})
+export const setStaffTab = () => {
+  var staffTab = $("#staffTab")   
+  if (isUpgradeOwned("staffUpgrade")) {
+    staffTab.removeClass("disabled")
+    staffTab.unbind().click((event) => {toggleTab(event, "staff")})
+  } else {
+    staffTab.addClass("disabled")
+    staffTab.unbind()
+  }
 }

@@ -1,7 +1,7 @@
 import { addToBalance, getActiveProject } from './project.js'
 import { logAction } from '../render/log.js'
 import { showNotification } from '../render/notifications.js'
-import { enableStaffTab } from '../render/navbar.js'
+import { setStaffTab } from '../render/navbar.js'
 import { addToProjectBuffer } from './projectMeta.js'
 
 export const buyUpgrade = (upgradeId) => {
@@ -18,7 +18,7 @@ export const buyUpgrade = (upgradeId) => {
 
   switch(upgradeId) {
     case "wordUpgrade":     wordNotification(); break
-    case "staffUpgrade":    enableStaffTab(); staffNotification(); break
+    case "staffUpgrade":    setStaffTab(); staffNotification(); break
     case "callForProposal": addToProjectBuffer(1); break
     case "salesTeam":       addToProjectBuffer(1); break 
     case "connections":     addToProjectBuffer(1); break 

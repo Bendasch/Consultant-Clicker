@@ -98,63 +98,80 @@ export const autoFindProject = (tick, cycle) => {
 export const findProject = async () => {
   
     console.assert(getProjectClickPending(), "findProject: clickPending not set true!")
-  
-    var body = $("body");
-    var projectMeta = body.data("projectMeta");
-    var projects = body.data("projects");
-  
+
+    // if the sales rate exceeds 100%
+    // we instantly generate a project and try to find a 2nd
+    var totalSalesRate = $("body").data("totalSalesRate")
+    if (totalSalesRate > 1) {
+      await generateProject()
+      totalSalesRate -= 1
+    }
+
+    if (projectBufferFull()) return
+
     // get a random number between 0 and 1
-    // if the total sales rate is greater than the random number, we get a project
-    const iRand = Math.random();
-    if (body.data("totalSalesRate") < iRand) {
+    // if it exceeds the sales rate, get a project
+    if (totalSalesRate < Math.random()) {
       logAction("Project proposal failed! Better luck next time.");
       return false;
     }
-  
-    // get random project name from API
-    var name = await getRandomProjectName()
     
-    // get an id for the new project
-    projectMeta.totalProjectsFound += 1;
-    var id = projectMeta.totalProjectsFound;
-  
-    var newProject = {
-      id: id,
-      name: name,
-      value: 0,
-      effort: 0,
-      progress: 0,
-      active: Object.keys(projects).length == 0,
-    };
-  
-    // get the project value (normal distribution, rounded to 500)
-    var newValue = normRand(0, 2) * projectMeta.expectedValue;
-    var quotient = Math.floor(newValue / 500);
-    newProject.value = Math.max(quotient * 500, 500);
-  
-    // and effort (normal distribution, rounded to 250)
-    var newEffort = Math.round(
-      normRand(0, 2) * (newProject.value * projectMeta.effortConversionRate)
-    );
-    quotient = Math.floor(newEffort / 250);
-    newProject.effort = Math.max(quotient * 250, 250);
-  
-    // add the new project to the datamodel
-    projects[id] = newProject;
-  
-    body.data("projects", projects);
-    body.data("project", projectMeta);
-  
-    // output success message
-    logAction(
-      "Project proposal successful! Project value " +
-        Formatter.format(newProject.value) +
-        " (effort " +
-        newProject.effort +
-        ")."
-    );
-  
+    await generateProject()
+
     return true;
+}
+
+const projectBufferFull = () => {
+  const body = $("body")
+  const project = body.data("projectMeta")
+  const projects = body.data("projects")
+  return (Object.keys(projects).length >= project.projectBufferSize)
+}
+
+const generateProject = async () => {
+
+  const body = $("body");
+  var projectMeta = body.data("projectMeta")
+  var projects = body.data("projects")
+
+  // get random project name from API
+  var name = await getRandomProjectName()
+      
+  // get an id for the new project
+  projectMeta.totalProjectsFound += 1;
+  var id = projectMeta.totalProjectsFound;
+
+  var newProject = {
+    id: id,
+    name: name,
+    value: 0,
+    effort: 0,
+    progress: 0,
+    active: Object.keys(projects).length == 0,
+  };
+
+  // get the project value (normal distribution, rounded to 500)
+  var newValue = normRand(0, 2) * projectMeta.expectedValue
+  var quotient = Math.floor(newValue / 500)
+  newProject.value = Math.max(quotient * 500, 500)
+
+  // and effort (normal distribution, rounded to 250)
+  var newEffort = Math.round(
+    normRand(0, 2) * (newProject.value * projectMeta.effortConversionRate)
+  );
+  quotient = Math.floor(newEffort / 250)
+  newProject.effort = Math.max(quotient * 250, 250)
+
+  // add the new project to the datamodel
+  projects[id] = newProject;
+
+  body.data("projects", projects)
+  body.data("project", projectMeta)
+
+  // output success message
+  const val = Formatter.format(newProject.value)
+  logAction(`Project found (value: ${val}, effort: ${newProject.effort}).`
+  )
 }
 
 const updateProgress = (projectId, tick) => {

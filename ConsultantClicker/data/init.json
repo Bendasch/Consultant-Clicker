@@ -4,33 +4,34 @@
     "totalRate": 0,
     "totalFlatRate": 0,
     "totalSalesRate": 0,
+    "totalSalesRateWithoutBoost": 0,
     "totalFlatSalesRate": 0,
     "totalFlatConsRate": 0,
     "totalProgress": 0,
     "consultants": {
         "junior": {
             "quantity": 0,
-            "rate": 25,
+            "rate": 50,
             "cost": 15000,
             "baseCost": 15000,
             "name": "Junior Consultant",
-            "baseRate": 25
+            "baseRate": 50
         },
         "consultant": {
             "quantity": 0,
-            "rate": 50,
+            "rate": 75,
             "cost": 25000,
             "baseCost": 25000,
             "name": "Consultant",
-            "baseRate": 50
+            "baseRate": 75
         },
         "senior": {
             "quantity": 0,
-            "rate": 125,
+            "rate": 175,
             "cost": 40000,
             "baseCost": 40000,
             "name": "Senior Consultant",
-            "baseRate": 125
+            "baseRate": 175
         }
     },
     "sales": {
@@ -74,7 +75,7 @@
             "flat": {
                 "consultants": 0,
                 "sales": 0.05,
-                "clicking": 50
+                "clicking": 100
             }
         },
         "staffUpgrade": {
@@ -525,40 +526,40 @@
             "current": 0,
             "name": "sales",
             "condition": "number of salespeople",
-            "tooltip": "You recruited {THRESHOLD} person/people into your sales staff!",
+            "tooltip": "You reached a sales chance of {THRESHOLD}%!",
             "1": {
                 "id": "beginner",
-                "threshold": 1,
+                "threshold": 10,
                 "unlocked": false
             },
             "2": {
                 "id": "common",
-                "threshold": 2,
+                "threshold": 25,
                 "unlocked": false
             },
             "3": {
                 "id": "uncommon",
-                "threshold": 3,
+                "threshold": 40,
                 "unlocked": false
             },
             "4": {
                 "id": "rare",
-                "threshold": 5,
+                "threshold": 55,
                 "unlocked": false
             },
             "5": {
                 "id": "epic",
-                "threshold": 8,
+                "threshold": 70,
                 "unlocked": false
             },
             "6": {
                 "id": "legendary",
-                "threshold": 13,
+                "threshold": 85,
                 "unlocked": false
             },
             "7": {
                 "id": "god",
-                "threshold": 21,
+                "threshold": 100,
                 "unlocked": false
             }
         },

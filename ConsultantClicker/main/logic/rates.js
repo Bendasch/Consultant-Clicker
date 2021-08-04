@@ -125,7 +125,13 @@ const updateSalesRates = (activeUpgradeKeys=null) => {
         return total + sales[key].quantity * sales[key].rate
     }, totalSalesFlatRate)
 
+    // cap salesrate at 100%
+    totalSalesRate = Math.min(totalSalesRate, 1)
+    body.data("totalSalesRateWithoutBoost", totalSalesRate)
+
     // handle power-ups
+    // in these cases we allow more than 100% sales rate
+    // and we try to find a second project with the chance - 100%
     const powerups = body.data("powerups")
     Object.keys(powerups).forEach((key) => {
         var powerup = powerups[key]

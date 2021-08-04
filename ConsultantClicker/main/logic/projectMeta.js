@@ -1,3 +1,26 @@
+export const updateMetaProject = () => {
+    const body = $("body")
+    const upgrades = body.data("upgrades").filter(upgrade => upgrade.owned)
+    var meta = body.data("projectMeta")
+
+    meta.expectedValue = meta.baseExpectedValue
+    meta.effortConversionRate = meta.baseEffortConversionRate
+    
+    Object.keys(upgrades).forEach( key => {
+        var upgrade = upgrades[key]
+        if ("rate" in upgrade) {
+            if ("projectMoney" in upgrade.rate) {
+                meta.expectedValue *= upgrade.rate.projectMoney
+            }
+            if ("projectEffortConversion" in upgrade.rate) {
+                meta.effortConversionRate *= upgrade.rate.projectEffortConversion
+            }
+        }
+    })
+
+    body.data("projectMeta", meta)
+}
+
 export const setProjectClickPending = (val=true) => {
     const body = $("body")
     var projectMeta = body.data("projectMeta")

@@ -16,12 +16,14 @@ export const buyUpgrade = (upgradeId) => {
 
   logAction("Bought upgrade '" + upgrades[upgradeId].name + "'.")
 
-  if (upgradeId=="wordUpgrade") wordNotification()
-  if (upgradeId=="staffUpgrade") {
-    enableStaffTab()
-    staffNotification()
+  switch(upgradeId) {
+    case "wordUpgrade":     wordNotification(); break
+    case "staffUpgrade":    enableStaffTab(); staffNotification(); break
+    case "callForProposal": addToProjectBuffer(1); break
+    case "salesTeam":       addToProjectBuffer(1); break 
+    case "connections":     addToProjectBuffer(1); break 
+    case "monopoly":        addToProjectBuffer(1); break
   }
-  if (upgradeId=="salesTeam") addToProjectBuffer(1)
 } 
 
 export const officeButtonOwned = (buttonId) => {

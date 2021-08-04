@@ -10,19 +10,19 @@
     "consultants": {
         "junior": {
             "quantity": 0,
-            "rate": 55,
+            "rate": 25,
             "cost": 15000,
             "baseCost": 15000,
             "name": "Junior Consultant",
-            "baseRate": 55
+            "baseRate": 25
         },
         "consultant": {
             "quantity": 0,
-            "rate": 75,
+            "rate": 50,
             "cost": 25000,
             "baseCost": 25000,
             "name": "Consultant",
-            "baseRate": 75
+            "baseRate": 50
         },
         "senior": {
             "quantity": 0,
@@ -36,11 +36,11 @@
     "sales": {
         "salesPerson" :{
             "quantity": 0,
-            "rate": 0.05,
+            "rate": 0.025,
             "cost": 50000,
             "baseCost": 50000,
             "name": "Salesperson",
-            "baseRate": 0.05
+            "baseRate": 0.025
         }
     },
     "projectMeta": {
@@ -108,15 +108,22 @@
                 "clicking": 1.05
             }
         },
+        "callForProposal": {
+            "id": "callForProposal",
+            "name": "Call for proposal",
+            "description": "Increases your project buffer by 1.",
+            "owned": false,
+            "cost": 50000
+        },
         "waterScrum": {
             "id": "waterScrum",
             "name": "Water-Scrum",
-            "description": "Agile but not really! This slightly decreases productivity (-5%) but helps sales (+10%)!",
+            "description": "Agile but not really! This slightly decreases productivity (-5%) but helps sales (+2.5%)!",
             "owned": false,
             "cost": 75000,
             "rate": {
                 "consultants": 0.95,
-                "sales": 1.1,
+                "sales": 1.025,
                 "clicking": 1
             }
         },
@@ -128,35 +135,82 @@
             "cost": 100000,
             "condition": "0"
         },
+        "mediumSizedBusiness": {
+            "id": "mediumSizedBusiness",
+            "name": "Medium-sized business",
+            "description": "Your project will take 2x the effort but bring in 2.5x the money.",
+            "owned": false,
+            "cost": 150000,
+            "rate": {
+                "projectMoney": 2.5,
+                "projectEffortConversion": 0.8,
+                "consultants": 1,
+                "sales": 1,
+                "clicking": 1
+            }
+        },
         "salesTraining": {
             "id": "salesTraining",
             "name": "Sales Training",
-            "description": "This teaches your sales staff some new techniques (+5%).",
+            "description": "This teaches your sales staff some new techniques (+2.5%).",
             "owned": false,
-            "cost": 250000,
+            "cost": 175000,
             "rate": {
                 "consultants": 1,
-                "sales": 1.05,
+                "sales": 1.025,
                 "clicking": 1.05
             }
+        },
+        "connections": {
+            "id": "connections",
+            "name": "Connections",
+            "description": "Increases your project buffer by 1.",
+            "owned": false,
+            "cost": 350000
         },
         "outlookUpgrade": {
             "id": "outlookUpgrade",
             "name": "Outlook",
-            "description": "This allows you to make your sales staff 1.5x as productive for 30s by clicking the outlook icon (90s cooldown).",
+            "description": "This allows you to make your sales staff 2x as productive for 30s by clicking the outlook icon (90s cooldown).",
             "owned": false,
             "cost": 500000
+        },
+        "cleverPricing": {
+            "id": "cleverPricing",
+            "name": "Clever pricing",
+            "description": "Your sales come up with a great trick (+2.5% sales rate).",
+            "owned": false,
+            "cost": 999999,
+            "rate": {
+                "consultants": 1,
+                "sales": 1.025,
+                "clicking": 1
+            }
+        },
+        "bigBusiness": {
+            "id": "bigBusiness",
+            "name": "Big business",
+            "description": "Your project will take 4x the effort but bring in 3x the money.",
+            "owned": false,
+            "cost": 1500000,
+            "rate": {
+                "projectMoney": 4,
+                "projectEffortConversion": 0.75,
+                "consultants": 1,
+                "sales": 1,
+                "clicking": 1
+            }
         },
         "newWebsite": {
             "id": "newWebsite",
             "name": "New Website",
-            "description": "The new website increases sales (+5%).",
+            "description": "The new website increases sales (+2.5%).",
             "owned": false,
-            "cost": 1000000,
+            "cost": 2500000,
             "rate": {
                 "consultants": 1,
-                "sales": 1.05,
-                "clicking": 1.05
+                "sales": 1.025,
+                "clicking": 1
             }
         },
         "excelUpgrade": {
@@ -166,12 +220,19 @@
             "owned": false,
             "cost": 5000000
         },
+        "monopoly": {
+            "id": "monopoly",
+            "name": "Monopoly",
+            "description": "Increases your project buffer by 1.",
+            "owned": false,
+            "cost": 10000000
+        },
         "powerpointUpgrade": {
             "id": "powerpointUpgrade",
             "name": "Powerpoint",
             "description": "This allows you to fill your project buffer instantly by clicking the powerpoint button (60s cooldown).",
             "owned": false,
-            "cost": 50000000
+            "cost": 25000000
         }
     },
     "clicking": {

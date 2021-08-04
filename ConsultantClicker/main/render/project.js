@@ -89,9 +89,8 @@ export const destroyProjectDOM = (projectId) => {
     document.getElementById(projectId).remove();
 }
 
-export const destroyAllProjects = () => {
-    var projects = $("#projectBar").children(".project")
-    projects.remove()
+export const emptyProjectBar = () => {
+    $("#projectBar").empty()
 }
 
 const setProgressBar = (projectId, progress, effort) => {

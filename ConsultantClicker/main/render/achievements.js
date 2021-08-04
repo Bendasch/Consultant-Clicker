@@ -17,6 +17,12 @@ export const unlockAchievement = (divId) => {
     }
 }
 
+export const lockAchievement = (divId) => {
+    var $achievement = $(`#${divId}`)
+    $achievement.removeClass("unlocked")
+    $achievement.unbind()
+}
+
 const toogleTooltip = (event) => {
     const tooltipId = "ach-tooltip"
     if ($(`#${tooltipId}`).length <= 0) { 

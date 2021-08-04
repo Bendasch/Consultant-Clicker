@@ -52,3 +52,8 @@ const getNextId = (notifications, id) => {
         return nextId
     }
 }
+
+export const destroyAllNotifications = () => {
+    $("body").data("notifications", {})
+    $("#notifications").empty()
+}

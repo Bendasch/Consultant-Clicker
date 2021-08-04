@@ -1,6 +1,6 @@
 import { Formatter, normRand, getRandomProjectName } from "../utils/utils.js"
 import { startAddToBalanceAnimation } from "../render/flyingIndicators.js"
-import { destroyProjectDOM } from '../render/project.js'
+import { destroyProjectDOM , emptyProjectBar } from '../render/project.js'
 import { getProjectClickPending, setProjectClickPending, getTotalProjectsFinished, addFinishedProject } from './projectMeta.js'
 import { logAction } from '../render/log.js'
 import { showNotification } from '../render/notifications.js'
@@ -226,4 +226,9 @@ export const addToBalance = (val) => {
   if (val > 0) {
     body.data("totalEarnings", body.data("totalEarnings") + val)
   }
+}
+
+export const destroyAllProjects = () => {
+  $("body").data("projects",{})
+  emptyProjectBar()
 }

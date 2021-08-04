@@ -1,14 +1,18 @@
 
 import { initializeData } from '../logic/infra.js'
 import { initializeUpgrades, initializeButtons, initializeAchievements } from '../render/infra.js'
-import { destroyAllProjects } from '../render/project.js'
+import { destroyAllProjects } from '../logic/project.js'
+import { destroyAllNotifications } from '../render/notifications.js'
 
 export const initialize = () => {
 
     // clear project DOM elements 
     // this is especially relevant in case of game resets
     destroyAllProjects()
-  
+    
+    // remove all pending notifications
+    destroyAllNotifications()
+
     // when the (static) DOM is ready, bind click events
     $(document).ready(() => initializeButtons());
   

@@ -3,7 +3,7 @@ import { bindTabButtons } from './navbar.js'
 import { bindOfficeButtons } from './office.js'
 import { bindTrelloButtons } from '../utils/trello.js'
 import { bindSettingsButtons } from './settings.js'
-import { unlockAchievement } from './achievements.js'
+import { lockAchievement, unlockAchievement } from './achievements.js'
 
 export const initializeUpgrades = () => {
     
@@ -24,12 +24,14 @@ export const initializeButtons = () => {
 }
 
 export const initializeAchievements = () => {
+    const max = 7
     const achievements = $("body").data("achievements")
     Object.keys(achievements).forEach( type => {
         const current = achievements[type].current
-        for (var level = 1; level <= current; level++) {
+        for (var level = 1; level <= max; level++) {
             const id = achievements[type][level].id
-            unlockAchievement(`ach-${type}-${id}`)
+            const divId = `ach-${type}-${id}`;
+            (level <= current) ? unlockAchievement(divId) : lockAchievement(divId)
         }
     }) 
 }

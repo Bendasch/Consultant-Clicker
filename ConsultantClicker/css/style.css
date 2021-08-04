@@ -428,11 +428,15 @@ html body #canvas #projectBar {
   margin-right: 5px;
   width: calc(100% - 10px);
   height: calc(12vh + 50px);
-  width: 100%;
   display: flex;
   flex-shrink: 1;
-  justify-content: space-around;
+  justify-content: flex-start;
+  align-items: center;
   position: relative;
+  overflow-x: auto;
+}
+html body #canvas #projectBar::-webkit-scrollbar {
+  display: none;
 }
 html body #canvas #projectBar .project {
   height: 100%;
@@ -441,6 +445,9 @@ html body #canvas #projectBar .project {
   cursor: pointer;
   border-radius: 1rem;
   border: 0;
+  min-width: calc(calc(12vh + 50px) * 1.15);
+  margin-left: 0.5em;
+  margin-right: 0.5em;
   display: inline-block;
 }
 html body #canvas #projectBar .project p {
@@ -576,6 +583,7 @@ html body #footer #version {
   text-align: center;
   font-size: 0.75em;
   margin: 5px;
+  z-index: -5;
 }
 html body #footer .times {
   position: absolute;

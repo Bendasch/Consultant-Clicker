@@ -498,11 +498,14 @@ html {
         
         @include side-space;
         height: $barHeight;
-        width: 100%;
         display: flex;
         flex-shrink: 1;
-        justify-content: space-around;
+        justify-content: flex-start;
+        align-items: center;
         position: relative;
+        overflow-x: auto;
+
+        &::-webkit-scrollbar { display: none;}
 
         .project {
           
@@ -512,6 +515,9 @@ html {
           cursor: pointer;
           border-radius: 1rem;
           border: 0;
+          min-width: calc(#{$barHeight} * 1.15);
+          margin-left: 0.5em;
+          margin-right: 0.5em;
           display: inline-block;
 
           p {
@@ -670,6 +676,7 @@ html {
         text-align: center;
         font-size: 0.75em;
         margin: 5px;
+        z-index: -5;
       }
 
       .times {

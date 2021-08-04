@@ -87,12 +87,12 @@
         "secondMonitor": {
             "id": "secondMonitor",
             "name": "Second monitor",
-            "description": "Everyone will be able to see two office apps at the same time. This increases ALL rates by 50%.",
+            "description": "Everyone will be able to see two office apps at the same time (consultants & clicking +50%, sales +10%).",
             "owned": false,
-            "cost": 7500,
+            "cost": 12500,
             "rate": {
                 "consultants": 1.5,
-                "sales": 1.5,
+                "sales": 1.1,
                 "clicking": 1.5
             }
         },

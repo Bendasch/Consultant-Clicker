@@ -28,7 +28,7 @@ export const updateAchievements = (cycle) => {
             if (!(meetsThreshold(type, achievement.threshold))) break;
 
             unlockAchievement(`ach-${type}-${achievement.id}`)
-            showNotification("New Achievement!", getNoficationText(achievementGroup, level), true)
+            showNotification("New Achievement!", "", getAchievementImg(type, level))
             achievements[type].current = level
             achievements[type][level].unlocked = true
         }
@@ -37,8 +37,8 @@ export const updateAchievements = (cycle) => {
     })
 }
 
-const getNoficationText = (achievementGroup, level) => {
-    return `You reached ${achievementGroup.name}-level ${level}.`
+const getAchievementImg = (type, level) => {
+    return `${type}/${$("body").data("achievements")[type][level].id}`
 }
 
 const meetsThreshold = (type, threshold) => {

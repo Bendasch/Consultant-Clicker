@@ -45,7 +45,7 @@ const wordNotification = () => {
   if (getActiveProject($("body").data("projects"))) {
     main = "You can progress your active project by clicking the Word button."
   } else {
-    main = "Select your project to activate it. Then press the Word button to progress it."
+    main = "Select your project to activate it. Then keep pressing the Word button."
   }
   showNotification(header, main)
 }

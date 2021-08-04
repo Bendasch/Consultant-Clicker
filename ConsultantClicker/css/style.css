@@ -97,9 +97,12 @@ html body #notifications {
   pointer-events: none;
 }
 html body #notifications .notification {
+  position: relative;
+  flex-direction: column;
   z-index: 5000;
   width: 90%;
   height: auto;
+  min-height: 5em;
   border-radius: 0.5em;
   background-color: #2f407a;
   color: #eee;
@@ -115,10 +118,21 @@ html body #notifications .notification p {
   padding: 0.2em;
   margin-bottom: 0.3em;
 }
+html body #notifications .notification img {
+  width: 4em;
+  height: auto;
+  position: absolute;
+  left: 0.75em;
+  top: calc(50% - 2em);
+}
 html body #notifications .notification.achievement {
   width: 80%;
   font-size: 90%;
   background-color: #f5523c;
+}
+html body #notifications .notification.achievement h1 {
+  margin-left: 4.75em;
+  line-height: 3em;
 }
 html body #canvas {
   display: flex;

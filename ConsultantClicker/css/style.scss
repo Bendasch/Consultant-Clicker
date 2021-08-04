@@ -185,9 +185,12 @@ html {
 
       .notification {
 
+        position: relative;
+        flex-direction: column;
         z-index: 5000;
         width: 90%;
         height: auto;
+        min-height: 5em;
         border-radius: 0.5em;
         background-color: $notification;
         color: $noficationText;
@@ -205,11 +208,23 @@ html {
           margin-bottom: 0.3em;
         }  
 
+        img {
+          width: 4em;
+          height: auto;
+          position: absolute;
+          left: 0.75em;
+          top: calc(50% - 2em);
+        }
+
         &.achievement {
           width: 80%;
           font-size: 90%;
-          background-color: $achievementNotification;
-        }     
+          background-color: $achievementNotification;          
+          h1 { 
+            margin-left: 4.75em; 
+            line-height: 3em;
+          }     
+        }
       }
     }
 

@@ -14,23 +14,27 @@ export const renderNotifications = (cycle) => {
     body.data("notifications", notifications)
 }
 
-export const showNotification = (headerText, mainText, achievement=false) => {
+export const showNotification = (headerText, mainText, achImg=null) => {
+    
     const body = $("body")
     var notifications = body.data("notifications")
+    
     const time = (new Date()).getTime()
     var id = getNextId(notifications, `${time}_0`)
     var classes = "notification"
-    var fade;
-    if (achievement) {
+    var fade = 4;
+    
+    if (achImg) {
         classes += ` achievement`
-        fade = 2.5
-    } else {
-        fade = 4
-    }
+        fade = 2
+    } 
 
     $("#notifications").append(`<div id='${id}' class='${classes}'></div>`)
-    $(`#${id}`).append(`<h1>${headerText}</h1>`)
-    $(`#${id}`).append(`<p>${mainText}</p>`)
+    var $nofication = $(`#${id}`)
+    
+    if (achImg) $nofication.append(`<img src='./img/achievements/${achImg}.png'/>`)
+    $nofication.append(`<h1>${headerText}</h1>`)
+    if (!achImg) $nofication.append(`<p>${mainText}</p>`)
 
     // set the fade of the current element
 

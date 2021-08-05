@@ -1,5 +1,5 @@
 import { triggerOfficeAnimation, startButtonGlow, setOfficeCooldown } from '../render/office.js'
-import { getActiveProject, addToProgress, findProject } from './project.js'
+import { getActiveProject, addToProgress, findProject, generateProject } from './project.js'
 import { createProgressIndicator } from '../render/flyingIndicators.js'
 import { getProjectClickPending, setProjectClickPending, isProjectBufferFull } from './projectMeta.js'
 
@@ -68,7 +68,7 @@ const excelClick = () => {
   setOfficeCooldown("excel")
 }
 
-const powerpointClick = () => {
+const powerpointClick = async () => {
 
   // glow
   startButtonGlow("powerpoint", 100)
@@ -76,7 +76,11 @@ const powerpointClick = () => {
   // logic
   const body = $("body")
   var buttons = body.data("buttons")
+  
   // fill the project buffer!
+  while(!(isProjectBufferFull())) {
+    await generateProject()
+  }
 
   // cooldown
   buttons.powerpoint.cooldown = 60

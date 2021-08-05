@@ -43,7 +43,8 @@ const getAchievementImg = (type, level) => {
 
 const meetsThreshold = (type, threshold) => {
     const total = getTotalByAchievementType(type)
-    return (total >= threshold)
+    if (threshold != "all") return (total >= threshold)
+    return (total == getTotalNumberForAchievement(type))
 }
 
 const getTotalByAchievementType = (type) => {
@@ -85,5 +86,12 @@ const getLevelNumberFromId = (level) => {
         case "epic":        return 5
         case "legendary":   return 6
         case "god":         return 7 
+    }
+}
+
+const getTotalNumberForAchievement = (type) => {
+    switch(type) {
+        case "achievements":    return 62
+        case "upgrades":        return 17   
     }
 }

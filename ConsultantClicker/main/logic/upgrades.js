@@ -1,5 +1,4 @@
 import { addToBalance, getActiveProject } from './project.js'
-import { logAction } from '../render/log.js'
 import { showNotification } from '../render/notifications.js'
 import { setStaffTab } from '../render/navbar.js'
 import { addToProjectBuffer } from './projectMeta.js'
@@ -13,8 +12,6 @@ export const buyUpgrade = (upgradeId) => {
   upgrades[upgradeId].owned = true
 
   body.data("upgrades", upgrades)
-
-  logAction("Bought upgrade '" + upgrades[upgradeId].name + "'.")
 
   switch(upgradeId) {
     case "wordUpgrade":     wordNotification(); break

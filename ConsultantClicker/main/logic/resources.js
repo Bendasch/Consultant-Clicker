@@ -1,4 +1,3 @@
-import { logAction } from '../render/log.js'
 import { addToBalance } from './project.js'
 
 export const addResource = (category, resId) => {
@@ -14,8 +13,6 @@ export const addResource = (category, resId) => {
 
   // increase the price for future purchases
   setNewPrice(category, resId)
-
-  logAction("1 " + resources[resId].name +  " was added.");
 }
 
 export const getTotalConsultantsQuantity = () => {

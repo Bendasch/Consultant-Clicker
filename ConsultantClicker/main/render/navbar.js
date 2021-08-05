@@ -6,7 +6,7 @@ export const bindTabButtons = () => {
   setStaffTab();
   $("#statsTab").unbind().click((event) => {toggleTab(event, "stats")});
   $("#achievementTab").unbind().click((event) => {toggleTab(event, "achievements")});
-  $("#logTab").unbind().click((event) => {toggleTab(event, "log")})
+  //$("#logTab").unbind().click((event) => {toggleTab(event, "log")})
   $("#settingsTab").unbind().click((event) => {toggleTab(event, "settings")})
 }
 

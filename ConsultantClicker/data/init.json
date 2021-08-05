@@ -611,32 +611,32 @@
             "tooltip": "You earned {THRESHOLD} achievement(s) throughout the game!",
             "1": {
                 "id": "beginner",
-                "threshold": 1,
+                "threshold": 5,
                 "unlocked": false
             },
             "2": {
                 "id": "common",
-                "threshold": 10,
+                "threshold": 15,
                 "unlocked": false
             },
             "3": {
                 "id": "uncommon",
-                "threshold": 20,
+                "threshold": 25,
                 "unlocked": false
             },
             "4": {
                 "id": "rare",
-                "threshold": 30,
+                "threshold": 35,
                 "unlocked": false
             }, 
             "5": {
                 "id": "epic",
-                "threshold": 40,
+                "threshold": 35,
                 "unlocked": false
             }, 
             "6": {
                 "id": "legendary",
-                "threshold": 50,
+                "threshold": 55,
                 "unlocked": false
             },
             "7": {

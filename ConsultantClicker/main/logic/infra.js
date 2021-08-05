@@ -1,5 +1,3 @@
-
-import { logAction } from '../render/log.js'
 import { initialize } from '../utils/initialize.js'
 import { initializeProjectMeta } from '../logic/projectMeta.js'
 
@@ -9,7 +7,6 @@ export const saveGame = () => {
   
 export const resetGame = () => {
   window.localStorage.removeItem("CONS_CLICKER")
-  logAction("The game is now reset!")
   initialize()
 }
   

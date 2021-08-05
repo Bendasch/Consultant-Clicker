@@ -1,8 +1,7 @@
-import { Formatter, normRand, getRandomProjectName } from "../utils/utils.js"
+import { normRand, getRandomProjectName } from "../utils/utils.js"
 import { startAddToBalanceAnimation } from "../render/flyingIndicators.js"
 import { destroyProjectDOM , emptyProjectBar } from '../render/project.js'
 import { getProjectClickPending, setProjectClickPending, getTotalProjectsFinished, addFinishedProject } from './projectMeta.js'
-import { logAction } from '../render/log.js'
 import { showNotification } from '../render/notifications.js'
 
 export const updateProjects = (tick) => {
@@ -112,7 +111,6 @@ export const findProject = async () => {
     // get a random number between 0 and 1
     // if it exceeds the sales rate, get a project
     if (totalSalesRate < Math.random()) {
-      logAction("Project proposal failed! Better luck next time.");
       return false;
     }
     
@@ -128,7 +126,7 @@ const projectBufferFull = () => {
   return (Object.keys(projects).length >= project.projectBufferSize)
 }
 
-const generateProject = async () => {
+export const generateProject = async () => {
 
   const body = $("body");
   var projectMeta = body.data("projectMeta")
@@ -167,11 +165,6 @@ const generateProject = async () => {
 
   body.data("projects", projects)
   body.data("project", projectMeta)
-
-  // output success message
-  const val = Formatter.format(newProject.value)
-  logAction(`Project found (value: ${val}, effort: ${newProject.effort}).`
-  )
 }
 
 const updateProgress = (projectId, tick) => {

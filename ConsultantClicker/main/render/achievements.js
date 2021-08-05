@@ -20,10 +20,10 @@ export const unlockAchievement = (type, level) => {
     var $div = $(`#ach-${type}-${achievement.id}`)
 
     $div.addClass("unlocked")
-    if (achievement.new || achiement.new == undefined) {
+    if (achievement.new || achievement.new == undefined) {
         $div.addClass("new")
     } 
-    
+
     if (mobileCheck()) {
         $div.click( (event) => {
             toogleTooltip(event)

@@ -38,7 +38,7 @@ export const updateAchievements = (cycle) => {
 }
 
 const getAchievementImg = (type, level) => {
-    return `${type}/${$("body").data("achievements")[type][level].id}`
+    return `${type}-${$("body").data("achievements")[type][level].id}`
 }
 
 const meetsThreshold = (type, threshold) => {

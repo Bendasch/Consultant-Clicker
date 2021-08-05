@@ -1,26 +1,51 @@
-import { getTypeAndLevelFromId } from '../logic/achievements.js'
+import { 
+    getTypeAndLevelFromId, 
+    getUnlockedAchievementAmount, 
+    getTotalNumberForAchievement, 
+    setAchievementNotNew
+} from '../logic/achievements.js'
 import { mobileCheck } from '../utils/utils.js'
 
-export const unlockAchievement = (divId) => {
-    $(`#${divId}`).addClass("unlocked")
+export const renderAchievementCount = () => {
+    const reached = getUnlockedAchievementAmount()
+    const total = getTotalNumberForAchievement("achievements") + 1
+    $("#achievementHeading").text(`Achievements (${reached}/${total})`)
+}
+
+export const unlockAchievement = (type, level) => {
+
+    const achievements = $("body").data("achievements")
+    const achievement = achievements[type][level]
+
+    var $div = $(`#ach-${type}-${achievement.id}`)
+
+    $div.addClass("unlocked")
+    if (achievement.new) $div.addClass("new")
 
     if (mobileCheck()) {
-
-        $(`#${divId}`).click( (event) => {toogleTooltip(event)} )
-        
+        $div.click( (event) => {
+            toogleTooltip(event)
+            $(event.target).removeClass("new")
+            setAchievementNotNew(type, level)
+        })        
     } else {
-
-        $(`#${divId}`).unbind().hover(
-            (event) => {showTooltip(event)},
+        $div.unbind().hover(
+            (event) => {
+                showTooltip(event)
+                $(event.target).removeClass("new")
+                setAchievementNotNew(type, level)
+            },
             () => {destroyTooltip()}    
         )
     }
 }
 
-export const lockAchievement = (divId) => {
-    var $achievement = $(`#${divId}`)
-    $achievement.removeClass("unlocked")
-    $achievement.unbind()
+export const lockAchievement = (type, level) => {
+    const achievements = $("body").data("achievements")
+    const achievement = achievements[type][level]
+    var $div = $(`#ach-${type}-${achievement.id}`)
+    $div.removeClass("unlocked")
+    $div.unbind()
 }
 
 const toogleTooltip = (event) => {

@@ -171,8 +171,12 @@ html {
       }
 
       #companyNameContainer {
+
         text-align: center;
+        width: 100%;
+
         #companyName {    
+          width: calc(100% - 10px);
           text-align: center; 
           font-size: 125%;     
           padding: 5px;
@@ -264,6 +268,8 @@ html {
           @include side-space;
           display: none;
           line-height: 20px;
+
+          h1 { font-size: 1.75em; }
 
           .contentWrapper {
 
@@ -416,6 +422,11 @@ html {
                   height: 3.75rem;
                   padding: 0px;
                   opacity: 100%;
+                }
+                
+                &.new {
+                  box-shadow: 0px 0px 10px #d8993b,
+                              0px 0px 5px #f8e432;
                 }
               }
             }

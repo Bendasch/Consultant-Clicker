@@ -27,7 +27,7 @@ export const updateAchievements = (cycle) => {
 
             if (!(meetsThreshold(type, achievement.threshold))) break;
 
-            unlockAchievement(`ach-${type}-${achievement.id}`)
+            unlockAchievement(type, level)
             showNotification("New Achievement!", "", getAchievementImg(type, level))
             achievements[type].current = level
             achievements[type][level].unlocked = true
@@ -63,13 +63,19 @@ const getTotalByAchievementType = (type) => {
     }
 }
 
-const getUnlockedAchievementAmount = () => {
+export const getUnlockedAchievementAmount = () => {
   const achievements = $("body").data("achievements")  
   return Object.keys(achievements).reduce( (total, type) => { 
       var achievementGroup = Object.keys(achievements[type])
       var unlockedAchievements = achievementGroup.filter(key => {return achievements[type][key].unlocked})
       return total + unlockedAchievements.length
   }, 0)
+}
+
+export const setAchievementNotNew = (type, level) => {
+    var achievements = $("body").data("achievements")
+    achievements[type][level].new = false
+    $("body").data("achievements", achievements)
 }
 
 export const getTypeAndLevelFromId = (achievementId) => {
@@ -89,7 +95,7 @@ const getLevelNumberFromId = (level) => {
     }
 }
 
-const getTotalNumberForAchievement = (type) => {
+export const getTotalNumberForAchievement = (type) => {
     switch(type) {
         case "achievements":    return 62
         case "upgrades":        return 17   

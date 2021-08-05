@@ -37,9 +37,7 @@ export const initializeAchievements = () => {
     Object.keys(achievements).forEach( type => {
         const current = achievements[type].current
         for (var level = 1; level <= max; level++) {
-            const id = achievements[type][level].id
-            const divId = `ach-${type}-${id}`;
-            (level <= current) ? unlockAchievement(divId) : lockAchievement(divId)
+            (level <= current) ? unlockAchievement(type, level) : lockAchievement(type, level)
         }
     }) 
 }

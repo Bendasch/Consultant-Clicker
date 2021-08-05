@@ -285,37 +285,44 @@
             "1": {
                 "id": "beginner",
                 "threshold": 1,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             },
             "2": {
                 "id": "common",
                 "threshold": 50,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             },
             "3": {
                 "id": "uncommon",
                 "threshold": 500,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             },
             "4": {
                 "id": "rare",
                 "threshold": 5000,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             },
             "5": {
                 "id": "epic",
                 "threshold": 50000,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             }, 
             "6": {
                 "id": "legendary",
                 "threshold": 500000,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             },
             "7": {
                 "id": "god",
                 "threshold": 1000000,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             }
         },
         "totalEarned": {
@@ -326,37 +333,44 @@
             "1": {
                 "id": "beginner",
                 "threshold": 100000,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             },
             "2": {
                 "id": "common",
                 "threshold": 1000000,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             },
             "3": {
                 "id": "uncommon",
                 "threshold": 10000000,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             },
             "4": {
                 "id": "rare",
                 "threshold": 100000000,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             }, 
             "5": {
                 "id": "epic",
                 "threshold": 1000000000,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             }, 
             "6": {
                 "id": "legendary",
                 "threshold": 10000000000,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             },
             "7": {
                 "id": "god",
                 "threshold": 100000000000,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             }
         },
         "balance": {
@@ -367,37 +381,44 @@
             "1": {
                 "id": "beginner",
                 "threshold": 5000,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             }, 
             "2": {
                 "id": "common",
                 "threshold": 50000,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             }, 
             "3": {
                 "id": "uncommon",
                 "threshold": 500000,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             },         
             "4": {
                 "id": "rare",
                 "threshold": 5000000,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             }, 
             "5": {
                 "id": "epic",
                 "threshold": 50000000,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             }, 
             "6": {
                 "id": "legendary",
                 "threshold": 500000000,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             }, 
             "7": {
                 "id": "god",
                 "threshold": 5000000000,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             }
         },
         "projects": {
@@ -408,37 +429,44 @@
             "1": {
                 "id": "beginner",
                 "threshold": 5,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             }, 
             "2": {
                 "id": "common",
                 "threshold": 25,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             },
             "3": {
                 "id": "uncommon",
                 "threshold": 250,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             }, 
             "4": {
                 "id": "rare",
                 "threshold": 2500,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             },
             "5": {
                 "id": "epic",
                 "threshold": 25000,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             },
             "6": {
                 "id": "legendary",
                 "threshold": 100000,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             },
             "7": {
                 "id": "god",
                 "threshold": 500000,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             }
         },        
         "progress": {
@@ -449,37 +477,44 @@
             "1": {
                 "id": "beginner",
                 "threshold": 100000,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             }, 
             "2": {
                 "id": "common",
                 "threshold": 1000000,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             },
             "3": {
                 "id": "uncommon",
                 "threshold": 10000000,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             }, 
             "4": {
                 "id": "rare",
                 "threshold": 100000000,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             },
             "5": {
                 "id": "epic",
                 "threshold": 1000000000,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             },
             "6": {
                 "id": "legendary",
                 "threshold": 10000000000,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             },
             "7": {
                 "id": "god",
                 "threshold": 100000000000,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             }
         },
         "consultants": {
@@ -490,37 +525,44 @@
             "1": {
                 "id": "beginner",
                 "threshold": 1,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             },
             "2": {
                 "id": "common",
                 "threshold": 5,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             },
             "3": {
                 "id": "uncommon",
                 "threshold": 10,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             },
             "4": {
                 "id": "rare",
                 "threshold": 50,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             }, 
             "5": {
                 "id": "epic",
                 "threshold": 100,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             }, 
             "6": {
                 "id": "legendary",
                 "threshold": 500,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             },
             "7": {
                 "id": "god",
                 "threshold": 1000,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             }
         },
         "sales": {
@@ -531,37 +573,44 @@
             "1": {
                 "id": "beginner",
                 "threshold": 10,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             },
             "2": {
                 "id": "common",
                 "threshold": 25,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             },
             "3": {
                 "id": "uncommon",
                 "threshold": 40,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             },
             "4": {
                 "id": "rare",
                 "threshold": 55,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             },
             "5": {
                 "id": "epic",
                 "threshold": 70,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             },
             "6": {
                 "id": "legendary",
                 "threshold": 85,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             },
             "7": {
                 "id": "god",
                 "threshold": 100,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             }
         },
         "upgrades": {
@@ -572,37 +621,44 @@
             "1": {
                 "id": "beginner",
                 "threshold": 1,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             }, 
             "2": {
                 "id": "common",
                 "threshold": 2,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             },
             "3": {
                 "id": "uncommon",
                 "threshold": 3,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             },
             "4": {
                 "id": "rare",
                 "threshold": 5,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             },
             "5": {
                 "id": "epic",
                 "threshold": 8,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             },
             "6": {
                 "id": "legendary",
                 "threshold": 13,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             },
             "7": {
                 "id": "god",
                 "threshold": "all",
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             }
         },
         "achievements": {
@@ -613,37 +669,44 @@
             "1": {
                 "id": "beginner",
                 "threshold": 5,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             },
             "2": {
                 "id": "common",
                 "threshold": 15,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             },
             "3": {
                 "id": "uncommon",
                 "threshold": 25,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             },
             "4": {
                 "id": "rare",
                 "threshold": 35,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             }, 
             "5": {
                 "id": "epic",
                 "threshold": 35,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             }, 
             "6": {
                 "id": "legendary",
                 "threshold": 55,
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             },
             "7": {
                 "id": "god",
                 "threshold": "all",
-                "unlocked": false
+                "unlocked": false,
+                "new": true
             }
         }
     },

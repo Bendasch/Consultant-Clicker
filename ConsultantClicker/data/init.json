@@ -1,4 +1,5 @@
-{
+{   
+    "companyName": "My Consulting Firm",
     "currentBalance": 500,
     "totalEarnings": 0,
     "totalRate": 0,

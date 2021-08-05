@@ -1,6 +1,6 @@
 export const updateMetaProject = () => {
     const body = $("body")
-    const upgrades = body.data("upgrades").filter(upgrade => upgrade.owned)
+    const upgrades = body.data("upgrades")
     var meta = body.data("projectMeta")
 
     meta.expectedValue = meta.baseExpectedValue
@@ -8,6 +8,8 @@ export const updateMetaProject = () => {
     
     Object.keys(upgrades).forEach( key => {
         var upgrade = upgrades[key]
+        if (!upgrade.owned) return
+
         if ("rate" in upgrade) {
             if ("projectMoney" in upgrade.rate) {
                 meta.expectedValue *= upgrade.rate.projectMoney

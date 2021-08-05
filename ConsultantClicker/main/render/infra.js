@@ -23,6 +23,14 @@ export const initializeButtons = () => {
     bindOfficeButtons()
 }
 
+export const initializeInputs = () => {
+    var $name = $("#companyName")
+    $name.val($("body").data("companyName") || "My Consulting Firm")
+    $name.unbind().change((event)=>{
+        $("body").data("companyName", $(event.target).val())
+    })
+}
+
 export const initializeAchievements = () => {
     const max = 7
     const achievements = $("body").data("achievements")

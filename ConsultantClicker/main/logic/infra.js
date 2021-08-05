@@ -14,6 +14,8 @@ export const initializeData = (json) => {
 
   const body = $("body")
 
+  body.data("companyName", json.companyName)
+
   body.data("totalEarnings", json.totalEarnings)
   body.data("currentBalance", json.currentBalance)
   body.data("totalProgress", json.totalProgress)

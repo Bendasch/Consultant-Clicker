@@ -169,6 +169,22 @@ html {
         border-top: 2px solid $lightgray;
         line-height: 40px;        
       }
+
+      #companyNameContainer {
+        text-align: center;
+        #companyName {    
+          text-align: center; 
+          font-size: 125%;     
+          padding: 5px;
+          background-color: transparent;
+          color: $almostwhite;
+          border: none;
+          &:focus {
+            outline: none;
+          }
+        }
+
+      }
     }
 
     #notifications {

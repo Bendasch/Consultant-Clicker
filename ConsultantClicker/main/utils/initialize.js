@@ -1,6 +1,6 @@
 
 import { initializeData } from '../logic/infra.js'
-import { initializeUpgrades, initializeButtons, initializeAchievements } from '../render/infra.js'
+import { initializeInputs, initializeUpgrades, initializeButtons, initializeAchievements } from '../render/infra.js'
 import { destroyAllProjects } from '../logic/project.js'
 import { destroyAllNotifications } from '../render/notifications.js'
 
@@ -23,6 +23,7 @@ export const initialize = () => {
             initializeUpgrades()  
             initializeAchievements()
             initializeButtons()
+            initializeInputs()
             resolve(true)
         })
     } 
@@ -33,5 +34,6 @@ export const initialize = () => {
         initializeUpgrades() 
         initializeAchievements()
         initializeButtons()
+        initializeInputs()
     });
 }

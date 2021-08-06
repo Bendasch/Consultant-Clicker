@@ -14,7 +14,7 @@ export const renderNotifications = (cycle) => {
     body.data("notifications", notifications)
 }
 
-export const showNotification = (headerText, mainText, achImg=null) => {
+export const showNotification = (headerText, mainText, achImg=null, customFade=null) => {
     
     const body = $("body")
     var notifications = body.data("notifications")
@@ -22,11 +22,11 @@ export const showNotification = (headerText, mainText, achImg=null) => {
     const time = (new Date()).getTime()
     var id = getNextId(notifications, `${time}_0`)
     var classes = "notification"
-    var fade = 4;
-    
+    var fade = customFade || 4
+
     if (achImg) {
         classes += ` achievement`
-        fade = 2
+        fade = customFade || 2
     } 
 
     $("#notifications").append(`<div id='${id}' class='${classes}'></div>`)
@@ -34,11 +34,10 @@ export const showNotification = (headerText, mainText, achImg=null) => {
     
     if (achImg) $nofication.append(`<img src='./img/achievements/${achImg}.png'/>`)
     $nofication.append(`<h1>${headerText}</h1>`)
-    if (!achImg) $nofication.append(`<p>${mainText}</p>`)
-
-    // set the fade of the current element
+    if (mainText != "") $nofication.append(`<p>${mainText}</p>`)
 
     notifications[id] = fade
+    body.data("notifications", notifications)
 }
 
 const destroyNotification = (id) => {
@@ -60,4 +59,14 @@ const getNextId = (notifications, id) => {
 export const destroyAllNotifications = () => {
     $("body").data("notifications", {})
     $("#notifications").empty()
+}
+
+export const showNailedIt = () => {
+    
+    $("#notifications").append(`<div id='nailed-it' class='noficiation'></div>`)
+
+    const body = $("body")
+    var notifications = body.data("notifications")
+    notifications["nailed-it"] = 6
+    body.data("notifications", notifications)
 }

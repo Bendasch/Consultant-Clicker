@@ -97,16 +97,20 @@ export const autoFindProject = (tick, cycle) => {
 export const findProject = async () => {
   
     console.assert(getProjectClickPending(), "findProject: clickPending not set true!")
-
+    if (projectBufferFull()) return 
+    
     // if the sales rate exceeds 100%
     // we instantly generate a project and try to find a 2nd
     var totalSalesRate = $("body").data("totalSalesRate")
-    if (totalSalesRate > 1) {
+
+    // instantly get a project for every 100% sales chance.
+    // after that, we try to find a project with the 
+    // remaining sub 100% chance.
+    for (var i=1; i<=Math.floor(totalSalesRate); i++) {
       await generateProject()
       totalSalesRate -= 1
+      if (projectBufferFull()) return      
     }
-
-    if (projectBufferFull()) return
 
     // get a random number between 0 and 1
     // if it exceeds the sales rate, get a project

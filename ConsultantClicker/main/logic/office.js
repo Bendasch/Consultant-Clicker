@@ -2,6 +2,7 @@ import { triggerOfficeAnimation, startButtonGlow, setOfficeCooldown } from '../r
 import { getActiveProject, addToProgress, findProject, generateProject } from './project.js'
 import { createProgressIndicator } from '../render/flyingIndicators.js'
 import { getProjectClickPending, setProjectClickPending, isProjectBufferFull } from './projectMeta.js'
+import { FormatterDec } from '../utils/utils.js'
 
 export const officeClick = (event, buttonId) => {
 
@@ -52,10 +53,11 @@ const excelClick = () => {
   var buttons = body.data("buttons")
   var powerups = body.data("powerups")
 
-  const consultantBoost = buttons.outlook.powerupValue
+  const boost = buttons.outlook.powerupValue
   powerups["excel"] = {
     "secondsleft": 30, 
-    "consultantBoost": consultantBoost
+    "consultantBoost": boost,
+    "clickingBoost": boost
   }  
   body.data("powerups", powerups)
 
@@ -142,13 +144,14 @@ const clickFindProject = (event, buttonId, clicking) => {
 const clickProgress = (event, clicking) => {
   
     addToProgress(clicking.value);
-  
+
+    var clickingValue = FormatterDec.format(clicking.value)
     createProgressIndicator(
       "click-" + clicking.clicks,
       event.clientX,
       event.clientY,
       "progress",
-      clicking.value
+      clickingValue
     );
   
     clicking.totalProgress += clicking.value;

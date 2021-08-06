@@ -238,15 +238,33 @@ html {
 
         &.achievement {
           width: 80%;
-          font-size: 90%;
+          font-size: 85%;
           background-color: $achievementNotification;          
           h1 { 
             margin-left: 4.75em; 
             line-height: 3em;
-          }     
+          }   
+          p { 
+            margin-left: 4.75em;
+            margin-bottom: 1em; 
+          }  
         }
-      }
+      }  
+
+      #nailed-it {
+        position: relative;
+        flex-direction: column;
+        display: block;
+        background-image: url(../img/nailed-it.gif);
+        background-position: center;
+        width: 150px;
+        height: 150px;
+        border-radius: 20px;
+        z-index: 5000;
+      }  
     }
+
+
 
     #canvas {
 
@@ -269,7 +287,7 @@ html {
           display: none;
           line-height: 20px;
 
-          h1 { font-size: 1.75em; }
+          h1 { font-size: 1.5em; }
 
           .contentWrapper {
 
@@ -340,6 +358,7 @@ html {
                   @include table-cell;
                   color: $costred;
                   font-size: 95%;
+                  text-align: right;
                   //border-right: 1px solid $lightgray;
                 }
               }
@@ -501,9 +520,8 @@ html {
 
             &.cooldown,
             &.cooldown:hover { 
-              opacity: 35%;
               cursor: default;
-
+              
               &.glow1, &.glow2, &.glow3 {
                 opacity: 100%;
               }
@@ -563,7 +581,7 @@ html {
           display: inline-block;
 
           p {
-            width: 100%;
+            width: 90%;
             display: inline-block;
             padding: 0.25vh;
             margin: 0;
@@ -619,8 +637,8 @@ html {
 
             p {
               position: absolute;
-              width: 100%;
-              font-size: calc(#{$project-fontsize} * 1.1);
+              width: 95%;
+              font-size: calc(#{$project-fontsize} * 0.9);
               z-index: 10;
               padding: 0;
               margin: 0;

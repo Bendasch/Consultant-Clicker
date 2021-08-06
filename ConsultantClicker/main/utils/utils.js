@@ -17,7 +17,8 @@ export const Formatter = new Intl.NumberFormat('en-US', {
 });
 
 export const FormatterDec =  new Intl.NumberFormat('en-US', {
-    style: 'decimal'
+    style: 'decimal',
+    maximumFractionDigits: 0
 });
 
 export const formatMillions = (number, type='cur') => {

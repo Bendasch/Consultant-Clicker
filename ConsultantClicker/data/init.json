@@ -12,7 +12,7 @@
     "consultants": {
         "junior": {
             "quantity": 0,
-            "rate": 50,
+            "rate": 75,
             "cost": 15000,
             "baseCost": 15000,
             "name": "Junior Consultant",
@@ -20,36 +20,36 @@
         },
         "consultant": {
             "quantity": 0,
-            "rate": 75,
+            "rate": 100,
             "cost": 25000,
             "baseCost": 25000,
             "name": "Consultant",
-            "baseRate": 75
+            "baseRate": 100
         },
         "senior": {
             "quantity": 0,
-            "rate": 175,
+            "rate": 200,
             "cost": 40000,
             "baseCost": 40000,
             "name": "Senior Consultant",
-            "baseRate": 175
+            "baseRate": 200
         }
     },
     "sales": {
         "salesPerson" :{
             "quantity": 0,
-            "rate": 0.025,
-            "cost": 50000,
-            "baseCost": 50000,
+            "rate": 0.0275,
+            "cost": 42500,
+            "baseCost": 42500,
             "name": "Salesperson",
-            "baseRate": 0.025
+            "baseRate": 0.0275
         }
     },
     "projectMeta": {
         "expectedValue": 10000,
         "baseExpectedValue": 10000,
-        "effortConversionRate": 0.25,
-        "baseEffortConversionRate": 0.25,
+        "effortConversionRate": 0.3,
+        "baseEffortConversionRate": 0.3,
         "totalProjectsFinished": 0,
         "totalProjectsFound": 1,
         "projectBufferSize": 1,
@@ -100,14 +100,14 @@
         },
         "wordTraining": {
             "id": "wordTraining",
-            "name": "Word Training",
-            "description": "This teaches your staff some crucial word techniques (+5% consultants and sales).",
+            "name": "Word training",
+            "description": "This teaches your staff some crucial word techniques (+7.5% consultants and sales).",
             "owned": false,
             "cost": 25000,
             "rate": {
-                "consultants": 1.05,
-                "sales": 1.05,
-                "clicking": 1.05
+                "consultants": 1.075,
+                "sales": 1.075,
+                "clicking": 1.075
             }
         },
         "callForProposal": {
@@ -119,13 +119,13 @@
         },
         "waterScrum": {
             "id": "waterScrum",
-            "name": "Water-Scrum",
-            "description": "Agile but not really! This slightly decreases productivity (-5%) but helps sales (+2.5%)!",
+            "name": "Water-scrum",
+            "description": "Agile but not really! This slightly decreases productivity (-5%) but helps sales (+10%)!",
             "owned": false,
             "cost": 75000,
             "rate": {
                 "consultants": 0.95,
-                "sales": 1.025,
+                "sales": 1.1,
                 "clicking": 1
             }
         },
@@ -140,11 +140,11 @@
         "mediumSizedBusiness": {
             "id": "mediumSizedBusiness",
             "name": "Medium-sized business",
-            "description": "Your project will take 2x the effort but bring in 2.5x the money.",
+            "description": "Your project will take 2.4x the effort but bring in 3x the money.",
             "owned": false,
             "cost": 150000,
             "rate": {
-                "projectMoney": 2.5,
+                "projectMoney": 3,
                 "projectEffortConversion": 0.8,
                 "consultants": 1,
                 "sales": 1,
@@ -153,13 +153,13 @@
         },
         "salesTraining": {
             "id": "salesTraining",
-            "name": "Sales Training",
-            "description": "This teaches your sales staff some new techniques (+2.5%).",
+            "name": "Sales training",
+            "description": "This teaches your sales staff some new techniques (+5%). Clicking also improved by 5%.",
             "owned": false,
             "cost": 175000,
             "rate": {
                 "consultants": 1,
-                "sales": 1.025,
+                "sales": 1.05,
                 "clicking": 1.05
             }
         },
@@ -180,47 +180,59 @@
         "cleverPricing": {
             "id": "cleverPricing",
             "name": "Clever pricing",
-            "description": "Your sales come up with a great trick (+2.5% sales rate).",
+            "description": "Your sales come up with a great trick (+5% sales rate).",
             "owned": false,
             "cost": 999999,
             "rate": {
                 "consultants": 1,
-                "sales": 1.025,
+                "sales": 1.05,
                 "clicking": 1
             }
         },
         "bigBusiness": {
             "id": "bigBusiness",
             "name": "Big business",
-            "description": "Your project will take 4x the effort but bring in 3x the money.",
+            "description": "Your project will take 2.1x the effort but bring in 3.5x the money. Clicking becomes 2.5x more impactful.",
             "owned": false,
             "cost": 1500000,
             "rate": {
-                "projectMoney": 4,
-                "projectEffortConversion": 0.75,
+                "projectMoney": 3.5,
+                "projectEffortConversion": 0.6,
                 "consultants": 1,
                 "sales": 1,
-                "clicking": 1
+                "clicking": 2.5
             }
         },
         "newWebsite": {
             "id": "newWebsite",
-            "name": "New Website",
-            "description": "The new website increases sales (+2.5%).",
+            "name": "New website",
+            "description": "The new website increases sales (+5%).",
             "owned": false,
             "cost": 2500000,
             "rate": {
                 "consultants": 1,
-                "sales": 1.025,
+                "sales": 1.05,
                 "clicking": 1
+            }
+        },
+        "allNighter": {
+            "id": "allNighter",
+            "name": "All-nighter",
+            "description": "This technique makes your clicking 2x more impactful and consultants become 15% more productive.",
+            "owned": false,
+            "cost": 5000000,
+            "rate": {
+                "consultants": 1.15,
+                "sales": 1,
+                "clicking": 2
             }
         },
         "excelUpgrade": {
             "id": "excelUpgrade",
             "name": "Excel",
-            "description": "This allows you to make your consultants 3x as productive for 30s by clicking the excel icon (90s cooldown).",
+            "description": "This allows you to make your consultants and your clicking 3x as productive for 30s by clicking the excel icon (90s cooldown).",
             "owned": false,
-            "cost": 5000000
+            "cost": 7500000
         },
         "monopoly": {
             "id": "monopoly",
@@ -235,6 +247,32 @@
             "description": "This allows you to fill your project buffer instantly by clicking the powerpoint button (60s cooldown).",
             "owned": false,
             "cost": 25000000
+        },     
+        "hugeBusiness": {
+            "id": "hugeBusiness",
+            "name": "Huge business",
+            "description": "Your projects will take 3x more effort but also earn you 4x the money. Also clicking now is 2x times as impactful.",
+            "owned": false,
+            "cost": 50000000,
+            "rate": {
+                "projectMoney": 4,
+                "projectEffortConversion": 0.75,
+                "consultants": 1,
+                "sales": 1,
+                "clicking": 2.5
+            }
+        },
+        "godConsultants": {
+            "id": "godConsultants",
+            "name": "God consultants",
+            "description": "Your consultants and your clicking are now 2x as effective!",
+            "owned": false,
+            "cost": 75000000,
+            "rate": {
+                "consultants": 2,
+                "sales": 1,
+                "clicking": 2
+            }
         }
     },
     "clicking": {
@@ -296,31 +334,31 @@
             },
             "3": {
                 "id": "uncommon",
-                "threshold": 500,
+                "threshold": 250,
                 "unlocked": false,
                 "new": true
             },
             "4": {
                 "id": "rare",
-                "threshold": 5000,
+                "threshold": 500,
                 "unlocked": false,
                 "new": true
             },
             "5": {
                 "id": "epic",
-                "threshold": 50000,
+                "threshold": 1000,
                 "unlocked": false,
                 "new": true
             }, 
             "6": {
                 "id": "legendary",
-                "threshold": 500000,
+                "threshold": 2500,
                 "unlocked": false,
                 "new": true
             },
             "7": {
                 "id": "god",
-                "threshold": 1000000,
+                "threshold": 5000,
                 "unlocked": false,
                 "new": true
             }
@@ -329,7 +367,7 @@
             "current": 0,
             "name": "total-earnings",
             "condition": "total earnings",
-            "tooltip": "You managed to earn {THRESHOLD}€ throughout the game!",
+            "tooltip": "You managed to earn ${THRESHOLD} throughout the game!",
             "1": {
                 "id": "beginner",
                 "threshold": 100000,
@@ -338,67 +376,19 @@
             },
             "2": {
                 "id": "common",
-                "threshold": 1000000,
-                "unlocked": false,
-                "new": true
-            },
-            "3": {
-                "id": "uncommon",
-                "threshold": 10000000,
-                "unlocked": false,
-                "new": true
-            },
-            "4": {
-                "id": "rare",
-                "threshold": 100000000,
-                "unlocked": false,
-                "new": true
-            }, 
-            "5": {
-                "id": "epic",
-                "threshold": 1000000000,
-                "unlocked": false,
-                "new": true
-            }, 
-            "6": {
-                "id": "legendary",
-                "threshold": 10000000000,
-                "unlocked": false,
-                "new": true
-            },
-            "7": {
-                "id": "god",
-                "threshold": 100000000000,
-                "unlocked": false,
-                "new": true
-            }
-        },
-        "balance": {
-            "current": 0,            
-            "name": "concurrent-balance",
-            "condition": "concurrent balance",
-            "tooltip": "You managed to accumulated {THRESHOLD}€ at one point the game!",
-            "1": {
-                "id": "beginner",
-                "threshold": 5000,
-                "unlocked": false,
-                "new": true
-            }, 
-            "2": {
-                "id": "common",
-                "threshold": 50000,
-                "unlocked": false,
-                "new": true
-            }, 
-            "3": {
-                "id": "uncommon",
                 "threshold": 500000,
                 "unlocked": false,
                 "new": true
-            },         
+            },
+            "3": {
+                "id": "uncommon",
+                "threshold": 2500000,
+                "unlocked": false,
+                "new": true
+            },
             "4": {
                 "id": "rare",
-                "threshold": 5000000,
+                "threshold": 10000000,
                 "unlocked": false,
                 "new": true
             }, 
@@ -410,13 +400,61 @@
             }, 
             "6": {
                 "id": "legendary",
-                "threshold": 500000000,
+                "threshold": 250000000,
+                "unlocked": false,
+                "new": true
+            },
+            "7": {
+                "id": "god",
+                "threshold": 1000000000,
+                "unlocked": false,
+                "new": true
+            }
+        },
+        "balance": {
+            "current": 0,            
+            "name": "concurrent-balance",
+            "condition": "concurrent balance",
+            "tooltip": "You managed to accumulated ${THRESHOLD} at one point the game!",
+            "1": {
+                "id": "beginner",
+                "threshold": 25000,
                 "unlocked": false,
                 "new": true
             }, 
+            "2": {
+                "id": "common",
+                "threshold": 100000,
+                "unlocked": false,
+                "new": true
+            },
+            "3": {
+                "id": "uncommon",
+                "threshold": 500000,
+                "unlocked": false,
+                "new": true
+            }, 
+            "4": {
+                "id": "rare",
+                "threshold": 2500000,
+                "unlocked": false,
+                "new": true
+            },
+            "5": {
+                "id": "epic",
+                "threshold": 10000000,
+                "unlocked": false,
+                "new": true
+            },
+            "6": {
+                "id": "legendary",
+                "threshold": 50000000,
+                "unlocked": false,
+                "new": true
+            },
             "7": {
                 "id": "god",
-                "threshold": 5000000000,
+                "threshold": 250000000,
                 "unlocked": false,
                 "new": true
             }
@@ -428,43 +466,43 @@
             "tooltip": "You managed to finish {THRESHOLD} projects throughout the game!",
             "1": {
                 "id": "beginner",
-                "threshold": 5,
+                "threshold": 10,
                 "unlocked": false,
                 "new": true
             }, 
             "2": {
                 "id": "common",
-                "threshold": 25,
+                "threshold": 50,
                 "unlocked": false,
                 "new": true
             },
             "3": {
                 "id": "uncommon",
-                "threshold": 250,
+                "threshold": 100,
                 "unlocked": false,
                 "new": true
             }, 
             "4": {
                 "id": "rare",
-                "threshold": 2500,
+                "threshold": 250,
                 "unlocked": false,
                 "new": true
             },
             "5": {
                 "id": "epic",
-                "threshold": 25000,
+                "threshold": 500,
                 "unlocked": false,
                 "new": true
             },
             "6": {
                 "id": "legendary",
-                "threshold": 100000,
+                "threshold": 1000,
                 "unlocked": false,
                 "new": true
             },
             "7": {
                 "id": "god",
-                "threshold": 500000,
+                "threshold": 2500,
                 "unlocked": false,
                 "new": true
             }
@@ -476,43 +514,43 @@
             "tooltip": "You managed to finish projects with a total effort of {THRESHOLD}!",
             "1": {
                 "id": "beginner",
-                "threshold": 100000,
+                "threshold": 25000,
                 "unlocked": false,
                 "new": true
             }, 
             "2": {
                 "id": "common",
-                "threshold": 1000000,
+                "threshold": 100000,
                 "unlocked": false,
                 "new": true
             },
             "3": {
                 "id": "uncommon",
-                "threshold": 10000000,
+                "threshold": 500000,
                 "unlocked": false,
                 "new": true
             }, 
             "4": {
                 "id": "rare",
-                "threshold": 100000000,
+                "threshold": 2500000,
                 "unlocked": false,
                 "new": true
             },
             "5": {
                 "id": "epic",
-                "threshold": 1000000000,
+                "threshold": 10000000,
                 "unlocked": false,
                 "new": true
             },
             "6": {
                 "id": "legendary",
-                "threshold": 10000000000,
+                "threshold": 50000000,
                 "unlocked": false,
                 "new": true
             },
             "7": {
                 "id": "god",
-                "threshold": 100000000000,
+                "threshold": 100000000,
                 "unlocked": false,
                 "new": true
             }
@@ -542,25 +580,25 @@
             },
             "4": {
                 "id": "rare",
-                "threshold": 50,
+                "threshold": 25,
                 "unlocked": false,
                 "new": true
             }, 
             "5": {
                 "id": "epic",
-                "threshold": 100,
+                "threshold": 50,
                 "unlocked": false,
                 "new": true
             }, 
             "6": {
                 "id": "legendary",
-                "threshold": 500,
+                "threshold": 100,
                 "unlocked": false,
                 "new": true
             },
             "7": {
                 "id": "god",
-                "threshold": 1000,
+                "threshold": 250,
                 "unlocked": false,
                 "new": true
             }
@@ -584,31 +622,31 @@
             },
             "3": {
                 "id": "uncommon",
-                "threshold": 40,
+                "threshold": 50,
                 "unlocked": false,
                 "new": true
             },
             "4": {
                 "id": "rare",
-                "threshold": 55,
+                "threshold": 75,
                 "unlocked": false,
                 "new": true
             },
             "5": {
                 "id": "epic",
-                "threshold": 70,
+                "threshold": 100,
                 "unlocked": false,
                 "new": true
             },
             "6": {
                 "id": "legendary",
-                "threshold": 85,
+                "threshold": 150,
                 "unlocked": false,
                 "new": true
             },
             "7": {
                 "id": "god",
-                "threshold": 100,
+                "threshold": 250,
                 "unlocked": false,
                 "new": true
             }
@@ -626,31 +664,31 @@
             }, 
             "2": {
                 "id": "common",
-                "threshold": 2,
+                "threshold": 3,
                 "unlocked": false,
                 "new": true
             },
             "3": {
                 "id": "uncommon",
-                "threshold": 3,
+                "threshold": 5,
                 "unlocked": false,
                 "new": true
             },
             "4": {
                 "id": "rare",
-                "threshold": 5,
+                "threshold": 8,
                 "unlocked": false,
                 "new": true
             },
             "5": {
                 "id": "epic",
-                "threshold": 8,
+                "threshold": 12,
                 "unlocked": false,
                 "new": true
             },
             "6": {
                 "id": "legendary",
-                "threshold": 13,
+                "threshold": 16,
                 "unlocked": false,
                 "new": true
             },
@@ -692,7 +730,7 @@
             }, 
             "5": {
                 "id": "epic",
-                "threshold": 35,
+                "threshold": 45,
                 "unlocked": false,
                 "new": true
             }, 

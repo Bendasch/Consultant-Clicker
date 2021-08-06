@@ -66,7 +66,7 @@ export const createProgressIndicator = (id, x, y, type=null, value=null) => {
     const body = $("body");
     
     if (type == 'progress') {
-        var dot = $("<div id='" + id + "' class='clickProgressIndicator'>" + "+" + value + "</div>");
+        var dot = $("<div id='" + id + "' class='clickProgressIndicator'>" + "+" + value + "&#128170;</div>");
     } else if (type == 'findProject') {
         var emoji;
         value ? emoji = '&#127881;' : emoji = '&#128169;' // the value is whether a project was found
@@ -90,9 +90,10 @@ export const startAddToBalanceAnimation = (projectId, projectValue) => {
     
     const ID = projectId + "-balance";
     const $project = $("#" + projectId);
+    if (!$project) return
     const X = $project.offset().left + ($project.width() / 2);
     const Y = $project.offset().top + ($project.height() / 2);
-    var dot = $("<div id='" + ID + "' class='addToBalanceIndicator'>" + "+" + Formatter.format(projectValue) + "</div>");
+    var dot = $("<div id='" + ID + "' class='addToBalanceIndicator'>" + Formatter.format(projectValue) + "&#128184;</div>");
     styleAnimationDot(dot, X, Y);
     $("#projectBalanceContainer").append(dot);
 
@@ -104,7 +105,7 @@ export const startAddToBalanceAnimation = (projectId, projectValue) => {
 
 const styleAnimationDot = ($dot, x, y) => {
 
-    const WIDTH = $dot.text().length * 7;
+    const WIDTH = $dot.text().length * 20;
     const HEIGHT = WIDTH / 2;
     const X = x - (WIDTH / 2);
     const Y = y - (HEIGHT / 2);

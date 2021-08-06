@@ -5,6 +5,7 @@ import {
     setAchievementNotNew
 } from '../logic/achievements.js'
 import { mobileCheck } from '../utils/utils.js'
+import { FormatterDec } from '../utils/utils.js'
 
 export const renderAchievementCount = () => {
     const reached = getUnlockedAchievementAmount()
@@ -89,7 +90,7 @@ const getTooltip = (achievementId) => {
     const [type, level] = getTypeAndLevelFromId(achievementId)
     const achievements = $("body").data("achievements")
     var tooltip = achievements[type].tooltip
-    const threshold = achievements[type][level].threshold
+    var threshold = achievements[type][level].threshold
 
-    return tooltip.replace("{THRESHOLD}", threshold)
+    return tooltip.replace("{THRESHOLD}", FormatterDec.format(threshold))
 }

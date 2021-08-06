@@ -1,4 +1,4 @@
-import { FormatterNoDec } from '../utils/utils.js'
+import { FormatterNoDec, FormatterDec } from '../utils/utils.js'
 import { addResource } from '../logic/resources.js'
 
 export const renderConsultants = () => {
@@ -9,7 +9,7 @@ export const renderConsultants = () => {
         const consultant = consultants[key]
         $(`#${key}Count`).text(consultant.quantity)
         if (consultant.quantity > 0) $(`#${key}Count`).addClass("atleastone")
-        $(`#${key}Rate`).text(consultant.rate + " progress per sec")
+        $(`#${key}Rate`).text(FormatterDec.format(consultant.rate) + " progress per sec")
         $(`#${key}Cost`).text(FormatterNoDec.format(consultant.cost))
     })
 }

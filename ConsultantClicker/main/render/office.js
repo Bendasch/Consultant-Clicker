@@ -17,28 +17,44 @@ export const renderOfficeButtons = () => {
         }
         $(`#${buttonId}Container`).addClass("unlocked")
 
-        // handle cooldown
-        if (buttons[buttonId].cooldown > 0) { 
-            setOfficeCooldown(buttonId)
-        } else {
-            setOfficeCooldown(buttonId, false)
-        }
-
+        setOfficeCooldown(buttonId, buttons[buttonId].cooldown)
         renderClick(buttons, buttonId)
         renderButtonGlow($button, buttonId)        
     });
 }
 
-export const setOfficeCooldown = (buttonId, set=true) => {
+export const setOfficeCooldown = (buttonId, cooldown) => {
+    
+    const powerups = $("body").data("powerups")
+
     var $btn = $(`#${buttonId}`)    
     var $container = $(`#${buttonId}Container`)
-    if (set) {
-        $btn.addClass("cooldown")
-        $container.addClass("cooldown")
-    } else {
+
+    if (cooldown <= 0) { 
         $btn.removeClass("cooldown")
+        $btn.css("opacity", `100%`)
         $container.removeClass("cooldown")
+        return
     }
+
+    $container.addClass("cooldown")
+    $btn.addClass("cooldown")
+
+    // if the powerup is still active, return
+    if (buttonId in powerups) return;
+
+    // start at 35% opacity
+    // and fade in depending on cd
+    var maxCooldown;
+    switch (buttonId) {
+        case "powerpoint":  maxCooldown = 60; break
+        case "excel":       maxCooldown = 90; break
+        case "outlook":     maxCooldown = 90; break
+    }    
+
+    var opacity = 80 - 80 * (cooldown / maxCooldown)
+    
+    $btn.css("opacity", `${opacity}%`)
 }
 
 const renderClick = (buttons, buttonId) => {

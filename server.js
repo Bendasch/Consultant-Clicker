@@ -56,9 +56,9 @@ app.get("/api/namegen", (req, res) => {
     })
     
     request.on('socket', (socket) => {
-        socket.setTimeout(500)
+        socket.setTimeout(400)
         socket.on('timeout', () => {
-            console.error(red, 'Namefake-api did not respond within 0.5s!')
+            console.error(red, 'Namefake-api did not respond within 0.4s!')
             res.send({company: "Random Company"})
             request.destroy();
         })

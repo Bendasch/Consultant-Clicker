@@ -3,7 +3,6 @@ export const updatePowerups = (tick) => {
     var powerups = body.data("powerups")
     Object.keys(powerups).forEach( (key) => {
         powerups[key].secondsleft -= (tick / 1000)
-        console.log(`${powerups[key].secondsleft} seconds left.`)
         if (powerups[key].secondsleft <= 0) delete powerups[key]
     })
     body.data("powerups", powerups)

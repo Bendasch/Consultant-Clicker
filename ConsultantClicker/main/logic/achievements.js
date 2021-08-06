@@ -1,7 +1,7 @@
 import { getTotalConsultantsQuantity, getTotalSalesQuantity } from './resources.js'
 import { getUnlockedUpgradeAmount } from './upgrades.js'
 import { unlockAchievement } from '../render/achievements.js'
-import { showNotification } from '../render/notifications.js'
+import { showNotification, showNailedIt } from '../render/notifications.js'
 
 export const updateAchievements = (cycle) => {
 
@@ -28,9 +28,22 @@ export const updateAchievements = (cycle) => {
             if (!(meetsThreshold(type, achievement.threshold))) break;
 
             unlockAchievement(type, level)
-            showNotification("New Achievement!", "", getAchievementImg(type, level))
             achievements[type].current = level
             achievements[type][level].unlocked = true
+
+            if (type=="achievements" && level == 7) {
+                // this means that the person has beat the game!
+                showNotification(
+                    "You beat the game!", 
+                    "You're a consultant clicker GOD.", 
+                    getAchievementImg(type, level),
+                    6
+                )
+
+                showNailedIt()
+            } else {
+                showNotification("New Achievement!", "", getAchievementImg(type, level))
+            }
         }
 
         body.data("achievements", achievements)
@@ -98,6 +111,6 @@ const getLevelNumberFromId = (level) => {
 export const getTotalNumberForAchievement = (type) => {
     switch(type) {
         case "achievements":    return 62
-        case "upgrades":        return 17   
+        case "upgrades":        return 20   
     }
 }

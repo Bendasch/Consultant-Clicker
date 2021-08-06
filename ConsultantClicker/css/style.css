@@ -143,12 +143,27 @@ html body #notifications .notification img {
 }
 html body #notifications .notification.achievement {
   width: 80%;
-  font-size: 90%;
+  font-size: 85%;
   background-color: #f5523c;
 }
 html body #notifications .notification.achievement h1 {
   margin-left: 4.75em;
   line-height: 3em;
+}
+html body #notifications .notification.achievement p {
+  margin-left: 4.75em;
+  margin-bottom: 1em;
+}
+html body #notifications #nailed-it {
+  position: relative;
+  flex-direction: column;
+  display: block;
+  background-image: url(../img/nailed-it.gif);
+  background-position: center;
+  width: 150px;
+  height: 150px;
+  border-radius: 20px;
+  z-index: 5000;
 }
 html body #canvas {
   display: flex;
@@ -173,7 +188,7 @@ html body #canvas #menu .tabcontent {
   line-height: 20px;
 }
 html body #canvas #menu .tabcontent h1 {
-  font-size: 1.75em;
+  font-size: 1.5em;
 }
 html body #canvas #menu .tabcontent .contentWrapper {
   overflow: auto;
@@ -273,6 +288,7 @@ html body #canvas #menu .tabcontent .contentWrapper .resourceTable .resourceRow 
   width: auto;
   color: red;
   font-size: 95%;
+  text-align: right;
 }
 html body #canvas #menu .tabcontent .contentWrapper .upgradeTable {
   width: 100%;
@@ -426,7 +442,6 @@ html body #canvas #workbar .officeContainer img {
   border-radius: 0.5rem;
 }
 html body #canvas #workbar .officeContainer img.cooldown, html body #canvas #workbar .officeContainer img.cooldown:hover {
-  opacity: 35%;
   cursor: default;
 }
 html body #canvas #workbar .officeContainer img.cooldown.glow1, html body #canvas #workbar .officeContainer img.cooldown.glow2, html body #canvas #workbar .officeContainer img.cooldown.glow3, html body #canvas #workbar .officeContainer img.cooldown:hover.glow1, html body #canvas #workbar .officeContainer img.cooldown:hover.glow2, html body #canvas #workbar .officeContainer img.cooldown:hover.glow3 {
@@ -487,7 +502,7 @@ html body #canvas #projectBar .project {
   display: inline-block;
 }
 html body #canvas #projectBar .project p {
-  width: 100%;
+  width: 90%;
   display: inline-block;
   padding: 0.25vh;
   margin: 0;
@@ -532,8 +547,8 @@ html body #canvas #projectBar .project .progressWrapper {
 }
 html body #canvas #projectBar .project .progressWrapper p {
   position: absolute;
-  width: 100%;
-  font-size: calc(calc(90% + 0.5vw) * 1.1);
+  width: 95%;
+  font-size: calc(calc(90% + 0.5vw) * 0.9);
   z-index: 10;
   padding: 0;
   margin: 0;

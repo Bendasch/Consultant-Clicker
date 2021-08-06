@@ -69,11 +69,11 @@ const setProjectFontSize = (projectName, projectId) => {
 
     var fontSize = parseInt($(`#${projectId}`).children('p').css('font-size'))
     if (projectName.length > 25) {
-        fontSize *= 0.7
+        fontSize *= 0.65
     } else if (projectName.length > 20) {
-        fontSize *= 0.75
+        fontSize *= 0.7
     } else if (projectName.length > 15) {
-        fontSize *= 0.8
+        fontSize *= 0.75
     } else if (projectName.length > 10) {
         fontSize *= 0.85           
     }

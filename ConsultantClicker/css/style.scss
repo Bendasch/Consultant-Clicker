@@ -10,7 +10,6 @@ $projectactive: rgb(247, 244, 161);
 $costred: red;
 $fullred: rgb(245, 67, 67);
 $cashgreen: rgb(65, 194, 69);
-$trelloblue: #1E88E5;
 $notification: rgb(47, 64, 122);
 $noficationText: $almostwhite;
 $achievementNotification: rgb(245, 82, 60);
@@ -132,7 +131,8 @@ html {
           color: $darkgray;
           &:hover{ 
             color: $darkgray;           
-            background-color: $quitedarkgray;}
+            background-color: $quitedarkgray;
+          }
         }
         
         &#logTab {
@@ -202,12 +202,13 @@ html {
       height: 84%;
       top: 7%;
       pointer-events: none;
+      z-index: 100;
+
 
       .notification {
 
         position: relative;
         flex-direction: column;
-        z-index: 5000;
         width: 90%;
         height: auto;
         min-height: 5em;
@@ -215,6 +216,8 @@ html {
         background-color: $notification;
         color: $noficationText;
         margin-bottom: 1em;
+        pointer-events: all;
+        cursor: pointer;
 
         h1 {
           text-align: center;
@@ -636,14 +639,13 @@ html {
             overflow: hidden;
 
             p {
-              position: absolute;
+              position: relative;
               width: 95%;
               font-size: calc(#{$project-fontsize} * 0.9);
               z-index: 10;
               padding: 0;
               margin: 0;
-              bottom: 0.5em;
-              left: 0;
+              top: 82%;
             }
 
             .progressBar {
@@ -664,69 +666,6 @@ html {
       position: absolute;
       bottom: 0;
       height: calc(3rem + 5px);
-
-      #trelloButton {
-        position: absolute;
-        left: -3px;
-        bottom: 0;
-        width: 48px;
-        height: 48px;
-        background-image: url("../img/trello-icon.png");
-        cursor: pointer;
-        display: none;
-      }
-
-      #trello {
-        
-        position:absolute;
-        bottom: 50px;
-        left: 2px;
-        height: 300px;
-        width: 220px;
-        background-color: $trelloblue;
-        padding: 5px;
-        display: none;
-        z-index: 100;
-        border-radius: 5px;
-  
-        h1 {
-          line-height: 18px;
-          font-weight: bold;
-          font-size: 130%;
-          margin-bottom: 28px;
-          margin-top: 10px;
-          margin-left: 5px;
-        }
-  
-        .trelloLabel {
-          display: flex;
-          width: 96%;
-          margin-top: 20px;
-        }
-  
-        #trelloDescr {
-          position: absolute;
-          width: 93%;
-          resize: none;
-        }
-  
-        #trelloName {
-          width: 96%;
-        }
-  
-        #trelloSend {
-          position: absolute;
-          bottom: 1%;
-          right: 2%;
-          height: 10%;
-          width: 96%;
-          justify-content: center;
-          align-items: center;
-          display: flex;
-          background-color: $create;
-          font-weight: bold;
-        }
-      }
       
       #version {
         position: absolute;

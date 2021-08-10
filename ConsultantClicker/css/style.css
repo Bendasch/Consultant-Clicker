@@ -111,11 +111,11 @@ html body #notifications {
   height: 84%;
   top: 7%;
   pointer-events: none;
+  z-index: 100;
 }
 html body #notifications .notification {
   position: relative;
   flex-direction: column;
-  z-index: 5000;
   width: 90%;
   height: auto;
   min-height: 5em;
@@ -123,6 +123,8 @@ html body #notifications .notification {
   background-color: #2f407a;
   color: #eee;
   margin-bottom: 1em;
+  pointer-events: all;
+  cursor: pointer;
 }
 html body #notifications .notification h1 {
   text-align: center;
@@ -546,14 +548,13 @@ html body #canvas #projectBar .project .progressWrapper {
   overflow: hidden;
 }
 html body #canvas #projectBar .project .progressWrapper p {
-  position: absolute;
+  position: relative;
   width: 95%;
   font-size: calc(calc(90% + 0.5vw) * 0.9);
   z-index: 10;
   padding: 0;
   margin: 0;
-  bottom: 0.5em;
-  left: 0;
+  top: 82%;
 }
 html body #canvas #projectBar .project .progressWrapper .progressBar {
   position: absolute;
@@ -570,61 +571,6 @@ html body #footer {
   position: absolute;
   bottom: 0;
   height: calc(3rem + 5px);
-}
-html body #footer #trelloButton {
-  position: absolute;
-  left: -3px;
-  bottom: 0;
-  width: 48px;
-  height: 48px;
-  background-image: url("../img/trello-icon.png");
-  cursor: pointer;
-  display: none;
-}
-html body #footer #trello {
-  position: absolute;
-  bottom: 50px;
-  left: 2px;
-  height: 300px;
-  width: 220px;
-  background-color: #1E88E5;
-  padding: 5px;
-  display: none;
-  z-index: 100;
-  border-radius: 5px;
-}
-html body #footer #trello h1 {
-  line-height: 18px;
-  font-weight: bold;
-  font-size: 130%;
-  margin-bottom: 28px;
-  margin-top: 10px;
-  margin-left: 5px;
-}
-html body #footer #trello .trelloLabel {
-  display: flex;
-  width: 96%;
-  margin-top: 20px;
-}
-html body #footer #trello #trelloDescr {
-  position: absolute;
-  width: 93%;
-  resize: none;
-}
-html body #footer #trello #trelloName {
-  width: 96%;
-}
-html body #footer #trello #trelloSend {
-  position: absolute;
-  bottom: 1%;
-  right: 2%;
-  height: 10%;
-  width: 96%;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  background-color: brown;
-  font-weight: bold;
 }
 html body #footer #version {
   position: absolute;

@@ -38,9 +38,19 @@ export const showNotification = (headerText, mainText, achImg=null, customFade=n
 
     notifications[id] = fade
     body.data("notifications", notifications)
+
+    // add handler to remove the notifaction on click
+    $nofication.unbind().click(() => {destroyNotification(id)}) 
 }
 
 const destroyNotification = (id) => {
+    const body = $("body")
+    var notifications = body.data("notifications")
+    if (id in notifications) {
+        delete notifications[id]
+        body.data("notifications", notifications)
+    }
+
     $(`#${id}`).empty()
     var doc = document.getElementById(id)
     if (doc) doc.remove()

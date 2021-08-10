@@ -202,14 +202,11 @@ export const addToProgress = (progress) => {
 export const projectClick = (projectId) => {
     var body = $("body");
     var projects = body.data("projects");
-    if (projects[projectId].active) {
-      projects[projectId].active = false;
-    } else {
-      // set all projects to inactive except the clicked one
-      Object.keys(projects).forEach((key) => {
-        projects[key].active = key == projectId;
-      });
-    }
+    
+    // set all projects to inactive except the clicked one
+    Object.keys(projects).forEach((key) => {
+      projects[key].active = key == projectId;
+    });
   
     body.data("projects", projects);
 }

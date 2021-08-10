@@ -76,6 +76,8 @@ const setProjectFontSize = (projectName, projectId) => {
         fontSize *= 0.75
     } else if (projectName.length > 10) {
         fontSize *= 0.85           
+    } else {
+        fontSize *= 0.9         
     }
     $(`#${projectId}`).children('p').css('font-size', `${fontSize}px`)
 }

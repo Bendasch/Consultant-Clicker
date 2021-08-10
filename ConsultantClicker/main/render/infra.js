@@ -1,7 +1,6 @@
 import { addUpgradeRow } from './upgrades.js'
 import { bindTabButtons } from './navbar.js'
 import { bindOfficeButtons } from './office.js'
-import { bindTrelloButtons } from '../utils/trello.js'
 import { bindSettingsButtons } from './settings.js'
 import { lockAchievement, unlockAchievement } from './achievements.js'
 
@@ -19,7 +18,6 @@ export const initializeUpgrades = () => {
 export const initializeButtons = () => {
     bindTabButtons()  
     bindSettingsButtons()  
-    bindTrelloButtons()  
     bindOfficeButtons()
 }
 

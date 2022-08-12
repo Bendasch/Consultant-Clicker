@@ -1,5 +1,5 @@
 # Consultant Clicker
-Consulting themed idle / incremental game inspired by [Cookie Clicker](https://orteil.dashnet.org/cookieclicker/). The game can be played on [www.consultant-clicker.com](http://www.consultant-clicker.com/) (or as a fallback also [here](https://consultant-clicker.herokuapp.com/)). 
+Consulting themed idle / incremental game inspired by [Cookie Clicker](https://orteil.dashnet.org/cookieclicker/). The game can be played [here](https://consultant-clicker.herokuapp.com/) (~~www.consultant-clicker.com~~ became too expensive).
 
 There may or may not be any updates in the future.
 
